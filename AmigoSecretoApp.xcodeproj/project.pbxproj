@@ -1,0 +1,603 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		836EBCA4220A23E600FCF852 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA3220A23E600FCF852 /* AppDelegate.swift */; };
+		836EBCA6220A23E600FCF852 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA5220A23E600FCF852 /* FirstViewController.swift */; };
+		836EBCA8220A23E600FCF852 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA7220A23E600FCF852 /* SecondViewController.swift */; };
+		836EBCAB220A23E600FCF852 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836EBCA9220A23E600FCF852 /* Main.storyboard */; };
+		836EBCAD220A23E900FCF852 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 836EBCAC220A23E900FCF852 /* Assets.xcassets */; };
+		836EBCB0220A23E900FCF852 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836EBCAE220A23E900FCF852 /* LaunchScreen.storyboard */; };
+		836EBCBB220A23E900FCF852 /* AmigoSecretoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCBA220A23E900FCF852 /* AmigoSecretoAppTests.swift */; };
+		836EBCC6220A23E900FCF852 /* AmigoSecretoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCC5220A23E900FCF852 /* AmigoSecretoAppUITests.swift */; };
+		836EBCD4220A30C000FCF852 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCD3220A30C000FCF852 /* ViewController.swift */; };
+		836EBCD6220A312B00FCF852 /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCD5220A312B00FCF852 /* LoggedInViewController.swift */; };
+		836EBCD8220A367600FCF852 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCD7220A367600FCF852 /* Extensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		836EBCB7220A23E900FCF852 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 836EBC98220A23E600FCF852 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 836EBC9F220A23E600FCF852;
+			remoteInfo = AmigoSecretoApp;
+		};
+		836EBCC2220A23E900FCF852 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 836EBC98220A23E600FCF852 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 836EBC9F220A23E600FCF852;
+			remoteInfo = AmigoSecretoApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		836EBCA0220A23E600FCF852 /* AmigoSecretoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmigoSecretoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		836EBCA3220A23E600FCF852 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		836EBCA5220A23E600FCF852 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		836EBCA7220A23E600FCF852 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		836EBCAA220A23E600FCF852 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		836EBCAC220A23E900FCF852 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		836EBCAF220A23E900FCF852 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		836EBCB1220A23E900FCF852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		836EBCB6220A23E900FCF852 /* AmigoSecretoAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmigoSecretoAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		836EBCBA220A23E900FCF852 /* AmigoSecretoAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmigoSecretoAppTests.swift; sourceTree = "<group>"; };
+		836EBCBC220A23E900FCF852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		836EBCC1220A23E900FCF852 /* AmigoSecretoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmigoSecretoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		836EBCC5220A23E900FCF852 /* AmigoSecretoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmigoSecretoAppUITests.swift; sourceTree = "<group>"; };
+		836EBCC7220A23E900FCF852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		836EBCD3220A30C000FCF852 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		836EBCD5220A312B00FCF852 /* LoggedInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
+		836EBCD7220A367600FCF852 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		836EBC9D220A23E600FCF852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836EBCB3220A23E900FCF852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836EBCBE220A23E900FCF852 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		836EBC97220A23E600FCF852 = {
+			isa = PBXGroup;
+			children = (
+				836EBCA2220A23E600FCF852 /* AmigoSecretoApp */,
+				836EBCB9220A23E900FCF852 /* AmigoSecretoAppTests */,
+				836EBCC4220A23E900FCF852 /* AmigoSecretoAppUITests */,
+				836EBCA1220A23E600FCF852 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		836EBCA1220A23E600FCF852 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				836EBCA0220A23E600FCF852 /* AmigoSecretoApp.app */,
+				836EBCB6220A23E900FCF852 /* AmigoSecretoAppTests.xctest */,
+				836EBCC1220A23E900FCF852 /* AmigoSecretoAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		836EBCA2220A23E600FCF852 /* AmigoSecretoApp */ = {
+			isa = PBXGroup;
+			children = (
+				836EBCA3220A23E600FCF852 /* AppDelegate.swift */,
+				836EBCD3220A30C000FCF852 /* ViewController.swift */,
+				836EBCD5220A312B00FCF852 /* LoggedInViewController.swift */,
+				836EBCA5220A23E600FCF852 /* FirstViewController.swift */,
+				836EBCA7220A23E600FCF852 /* SecondViewController.swift */,
+				836EBCD7220A367600FCF852 /* Extensions.swift */,
+				836EBCA9220A23E600FCF852 /* Main.storyboard */,
+				836EBCAC220A23E900FCF852 /* Assets.xcassets */,
+				836EBCAE220A23E900FCF852 /* LaunchScreen.storyboard */,
+				836EBCB1220A23E900FCF852 /* Info.plist */,
+			);
+			path = AmigoSecretoApp;
+			sourceTree = "<group>";
+		};
+		836EBCB9220A23E900FCF852 /* AmigoSecretoAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				836EBCBA220A23E900FCF852 /* AmigoSecretoAppTests.swift */,
+				836EBCBC220A23E900FCF852 /* Info.plist */,
+			);
+			path = AmigoSecretoAppTests;
+			sourceTree = "<group>";
+		};
+		836EBCC4220A23E900FCF852 /* AmigoSecretoAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				836EBCC5220A23E900FCF852 /* AmigoSecretoAppUITests.swift */,
+				836EBCC7220A23E900FCF852 /* Info.plist */,
+			);
+			path = AmigoSecretoAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		836EBC9F220A23E600FCF852 /* AmigoSecretoApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 836EBCCA220A23E900FCF852 /* Build configuration list for PBXNativeTarget "AmigoSecretoApp" */;
+			buildPhases = (
+				836EBC9C220A23E600FCF852 /* Sources */,
+				836EBC9D220A23E600FCF852 /* Frameworks */,
+				836EBC9E220A23E600FCF852 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AmigoSecretoApp;
+			productName = AmigoSecretoApp;
+			productReference = 836EBCA0220A23E600FCF852 /* AmigoSecretoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		836EBCB5220A23E900FCF852 /* AmigoSecretoAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 836EBCCD220A23E900FCF852 /* Build configuration list for PBXNativeTarget "AmigoSecretoAppTests" */;
+			buildPhases = (
+				836EBCB2220A23E900FCF852 /* Sources */,
+				836EBCB3220A23E900FCF852 /* Frameworks */,
+				836EBCB4220A23E900FCF852 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				836EBCB8220A23E900FCF852 /* PBXTargetDependency */,
+			);
+			name = AmigoSecretoAppTests;
+			productName = AmigoSecretoAppTests;
+			productReference = 836EBCB6220A23E900FCF852 /* AmigoSecretoAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		836EBCC0220A23E900FCF852 /* AmigoSecretoAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 836EBCD0220A23E900FCF852 /* Build configuration list for PBXNativeTarget "AmigoSecretoAppUITests" */;
+			buildPhases = (
+				836EBCBD220A23E900FCF852 /* Sources */,
+				836EBCBE220A23E900FCF852 /* Frameworks */,
+				836EBCBF220A23E900FCF852 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				836EBCC3220A23E900FCF852 /* PBXTargetDependency */,
+			);
+			name = AmigoSecretoAppUITests;
+			productName = AmigoSecretoAppUITests;
+			productReference = 836EBCC1220A23E900FCF852 /* AmigoSecretoAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		836EBC98220A23E600FCF852 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Renzo Manuel Alvarado Passalacqua";
+				TargetAttributes = {
+					836EBC9F220A23E600FCF852 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					836EBCB5220A23E900FCF852 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = 836EBC9F220A23E600FCF852;
+					};
+					836EBCC0220A23E900FCF852 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = 836EBC9F220A23E600FCF852;
+					};
+				};
+			};
+			buildConfigurationList = 836EBC9B220A23E600FCF852 /* Build configuration list for PBXProject "AmigoSecretoApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 836EBC97220A23E600FCF852;
+			productRefGroup = 836EBCA1220A23E600FCF852 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				836EBC9F220A23E600FCF852 /* AmigoSecretoApp */,
+				836EBCB5220A23E900FCF852 /* AmigoSecretoAppTests */,
+				836EBCC0220A23E900FCF852 /* AmigoSecretoAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		836EBC9E220A23E600FCF852 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836EBCB0220A23E900FCF852 /* LaunchScreen.storyboard in Resources */,
+				836EBCAD220A23E900FCF852 /* Assets.xcassets in Resources */,
+				836EBCAB220A23E600FCF852 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836EBCB4220A23E900FCF852 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836EBCBF220A23E900FCF852 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		836EBC9C220A23E600FCF852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836EBCA8220A23E600FCF852 /* SecondViewController.swift in Sources */,
+				836EBCD8220A367600FCF852 /* Extensions.swift in Sources */,
+				836EBCD6220A312B00FCF852 /* LoggedInViewController.swift in Sources */,
+				836EBCA4220A23E600FCF852 /* AppDelegate.swift in Sources */,
+				836EBCD4220A30C000FCF852 /* ViewController.swift in Sources */,
+				836EBCA6220A23E600FCF852 /* FirstViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836EBCB2220A23E900FCF852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836EBCBB220A23E900FCF852 /* AmigoSecretoAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		836EBCBD220A23E900FCF852 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				836EBCC6220A23E900FCF852 /* AmigoSecretoAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		836EBCB8220A23E900FCF852 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 836EBC9F220A23E600FCF852 /* AmigoSecretoApp */;
+			targetProxy = 836EBCB7220A23E900FCF852 /* PBXContainerItemProxy */;
+		};
+		836EBCC3220A23E900FCF852 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 836EBC9F220A23E600FCF852 /* AmigoSecretoApp */;
+			targetProxy = 836EBCC2220A23E900FCF852 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		836EBCA9220A23E600FCF852 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				836EBCAA220A23E600FCF852 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		836EBCAE220A23E900FCF852 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				836EBCAF220A23E900FCF852 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		836EBCC8220A23E900FCF852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		836EBCC9220A23E900FCF852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		836EBCCB220A23E900FCF852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AmigoSecretoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		836EBCCC220A23E900FCF852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AmigoSecretoApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		836EBCCE220A23E900FCF852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AmigoSecretoAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AmigoSecretoApp.app/AmigoSecretoApp";
+			};
+			name = Debug;
+		};
+		836EBCCF220A23E900FCF852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AmigoSecretoAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AmigoSecretoApp.app/AmigoSecretoApp";
+			};
+			name = Release;
+		};
+		836EBCD1220A23E900FCF852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AmigoSecretoAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AmigoSecretoApp;
+			};
+			name = Debug;
+		};
+		836EBCD2220A23E900FCF852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AmigoSecretoAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AmigoSecretoApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		836EBC9B220A23E600FCF852 /* Build configuration list for PBXProject "AmigoSecretoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836EBCC8220A23E900FCF852 /* Debug */,
+				836EBCC9220A23E900FCF852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		836EBCCA220A23E900FCF852 /* Build configuration list for PBXNativeTarget "AmigoSecretoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836EBCCB220A23E900FCF852 /* Debug */,
+				836EBCCC220A23E900FCF852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		836EBCCD220A23E900FCF852 /* Build configuration list for PBXNativeTarget "AmigoSecretoAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836EBCCE220A23E900FCF852 /* Debug */,
+				836EBCCF220A23E900FCF852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		836EBCD0220A23E900FCF852 /* Build configuration list for PBXNativeTarget "AmigoSecretoAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				836EBCD1220A23E900FCF852 /* Debug */,
+				836EBCD2220A23E900FCF852 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 836EBC98220A23E600FCF852 /* Project object */;
+}
