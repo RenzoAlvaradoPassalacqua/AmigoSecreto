@@ -44,6 +44,10 @@ class ViewController: UIViewController {
 
     @IBAction func signIn(_ sender: UIButton) {
         let sv = UIViewController.displaySpinner(onView: self.view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { 
+            UIViewController.removeSpinner(spinner: sv)
+        }
+        
         /*PFUser.logInWithUsername(inBackground: signInUsernameField.text!, password: signInPasswordField.text!) { (user, error) in
             UIViewController.removeSpinner(spinner: sv)
             if user != nil {
@@ -57,6 +61,11 @@ class ViewController: UIViewController {
     }
 
     @IBAction func signUp(_ sender: UIButton) {
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            UIViewController.removeSpinner(spinner: sv)
+        }
+        
         /*let user = PFUser()
         user.username = signUpUsernameField.text
         user.password = signUpPasswordField.text

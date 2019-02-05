@@ -26,7 +26,9 @@ class LoggedInViewController: UIViewController {
 
     @IBAction func logoutOfApp(_ sender: UIButton) {
         let sv = UIViewController.displaySpinner(onView: self.view)
-        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            UIViewController.removeSpinner(spinner: sv)
+        }
     }
 
     func displayMessage(message:String) {
