@@ -26,6 +26,7 @@
 		83DC733B220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC7333220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift */; };
 		83DC733C220B4E62005300C1 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC7334220B4E62005300C1 /* Person+CoreDataClass.swift */; };
 		83DC733D220B4E62005300C1 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC7335220B4E62005300C1 /* Person+CoreDataProperties.swift */; };
+		83DC733F220B6BC1005300C1 /* CoreDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC733E220B6BC1005300C1 /* CoreDataUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		83DC7333220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigs+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83DC7334220B4E62005300C1 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		83DC7335220B4E62005300C1 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83DC733E220B6BC1005300C1 /* CoreDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 				83DC7333220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift */,
 				83DC7334220B4E62005300C1 /* Person+CoreDataClass.swift */,
 				83DC7335220B4E62005300C1 /* Person+CoreDataProperties.swift */,
+				83DC733E220B6BC1005300C1 /* CoreDataUtils.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				83DC733C220B4E62005300C1 /* Person+CoreDataClass.swift in Sources */,
 				836EBCA6220A23E600FCF852 /* FirstViewController.swift in Sources */,
 				83DC733B220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift in Sources */,
+				83DC733F220B6BC1005300C1 /* CoreDataUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
