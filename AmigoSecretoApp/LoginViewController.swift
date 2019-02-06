@@ -8,29 +8,39 @@
 
 import UIKit
  
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
     @IBOutlet fileprivate var signInUsernameField: UITextField!
     @IBOutlet fileprivate var signInPasswordField: UITextField!
     @IBOutlet fileprivate var signUpUsernameField: UITextField!
     @IBOutlet fileprivate var signUpPasswordField: UITextField!
-
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    var person = Person()
+    var appConfig = AppConfigs()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         signInUsernameField.text = ""
         signInPasswordField.text = ""
         signUpUsernameField.text = ""
         signUpPasswordField.text = ""
+         
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         /*
          let currentUser = PFUser.current()
         if currentUser != nil {
             loadHomeScreen()
         }
         */
+        self.initView()
     }
 
+    func initView(){
+        self.appConfig = appDelegate.globalAppSettings
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

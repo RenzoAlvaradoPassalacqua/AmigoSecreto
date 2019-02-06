@@ -15,9 +15,17 @@
 		836EBCB0220A23E900FCF852 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836EBCAE220A23E900FCF852 /* LaunchScreen.storyboard */; };
 		836EBCBB220A23E900FCF852 /* AmigoSecretoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCBA220A23E900FCF852 /* AmigoSecretoAppTests.swift */; };
 		836EBCC6220A23E900FCF852 /* AmigoSecretoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCC5220A23E900FCF852 /* AmigoSecretoAppUITests.swift */; };
-		836EBCD4220A30C000FCF852 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCD3220A30C000FCF852 /* ViewController.swift */; };
+		836EBCD4220A30C000FCF852 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCD3220A30C000FCF852 /* LoginViewController.swift */; };
 		836EBCD6220A312B00FCF852 /* LoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCD5220A312B00FCF852 /* LoggedInViewController.swift */; };
 		836EBCD8220A367600FCF852 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCD7220A367600FCF852 /* Extensions.swift */; };
+		83DC7336220B4E62005300C1 /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC732E220B4E62005300C1 /* Event+CoreDataClass.swift */; };
+		83DC7337220B4E62005300C1 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC732F220B4E62005300C1 /* Event+CoreDataProperties.swift */; };
+		83DC7338220B4E62005300C1 /* Draw+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC7330220B4E62005300C1 /* Draw+CoreDataClass.swift */; };
+		83DC7339220B4E62005300C1 /* Draw+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC7331220B4E62005300C1 /* Draw+CoreDataProperties.swift */; };
+		83DC733A220B4E62005300C1 /* AppConfigs+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC7332220B4E62005300C1 /* AppConfigs+CoreDataClass.swift */; };
+		83DC733B220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC7333220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift */; };
+		83DC733C220B4E62005300C1 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC7334220B4E62005300C1 /* Person+CoreDataClass.swift */; };
+		83DC733D220B4E62005300C1 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DC7335220B4E62005300C1 /* Person+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,9 +60,18 @@
 		836EBCC1220A23E900FCF852 /* AmigoSecretoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmigoSecretoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		836EBCC5220A23E900FCF852 /* AmigoSecretoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmigoSecretoAppUITests.swift; sourceTree = "<group>"; };
 		836EBCC7220A23E900FCF852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		836EBCD3220A30C000FCF852 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		836EBCD3220A30C000FCF852 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		836EBCD5220A312B00FCF852 /* LoggedInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInViewController.swift; sourceTree = "<group>"; };
 		836EBCD7220A367600FCF852 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		83DC72E7220B1C4F005300C1 /* AmigoSecretoCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AmigoSecretoCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		83DC732E220B4E62005300C1 /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
+		83DC732F220B4E62005300C1 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83DC7330220B4E62005300C1 /* Draw+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Draw+CoreDataClass.swift"; sourceTree = "<group>"; };
+		83DC7331220B4E62005300C1 /* Draw+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Draw+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83DC7332220B4E62005300C1 /* AppConfigs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigs+CoreDataClass.swift"; sourceTree = "<group>"; };
+		83DC7333220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigs+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		83DC7334220B4E62005300C1 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		83DC7335220B4E62005300C1 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +102,7 @@
 		836EBC97220A23E600FCF852 = {
 			isa = PBXGroup;
 			children = (
+				83DC72E6220B1C4F005300C1 /* AmigoSecretoCoreDataModel.xcdatamodeld */,
 				836EBCA2220A23E600FCF852 /* AmigoSecretoApp */,
 				836EBCB9220A23E900FCF852 /* AmigoSecretoAppTests */,
 				836EBCC4220A23E900FCF852 /* AmigoSecretoAppUITests */,
@@ -105,8 +123,9 @@
 		836EBCA2220A23E600FCF852 /* AmigoSecretoApp */ = {
 			isa = PBXGroup;
 			children = (
+				83DC72F9220B286A005300C1 /* DataModel */,
 				836EBCA3220A23E600FCF852 /* AppDelegate.swift */,
-				836EBCD3220A30C000FCF852 /* ViewController.swift */,
+				836EBCD3220A30C000FCF852 /* LoginViewController.swift */,
 				836EBCD5220A312B00FCF852 /* LoggedInViewController.swift */,
 				836EBCA5220A23E600FCF852 /* FirstViewController.swift */,
 				836EBCA7220A23E600FCF852 /* SecondViewController.swift */,
@@ -135,6 +154,21 @@
 				836EBCC7220A23E900FCF852 /* Info.plist */,
 			);
 			path = AmigoSecretoAppUITests;
+			sourceTree = "<group>";
+		};
+		83DC72F9220B286A005300C1 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				83DC732E220B4E62005300C1 /* Event+CoreDataClass.swift */,
+				83DC732F220B4E62005300C1 /* Event+CoreDataProperties.swift */,
+				83DC7330220B4E62005300C1 /* Draw+CoreDataClass.swift */,
+				83DC7331220B4E62005300C1 /* Draw+CoreDataProperties.swift */,
+				83DC7332220B4E62005300C1 /* AppConfigs+CoreDataClass.swift */,
+				83DC7333220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift */,
+				83DC7334220B4E62005300C1 /* Person+CoreDataClass.swift */,
+				83DC7335220B4E62005300C1 /* Person+CoreDataProperties.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,12 +302,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83DC733D220B4E62005300C1 /* Person+CoreDataProperties.swift in Sources */,
 				836EBCA8220A23E600FCF852 /* SecondViewController.swift in Sources */,
+				83DC7336220B4E62005300C1 /* Event+CoreDataClass.swift in Sources */,
 				836EBCD8220A367600FCF852 /* Extensions.swift in Sources */,
+				83DC733A220B4E62005300C1 /* AppConfigs+CoreDataClass.swift in Sources */,
 				836EBCD6220A312B00FCF852 /* LoggedInViewController.swift in Sources */,
 				836EBCA4220A23E600FCF852 /* AppDelegate.swift in Sources */,
-				836EBCD4220A30C000FCF852 /* ViewController.swift in Sources */,
+				836EBCD4220A30C000FCF852 /* LoginViewController.swift in Sources */,
+				83DC7337220B4E62005300C1 /* Event+CoreDataProperties.swift in Sources */,
+				83DC7339220B4E62005300C1 /* Draw+CoreDataProperties.swift in Sources */,
+				83DC7338220B4E62005300C1 /* Draw+CoreDataClass.swift in Sources */,
+				83DC733C220B4E62005300C1 /* Person+CoreDataClass.swift in Sources */,
 				836EBCA6220A23E600FCF852 /* FirstViewController.swift in Sources */,
+				83DC733B220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +498,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoApp;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -474,6 +517,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoApp;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -598,6 +642,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		83DC72E6220B1C4F005300C1 /* AmigoSecretoCoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				83DC72E7220B1C4F005300C1 /* AmigoSecretoCoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 83DC72E7220B1C4F005300C1 /* AmigoSecretoCoreDataModel.xcdatamodel */;
+			path = AmigoSecretoCoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 836EBC98220A23E600FCF852 /* Project object */;
 }
