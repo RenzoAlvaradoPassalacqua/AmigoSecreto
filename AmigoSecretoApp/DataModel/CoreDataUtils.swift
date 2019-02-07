@@ -39,8 +39,9 @@ class CoreDataUtils{
         
         do {
             try managedContext.save()
-        } catch {
-            print("Failed saving")
+            
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
@@ -61,14 +62,14 @@ class CoreDataUtils{
             let result = try managedContext.fetch(fetchRequest)
             for data in result as! [NSManagedObject] {
                 let retPerson = Person(context:managedContext)
-                print("name: ", data.value(forKey: "name") as! String)
+                print("name: ", data.value(forKey: "name") as? String ?? " ")
                 print("email: ",data.value(forKey: "email") as! String)
                
                 retPerson.name = data.value(forKey: "name") as? String
                 retPerson.email = data.value(forKey: "email") as? String
                 retPerson.password = data.value(forKey: "password") as? String
                 retPerson.logged = data.value(forKey: "logged") as? Bool ?? false
-                retPerson.gift = data.value(forKey: "password") as? String
+                retPerson.gift = data.value(forKey: "gift") as? String
                 retPerson.state = data.value(forKey: "state") as? String
                 
                 retPersonObj = retPerson

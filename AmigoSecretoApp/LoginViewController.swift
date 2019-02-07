@@ -60,7 +60,7 @@ class LoginViewController: UIViewController {
     func initView(){
         let managedContext = appDelegate.persistentContainer.viewContext
         person = Person(context: managedContext)
-        appConfig = AppConfigs(context: managedContext)
+        //appConfig = AppConfigs(context: managedContext)
         
         appConfig = appDelegate.globalAppSettings
         

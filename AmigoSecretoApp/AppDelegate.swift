@@ -38,11 +38,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let context = persistentContainer.viewContext
-        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        //persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         self.globalAppSettings = AppConfigs (context: context)
+        
+        self.initAppGlobalSettings()
         return true
     }
 
+    func initAppGlobalSettings (){
+        self.globalAppSettings?.adminUser = nil
+        //self.globalAppSettings?.appCurrentDate
+        self.globalAppSettings?.appName = "Amigo Secreto"
+        self.globalAppSettings?.appSubtitle = "by Belatrixsf"
+        self.globalAppSettings?.currentappLoggedUser = nil
+        self.globalAppSettings?.isEventActive = false
+        self.globalAppSettings?.isLogged = false
+        
+        
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
