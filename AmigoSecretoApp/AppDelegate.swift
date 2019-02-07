@@ -14,7 +14,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var globalAppSettings = AppConfigs()
+    var globalAppSettings: AppConfigs?
 
     func startPushNotifications(){
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, .carPlay ]) {
@@ -37,7 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        
+        let context = persistentContainer.viewContext
+        self.globalAppSettings = AppConfigs (context: context)
         return true
     }
 

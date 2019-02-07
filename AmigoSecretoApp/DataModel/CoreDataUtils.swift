@@ -44,23 +44,25 @@ class CoreDataUtils{
         
     }
     
-    func searchPersonByEmail (email:String) -> Person{
+    func searchPersonByEmail ( email:String, completion: @escaping (_ personObj:Person?, _ error:Error?) -> Void) {
+        var retPersonObj : Person?
+         
         //As we know that container is set up in the AppDelegates so we need to refer that container.
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
-        let retPerson = Person()
-
         //We need to create a context from this container
-        let managedContext = appDelegate!.persistentContainer.viewContext
+        let managedContext = appDelegate.persistentContainer.viewContext
  
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
     
         fetchRequest.predicate = NSPredicate(format: "email = %@", email)
        
+        
         do {
+            
             let result = try managedContext.fetch(fetchRequest)
             for data in result as! [NSManagedObject] {
-                
+                let retPerson = Person(context:managedContext)
                 print("name: ", data.value(forKey: "name") as! String)
                 print("email: ",data.value(forKey: "email") as! String)
                
@@ -70,14 +72,18 @@ class CoreDataUtils{
                 retPerson.logged = data.value(forKey: "logged") as? Bool ?? false
                 retPerson.gift = data.value(forKey: "password") as? String
                 retPerson.state = data.value(forKey: "state") as? String
+                
+                retPersonObj = retPerson
             }
+             completion(retPersonObj,nil)
             
         } catch {
             
+            completion(nil, (error ))
+            
             print("Failed")
         }
-        
-       return retPerson
+     
     }
     
 }

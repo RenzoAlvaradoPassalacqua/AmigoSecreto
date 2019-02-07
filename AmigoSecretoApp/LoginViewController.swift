@@ -7,7 +7,8 @@
 //
 
 import UIKit
- 
+import PromiseKit
+
 class LoginViewController: UIViewController {
     @IBOutlet fileprivate var signInUsernameField: UITextField!
     @IBOutlet fileprivate var signInPasswordField: UITextField!
@@ -15,8 +16,8 @@ class LoginViewController: UIViewController {
     @IBOutlet fileprivate var signUpPasswordField: UITextField!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    var person = Person()
-    var appConfig = AppConfigs()
+    var person: Person?
+    var appConfig: AppConfigs?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +39,45 @@ class LoginViewController: UIViewController {
     }
 
     func initView(){
-        self.appConfig = appDelegate.globalAppSettings
+        let managedContext = appDelegate.persistentContainer.viewContext
+        person = Person(context: managedContext)
+        appConfig = AppConfigs(context: managedContext)
+        
+        appConfig = appDelegate.globalAppSettings
+        
+        let userPromise = self.getUserCoreDataByEmail(emailParam: "adsa")
+        userPromise
+            .done { (user) in
+              
+                print("encontro usuario coredata",user)
+            }
+            .catch { (error) in
+                
+                print("error no hay coredata", error)
+            }
+            .finally {
+                print("finally")
+        }
+        
     }
+    
+    
+    
+    func getUserCoreDataByEmail(emailParam:String)->Promise<Person> {
+        return Promise<Person> { resolve in
+            CoreDataUtils.sharedInstance.searchPersonByEmail(email: emailParam){ (personCoreData, error) in
+                if(personCoreData != nil){
+                    print("LOGIN---> Encontro una persona en CORE DATA by Email = ", personCoreData?.email as Any)
+                    
+                    resolve.fulfill(personCoreData!)
+                }else{
+                    print("LOGIN--> No encontro Datos en el Core Data Person by Email ", error as Any)
+                    
+                }
+            }
+        }
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

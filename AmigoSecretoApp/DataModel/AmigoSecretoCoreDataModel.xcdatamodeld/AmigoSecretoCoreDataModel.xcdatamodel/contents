@@ -40,9 +40,9 @@
         <relationship name="loggedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppConfigs" inverseName="currentappLoggedUser" inverseEntity="AppConfigs" syncable="YES"/>
     </entity>
     <elements>
+        <element name="AppConfigs" positionX="135" positionY="54" width="128" height="150"/>
+        <element name="Draw" positionX="321.265625" positionY="73.5625" width="128" height="133"/>
         <element name="Event" positionX="38.29296875" positionY="-132.53515625" width="128" height="148"/>
         <element name="Person" positionX="-52.23046875" positionY="97.09375" width="128" height="208"/>
-        <element name="Draw" positionX="321.265625" positionY="73.5625" width="128" height="133"/>
-        <element name="AppConfigs" positionX="135" positionY="54" width="128" height="150"/>
     </elements>
 </model>
