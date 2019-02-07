@@ -108,7 +108,7 @@ class CoreDataUtils{
         }
     }
     
-    func readAppConfigsToObj (){
+    func readAppConfigsToDelegate (){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         
@@ -126,6 +126,7 @@ class CoreDataUtils{
                 appConfig.appName = (data.value(forKey: "appName") as? String)
                 
                 print ("appConfig.appName ", appConfig.appName)
+                appDelegate.globalAppSettings = appConfig
             }
             
         } catch {

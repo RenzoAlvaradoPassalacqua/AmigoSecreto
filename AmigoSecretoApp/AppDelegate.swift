@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         self.globalAppSettings = AppConfigs (context: context)
         
-        CoreDataUtils.sharedInstance.readAppConfigsToObj()
+        CoreDataUtils.sharedInstance.readAppConfigsToDelegate()
         
         self.initValueAppGlobalSettings()
         return true
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.globalAppSettings?.adminUser = nil
         //self.globalAppSettings?.appCurrentDate
         self.globalAppSettings?.appName = "Amigo Secreto"
-        self.globalAppSettings?.appSubtitle = "by Belatrixsf"
+        self.globalAppSettings?.appSubtitle = "@ by Belatrixsf"
         self.globalAppSettings?.currentappLoggedUser = nil
         self.globalAppSettings?.isEventActive = false
         self.globalAppSettings?.isLogged = false

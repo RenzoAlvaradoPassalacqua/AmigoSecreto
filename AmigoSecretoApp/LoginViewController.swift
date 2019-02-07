@@ -14,6 +14,9 @@ class LoginViewController: UIViewController {
     @IBOutlet fileprivate var signInPasswordField: UITextField!
     @IBOutlet fileprivate var signUpUsernameField: UITextField!
     @IBOutlet fileprivate var signUpPasswordField: UITextField!
+    @IBOutlet fileprivate var appNameLabel: UILabel!
+    @IBOutlet fileprivate var appSubtitleLabel: UILabel!
+    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var person: Person?
@@ -25,6 +28,8 @@ class LoginViewController: UIViewController {
         signInPasswordField.text = ""
         signUpUsernameField.text = ""
         signUpPasswordField.text = ""
+        appNameLabel.text = ""
+        appSubtitleLabel.text = ""
          
     }
 
@@ -60,11 +65,9 @@ class LoginViewController: UIViewController {
     func initView(){
         let managedContext = appDelegate.persistentContainer.viewContext
         person = Person(context: managedContext)
-        //appConfig = AppConfigs(context: managedContext)
-        
         appConfig = appDelegate.globalAppSettings
-        
-        
+        appNameLabel.text = appConfig?.appName
+        appSubtitleLabel.text = appConfig?.appSubtitle
         
     }
     
