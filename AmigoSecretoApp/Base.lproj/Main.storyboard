@@ -160,6 +160,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Npa-eF-BA8">
+                                <rect key="frame" x="16" y="781" width="382" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="0.011788656142404319" blue="0.0" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -167,6 +173,7 @@
                             <constraint firstItem="XcR-3h-nfo" firstAttribute="trailing" secondItem="sbf-Em-Ted" secondAttribute="trailing" constant="16" id="41d-2t-ym6"/>
                             <constraint firstItem="sbf-Em-Ted" firstAttribute="leading" secondItem="XcR-3h-nfo" secondAttribute="leading" constant="16" id="5Np-Na-tmv"/>
                             <constraint firstItem="6Ud-dX-DFI" firstAttribute="leading" secondItem="XcR-3h-nfo" secondAttribute="leading" constant="16" id="6Ln-Ca-M7q"/>
+                            <constraint firstItem="Npa-eF-BA8" firstAttribute="top" secondItem="6Ud-dX-DFI" secondAttribute="bottom" priority="1" constant="203" id="6bV-HE-2gp"/>
                             <constraint firstItem="gXc-qB-Wco" firstAttribute="top" secondItem="ZCc-sN-cJP" secondAttribute="bottom" constant="57" id="7iI-xp-whF"/>
                             <constraint firstItem="XcR-3h-nfo" firstAttribute="trailing" secondItem="D0r-mc-maQ" secondAttribute="trailing" constant="16" id="8xk-P9-2rs"/>
                             <constraint firstItem="XcR-3h-nfo" firstAttribute="trailing" secondItem="6Ud-dX-DFI" secondAttribute="trailing" constant="16" id="9PR-bO-ehc"/>
@@ -174,6 +181,7 @@
                             <constraint firstItem="ZCc-sN-cJP" firstAttribute="top" secondItem="D0r-mc-maQ" secondAttribute="bottom" constant="18" id="EPT-Re-Kly"/>
                             <constraint firstItem="FND-as-bsR" firstAttribute="top" secondItem="DX1-sX-W6U" secondAttribute="bottom" constant="16" id="Gm7-5b-JUa"/>
                             <constraint firstItem="6Ud-dX-DFI" firstAttribute="top" secondItem="uqG-gw-7tu" secondAttribute="bottom" constant="18" id="JVS-sV-eM2"/>
+                            <constraint firstItem="Npa-eF-BA8" firstAttribute="leading" secondItem="XcR-3h-nfo" secondAttribute="leading" constant="16" id="JvJ-OP-Mk8"/>
                             <constraint firstItem="DX1-sX-W6U" firstAttribute="leading" secondItem="XcR-3h-nfo" secondAttribute="leading" constant="16" id="KwK-I0-I4d"/>
                             <constraint firstItem="XcR-3h-nfo" firstAttribute="trailing" secondItem="FND-as-bsR" secondAttribute="trailing" constant="32" id="OMT-N8-Dgs"/>
                             <constraint firstItem="FND-as-bsR" firstAttribute="leading" secondItem="XcR-3h-nfo" secondAttribute="leading" constant="32" id="Pjd-eQ-nD9"/>
@@ -181,12 +189,14 @@
                             <constraint firstItem="gXc-qB-Wco" firstAttribute="leading" secondItem="XcR-3h-nfo" secondAttribute="leading" constant="16" id="YeF-r4-gd0"/>
                             <constraint firstItem="D0r-mc-maQ" firstAttribute="leading" secondItem="XcR-3h-nfo" secondAttribute="leading" constant="16" id="ZlB-Uh-dvS"/>
                             <constraint firstItem="XcR-3h-nfo" firstAttribute="trailing" secondItem="uqG-gw-7tu" secondAttribute="trailing" constant="16" id="fQF-bW-VfD"/>
+                            <constraint firstItem="XcR-3h-nfo" firstAttribute="trailing" secondItem="Npa-eF-BA8" secondAttribute="trailing" constant="16" id="fRH-zo-8wn"/>
                             <constraint firstItem="uqG-gw-7tu" firstAttribute="top" secondItem="gXc-qB-Wco" secondAttribute="bottom" constant="18" id="fof-mR-Nqv"/>
                             <constraint firstItem="ZCc-sN-cJP" firstAttribute="leading" secondItem="XcR-3h-nfo" secondAttribute="leading" constant="16" id="kni-Pr-tqL"/>
                             <constraint firstItem="DX1-sX-W6U" firstAttribute="top" secondItem="XcR-3h-nfo" secondAttribute="top" constant="64" id="tZh-gd-Nqk"/>
                             <constraint firstItem="D0r-mc-maQ" firstAttribute="top" secondItem="sbf-Em-Ted" secondAttribute="bottom" constant="18" id="v5U-EL-tT4"/>
-                            <constraint firstItem="sbf-Em-Ted" firstAttribute="top" secondItem="FND-as-bsR" secondAttribute="bottom" constant="99" id="wC4-PZ-odY"/>
+                            <constraint firstItem="sbf-Em-Ted" firstAttribute="top" secondItem="FND-as-bsR" secondAttribute="bottom" priority="10" constant="99" id="wC4-PZ-odY"/>
                             <constraint firstItem="DX1-sX-W6U" firstAttribute="trailing" secondItem="XcR-3h-nfo" secondAttribute="trailing" constant="-16" id="wzn-8p-sEh"/>
+                            <constraint firstItem="XcR-3h-nfo" firstAttribute="bottom" secondItem="Npa-eF-BA8" secondAttribute="bottom" constant="64" id="yDb-Kb-7hv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XcR-3h-nfo"/>
                     </view>
@@ -197,6 +207,7 @@
                         <outlet property="signInUsernameField" destination="sbf-Em-Ted" id="8zZ-Ol-dJh"/>
                         <outlet property="signUpPasswordField" destination="uqG-gw-7tu" id="DyJ-iU-Uqt"/>
                         <outlet property="signUpUsernameField" destination="gXc-qB-Wco" id="aeh-zY-X3P"/>
+                        <outlet property="statusLabel" destination="Npa-eF-BA8" id="J7b-kS-wQb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVb-aC-zrA" sceneMemberID="firstResponder"/>

@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet fileprivate var signUpPasswordField: UITextField!
     @IBOutlet fileprivate var appNameLabel: UILabel!
     @IBOutlet fileprivate var appSubtitleLabel: UILabel!
+    @IBOutlet fileprivate var statusLabel: UILabel!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -30,6 +31,7 @@ class LoginViewController: UIViewController {
         signUpPasswordField.text = ""
         appNameLabel.text = ""
         appSubtitleLabel.text = ""
+        statusLabel.text = ""
          
     }
 
@@ -49,10 +51,12 @@ class LoginViewController: UIViewController {
             .done { (user) in
                 
                 print("encontro usuario coredata",user)
+                self.statusLabel.text = "Se encontró el usuario: " + self.signInUsernameField.text! + ", Iniciando Sessión..."
             }
             .catch { (error) in
                 
                 print("error no hay coredata", error)
+                self.statusLabel.text = "No se encontro el usuario: " + self.signInUsernameField.text! + " registrado."
             }
             .finally {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
