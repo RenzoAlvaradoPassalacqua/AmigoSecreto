@@ -15,24 +15,20 @@ class CoreDataUtils{
     static var sharedInstance = CoreDataUtils()
 
     func createNewPerson (person:Person){
-        //As we know that container is set up in the AppDelegates so we need to refer that container.
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        //We need to create a context from this container
+
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        //Now let’s create an entity and new user records.
         let userEntity = NSEntityDescription.entity(forEntityName: "Person", in: managedContext)!
         
         let userCoreData = NSManagedObject(entity: userEntity, insertInto: managedContext)
         
-        
-        let name : String? = person.name ?? ""
-        let email : String? = person.email ?? ""
-        let password : String? = person.password ?? ""
+        let name : String? = person.name ?? " "
+        let email : String? = person.email ?? " "
+        let password : String? = person.password ?? " "
         let logged : Bool? = person.logged
-        let gift : String? = person.gift ?? ""
-        let state : String? = person.state ?? ""
+        let gift : String? = person.gift ?? " "
+        let state : String? = person.state ?? " "
         
         userCoreData.setValue(name, forKey: "name")
         userCoreData.setValue(email, forKey: "email")
@@ -41,7 +37,11 @@ class CoreDataUtils{
         userCoreData.setValue(gift, forKey: "gift")
         userCoreData.setValue(state, forKey: "state")
         
-        
+        do {
+            try managedContext.save()
+        } catch {
+            print("Failed saving")
+        }
     }
     
     func searchPersonByEmail ( email:String, completion: @escaping (_ personObj:Person?, _ error:NSError?) -> Void) {

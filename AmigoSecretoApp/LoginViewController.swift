@@ -38,17 +38,11 @@ class LoginViewController: UIViewController {
         self.initView()
     }
 
-    func initView(){
-        let managedContext = appDelegate.persistentContainer.viewContext
-        person = Person(context: managedContext)
-        appConfig = AppConfigs(context: managedContext)
-        
-        appConfig = appDelegate.globalAppSettings
-        
-        let userPromise = self.getUserCoreDataByEmail(emailParam: "adsa")
+    fileprivate func searchForRegUser(spiner:UIView) {
+        let userPromise = self.getUserCoreDataByEmail(emailParam: signInUsernameField.text ?? " ")
         userPromise
             .done { (user) in
-              
+                
                 print("encontro usuario coredata",user)
             }
             .catch { (error) in
@@ -56,12 +50,33 @@ class LoginViewController: UIViewController {
                 print("error no hay coredata", error)
             }
             .finally {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    UIViewController.removeSpinner(spinner: spiner)
+                }
                 print("finally")
         }
+    }
+    
+    func initView(){
+        let managedContext = appDelegate.persistentContainer.viewContext
+        person = Person(context: managedContext)
+        appConfig = AppConfigs(context: managedContext)
+        
+        appConfig = appDelegate.globalAppSettings
+        
+        
         
     }
     
-    
+    func register(spiner : UIView){
+        person?.email = signUpUsernameField.text
+        person?.password = signUpPasswordField.text
+        
+        CoreDataUtils.sharedInstance.createNewPerson(person: person!)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            UIViewController.removeSpinner(spinner: spiner)
+        }
+    }
     
     func getUserCoreDataByEmail(emailParam:String)->Promise<(Person? , error: NSError?)> {
         return Promise<(Person? , error: NSError?)> { resolve in
@@ -96,28 +111,18 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signIn(_ sender: UIButton) {
-        let sv = UIViewController.displaySpinner(onView: self.view)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { 
-            UIViewController.removeSpinner(spinner: sv)
-        }
+        let sv: UIView = UIViewController.displaySpinner(onView: self.view)
         
-        /*PFUser.logInWithUsername(inBackground: signInUsernameField.text!, password: signInPasswordField.text!) { (user, error) in
-            UIViewController.removeSpinner(spinner: sv)
-            if user != nil {
-                self.loadHomeScreen()
-            }else{
-                if let descrip = error?.localizedDescription{
-                    self.displayErrorMessage(message: (descrip))
-                }
-            }
-        }*/
+        searchForRegUser(spiner: sv)
+        
     }
 
     @IBAction func signUp(_ sender: UIButton) {
         let sv = UIViewController.displaySpinner(onView: self.view)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            UIViewController.removeSpinner(spinner: sv)
-        }
+        
+        register(spiner: sv)
+        
+       
         
         /*let user = PFUser()
         user.username = signUpUsernameField.text

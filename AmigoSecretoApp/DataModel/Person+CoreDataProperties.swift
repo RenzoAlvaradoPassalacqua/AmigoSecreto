@@ -22,7 +22,7 @@ extension Person {
     @NSManaged public var password: String?
     @NSManaged public var state: String?
     @NSManaged public var gift: String?
-    @NSManaged public var logged: Bool
+    @NSManaged public var logged: Bool?
     @NSManaged public var events: NSSet?
     @NSManaged public var drawPersonA: NSSet?
     @NSManaged public var drawPersonB: NSSet?

@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let context = persistentContainer.viewContext
+        persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         self.globalAppSettings = AppConfigs (context: context)
         return true
     }
@@ -97,6 +98,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - Core Data Saving support
     
+    lazy var applicationDocumentsDirectory: NSURL = {
+        // The directory the application uses to store the Core Data store file. This code uses a directory named "edu.self.cordatafirst" in the application's documents Application Support directory.
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return urls[urls.count-1] as NSURL
+    }()
+    
+    lazy var managedObjectModel: NSManagedObjectModel = {
+        // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
+        let modelURL = Bundle.main.url(forResource: "cordatafirst", withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
+    }()
+    
+    
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -106,6 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
+                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
