@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2E635C2BBEBBB72C7DCBACE5 /* Pods_AmigoSecretoAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C0DEFDB75CE0008311949 /* Pods_AmigoSecretoAppTests.framework */; };
+		83160697220CD2BE00C64920 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316068C220CD2BD00C64920 /* UITextField+Extensions.swift */; };
+		8316069B220CD2BE00C64920 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83160692220CD2BE00C64920 /* Validators.swift */; };
+		8316069D220CD61700C64920 /* RegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316069C220CD61700C64920 /* RegisterData.swift */; };
 		836EBCA4220A23E600FCF852 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA3220A23E600FCF852 /* AppDelegate.swift */; };
 		836EBCA6220A23E600FCF852 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA5220A23E600FCF852 /* FirstViewController.swift */; };
 		836EBCA8220A23E600FCF852 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA7220A23E600FCF852 /* SecondViewController.swift */; };
@@ -45,6 +48,9 @@
 /* Begin PBXFileReference section */
 		446F8E1EAF616C889AC0ABA8 /* Pods-AmigoSecretoAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmigoSecretoAppUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmigoSecretoAppUITests/Pods-AmigoSecretoAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		64516EA5F107BF3224E97C78 /* Pods_AmigoSecretoApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmigoSecretoApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8316068C220CD2BD00C64920 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		83160692220CD2BE00C64920 /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		8316069C220CD61700C64920 /* RegisterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterData.swift; sourceTree = "<group>"; };
 		836EBCA0220A23E600FCF852 /* AmigoSecretoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmigoSecretoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		836EBCA3220A23E600FCF852 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		836EBCA5220A23E600FCF852 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +115,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83160684220CD2BD00C64920 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				8316068B220CD2BD00C64920 /* Extensions */,
+				83160691220CD2BE00C64920 /* Validation */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		8316068B220CD2BD00C64920 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8316068C220CD2BD00C64920 /* UITextField+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		83160691220CD2BE00C64920 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				83160692220CD2BE00C64920 /* Validators.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
 		836EBC97220A23E600FCF852 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +165,7 @@
 		836EBCA2220A23E600FCF852 /* AmigoSecretoApp */ = {
 			isa = PBXGroup;
 			children = (
+				83160684220CD2BD00C64920 /* Validators */,
 				83DC72F9220B286A005300C1 /* DataModel */,
 				836EBCA3220A23E600FCF852 /* AppDelegate.swift */,
 				836EBCD3220A30C000FCF852 /* LoginViewController.swift */,
@@ -170,6 +202,7 @@
 		83DC72F9220B286A005300C1 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				8316069C220CD61700C64920 /* RegisterData.swift */,
 				83DC7387220C61C7005300C1 /* AmigoSecretoCoreDataModel.xcdatamodeld */,
 				83DC732E220B4E62005300C1 /* Event+CoreDataClass.swift */,
 				83DC732F220B4E62005300C1 /* Event+CoreDataProperties.swift */,
@@ -436,10 +469,13 @@
 				836EBCA8220A23E600FCF852 /* SecondViewController.swift in Sources */,
 				836EBCD8220A367600FCF852 /* Extensions.swift in Sources */,
 				83DC7389220C61C7005300C1 /* AmigoSecretoCoreDataModel.xcdatamodeld in Sources */,
+				8316069D220CD61700C64920 /* RegisterData.swift in Sources */,
+				83160697220CD2BE00C64920 /* UITextField+Extensions.swift in Sources */,
 				836EBCD6220A312B00FCF852 /* LoggedInViewController.swift in Sources */,
 				836EBCA4220A23E600FCF852 /* AppDelegate.swift in Sources */,
 				836EBCD4220A30C000FCF852 /* LoginViewController.swift in Sources */,
 				836EBCA6220A23E600FCF852 /* FirstViewController.swift in Sources */,
+				8316069B220CD2BE00C64920 /* Validators.swift in Sources */,
 				83DC733F220B6BC1005300C1 /* CoreDataUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

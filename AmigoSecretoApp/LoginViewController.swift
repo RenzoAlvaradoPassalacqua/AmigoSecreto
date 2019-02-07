@@ -22,6 +22,7 @@ class LoginViewController: UIViewController {
     
     var person: Person?
     var appConfig: AppConfigs?
+    var isValidated : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,7 @@ class LoginViewController: UIViewController {
         appNameLabel.text = ""
         appSubtitleLabel.text = ""
         statusLabel.text = ""
-         
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,6 +46,38 @@ class LoginViewController: UIViewController {
         self.initView()
     }
 
+    fileprivate func validateSignInFields(){
+        
+        if (!self.isValidated){
+            if (self.signInUsernameField.text!.count > 0){
+                
+            }
+        }
+        
+    }
+   
+    func validateRegistro() {
+        do {
+            let email = try self.signUpUsernameField.validatedText(validationType: .requiredField(field: "email"))
+            let password = try self.signUpPasswordField.validatedText(validationType: .requiredField(field: "password"))
+            let emailVal = try signUpUsernameField.validatedText(validationType: ValidatorType.email)
+            let passwordVal = try signUpPasswordField.validatedText(validationType: ValidatorType.password)
+            let data = RegisterData(email: email, password: password )
+            save(data)
+        } catch(let error) {
+            self.statusLabel.text = (error as! ValidationError).message
+            //showAlert(for: (error as! ValidationError).message)
+        }
+    }
+    
+    func save(_ data: RegisterData) {
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        
+        register(spiner: sv)
+        
+        
+    }
+    
     fileprivate func searchForRegUser(spiner:UIView) {
         let userPromise = self.getUserCoreDataByEmail(emailParam: signInUsernameField.text ?? " ")
         userPromise
@@ -72,7 +105,7 @@ class LoginViewController: UIViewController {
         appConfig = appDelegate.globalAppSettings
         appNameLabel.text = appConfig?.appName
         appSubtitleLabel.text = appConfig?.appSubtitle
-        
+        self.isValidated = false
     }
     
     func register(spiner : UIView){
@@ -82,6 +115,7 @@ class LoginViewController: UIViewController {
         CoreDataUtils.sharedInstance.createNewPerson(person: person!)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: spiner)
+            self.statusLabel.text = "Registro Satisfactorio"
         }
     }
     
@@ -125,27 +159,8 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signUp(_ sender: UIButton) {
-        let sv = UIViewController.displaySpinner(onView: self.view)
+        validateRegistro()
         
-        register(spiner: sv)
-        
-       
-        
-        /*let user = PFUser()
-        user.username = signUpUsernameField.text
-        user.password = signUpPasswordField.text
-        let sv = UIViewController.displaySpinner(onView: self.view)
-        user.signUpInBackground { (success, error) in
-            UIViewController.removeSpinner(spinner: sv)
-            if success{
-                self.loadHomeScreen()
-            }else{
-                if let descrip = error?.localizedDescription{
-                    self.displayErrorMessage(message: descrip)
-                }
-            }
-        }
-         ∫*/
     }
 
     func displayErrorMessage(message:String) {
@@ -160,4 +175,12 @@ class LoginViewController: UIViewController {
         self.present(alertView, animated: true, completion:nil)
     }
 
+    func showAlert(for alert: String) {
+        let alertController = UIAlertController(title: nil, message: alert, preferredStyle: UIAlertController.Style.alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
 }
