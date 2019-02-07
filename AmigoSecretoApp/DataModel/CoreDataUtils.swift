@@ -44,21 +44,19 @@ class CoreDataUtils{
         
     }
     
-    func searchPersonByEmail ( email:String, completion: @escaping (_ personObj:Person?, _ error:Error?) -> Void) {
+    func searchPersonByEmail ( email:String, completion: @escaping (_ personObj:Person?, _ error:NSError?) -> Void) {
         var retPersonObj : Person?
-         
+       
         //As we know that container is set up in the AppDelegates so we need to refer that container.
          guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         //We need to create a context from this container
         let managedContext = appDelegate.persistentContainer.viewContext
- 
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-    
-        fetchRequest.predicate = NSPredicate(format: "email = %@", email)
-       
-        
+  
         do {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+            
+            fetchRequest.predicate = NSPredicate(format: "email = %@", email)
             
             let result = try managedContext.fetch(fetchRequest)
             for data in result as! [NSManagedObject] {
@@ -78,10 +76,10 @@ class CoreDataUtils{
              completion(retPersonObj,nil)
             
         } catch {
+            var error = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on Person"])
+            completion(nil, error as NSError)
+            fatalError("Failed to fetch employees: \(error)")
             
-            completion(nil, (error ))
-            
-            print("Failed")
         }
      
     }

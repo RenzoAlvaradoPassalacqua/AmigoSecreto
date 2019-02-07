@@ -63,16 +63,21 @@ class LoginViewController: UIViewController {
     
     
     
-    func getUserCoreDataByEmail(emailParam:String)->Promise<Person> {
-        return Promise<Person> { resolve in
+    func getUserCoreDataByEmail(emailParam:String)->Promise<(Person? , error: NSError?)> {
+        return Promise<(Person? , error: NSError?)> { resolve in
             CoreDataUtils.sharedInstance.searchPersonByEmail(email: emailParam){ (personCoreData, error) in
+                var errorLocal:NSError?
                 if(personCoreData != nil){
                     print("LOGIN---> Encontro una persona en CORE DATA by Email = ", personCoreData?.email as Any)
                     
-                    resolve.fulfill(personCoreData!)
+                    resolve.fulfill((personCoreData!,nil))
                 }else{
-                    print("LOGIN--> No encontro Datos en el Core Data Person by Email ", error as Any)
+                    if (error == nil){
+                        errorLocal = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on Person"])
+                    }
                     
+                    print("LOGIN--> No encontro Datos en el Core Data Person by Email ", errorLocal as Any)
+                    resolve.reject(errorLocal!)
                 }
             }
         }
