@@ -201,10 +201,12 @@
                         <viewLayoutGuide key="safeArea" id="XcR-3h-nfo"/>
                     </view>
                     <connections>
+                        <outlet property="SignInBtn" destination="ZCc-sN-cJP" id="HjR-tu-dfO"/>
                         <outlet property="appNameLabel" destination="DX1-sX-W6U" id="Ek2-El-NEk"/>
                         <outlet property="appSubtitleLabel" destination="FND-as-bsR" id="mJi-br-YW6"/>
                         <outlet property="signInPasswordField" destination="D0r-mc-maQ" id="d8H-nC-jpV"/>
                         <outlet property="signInUsernameField" destination="sbf-Em-Ted" id="8zZ-Ol-dJh"/>
+                        <outlet property="signUpBtn" destination="6Ud-dX-DFI" id="whd-x9-il0"/>
                         <outlet property="signUpPasswordField" destination="uqG-gw-7tu" id="DyJ-iU-Uqt"/>
                         <outlet property="signUpUsernameField" destination="gXc-qB-Wco" id="aeh-zY-X3P"/>
                         <outlet property="statusLabel" destination="Npa-eF-BA8" id="J7b-kS-wQb"/>

@@ -17,12 +17,14 @@ class LoginViewController: UIViewController {
     @IBOutlet fileprivate var appNameLabel: UILabel!
     @IBOutlet fileprivate var appSubtitleLabel: UILabel!
     @IBOutlet fileprivate var statusLabel: UILabel!
+    @IBOutlet fileprivate var signUpBtn: UIButton!
+    @IBOutlet fileprivate var SignInBtn: UIButton!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     var person: Person?
     var appConfig: AppConfigs?
-    var isValidated : Bool = false
+    var isRegistered : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,17 +47,7 @@ class LoginViewController: UIViewController {
         */
         self.initView()
     }
-
-    fileprivate func validateSignInFields(){
-        
-        if (!self.isValidated){
-            if (self.signInUsernameField.text!.count > 0){
-                
-            }
-        }
-        
-    }
-   
+ 
     func validateRegistro() {
         do {
             let email = try self.signUpUsernameField.validatedText(validationType: .requiredField(field: "email"))
@@ -72,6 +64,11 @@ class LoginViewController: UIViewController {
     
     func save(_ data: RegisterData) {
         let sv = UIViewController.displaySpinner(onView: self.view)
+        signUpBtn.isEnabled = false
+        signUpUsernameField.text = ""
+        signUpPasswordField.text = ""
+        signUpUsernameField.isEnabled = false
+        signUpPasswordField.isEnabled = false
         
         register(spiner: sv)
         
@@ -105,17 +102,25 @@ class LoginViewController: UIViewController {
         appConfig = appDelegate.globalAppSettings
         appNameLabel.text = appConfig?.appName
         appSubtitleLabel.text = appConfig?.appSubtitle
-        self.isValidated = false
+        let adminUser: Person? = (appConfig?.adminUser)
+        /*if ((adminUser?.email)! .isEmpty){
+            self.isRegistered = false
+        }
+        else{
+            self.isRegistered = true
+        }
+        self.isRegistered = false
+        */
     }
     
     func register(spiner : UIView){
         person?.email = signUpUsernameField.text
         person?.password = signUpPasswordField.text
-        
+       
         CoreDataUtils.sharedInstance.createNewPerson(person: person!)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: spiner)
-            self.statusLabel.text = "Registro Satisfactorio"
+            self.statusLabel.text = "Registro Satisfactorio !"
         }
     }
     
