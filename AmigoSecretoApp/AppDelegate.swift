@@ -42,8 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.globalAppSettings = AppConfigs (context: context)
         
         CoreDataUtils.sharedInstance.readAppConfigsToDelegate()
+        //self.initValueAppGlobalSettings()
         
-        self.initValueAppGlobalSettings()
         return true
     }
 

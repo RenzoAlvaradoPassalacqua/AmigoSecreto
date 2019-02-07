@@ -119,18 +119,26 @@ class CoreDataUtils{
         do {
             let result = try managedContext.fetch(request)
             
-            for data in result as! [NSManagedObject] {
-                print(data.value(forKey: "appName") as? String)
-                
-                let appConfig = AppConfigs(context: managedContext)
-                appConfig.appName = (data.value(forKey: "appName") as? String)
-                
-                print ("appConfig.appName ", appConfig.appName)
-                appDelegate.globalAppSettings = appConfig
-            }
+         
+                for data in result as! [NSManagedObject] {
+                    if (result.count <= 1){
+                        appDelegate.initValueAppGlobalSettings()
+                    }
+                    else{
+                    
+                        print(data.value(forKey: "appName") as? String)
+                        
+                        let appConfig = AppConfigs(context: managedContext)
+                        appConfig.appName = (data.value(forKey: "appName") as? String)
+                        
+                        print ("CoreDataUtils appConfig.appName ", appConfig.appName)
+                        appDelegate.globalAppSettings = appConfig
+                    }
+                }
+            
             
         } catch {
-            fatalError("Failed to fetch employees: \(error)")
+            fatalError("Failed to fetch globalAppSetting: \(error)")
         }
       
     }
