@@ -41,11 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         self.globalAppSettings = AppConfigs (context: context)
         
-        self.initAppGlobalSettings()
+        CoreDataUtils.sharedInstance.readAppConfigsToObj()
+        
+        self.initValueAppGlobalSettings()
         return true
     }
 
-    func initAppGlobalSettings (){
+    func initValueAppGlobalSettings (){
         self.globalAppSettings?.adminUser = nil
         //self.globalAppSettings?.appCurrentDate
         self.globalAppSettings?.appName = "Amigo Secreto"

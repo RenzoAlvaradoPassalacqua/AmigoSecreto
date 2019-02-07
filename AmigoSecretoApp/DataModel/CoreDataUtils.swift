@@ -85,4 +85,55 @@ class CoreDataUtils{
      
     }
     
+    func readAppConfigs (){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
+        
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try managedContext.fetch(request)
+            for data in result as! [NSManagedObject] {
+                print(data.value(forKey: "appCurrentDate") as? String)
+                print(data.value(forKey: "appName") as? String)
+                print(data.value(forKey: "appSubtitle") as? String)
+                print(data.value(forKey: "isEventActive") as? String)
+                print(data.value(forKey: "isLogged") as? String)
+            }
+            
+        } catch {
+            
+            print("Failed")
+        }
+    }
+    
+    func readAppConfigsToObj (){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
+        //request.predicate = NSPredicate(format: "age = %@", "12")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try managedContext.fetch(request)
+            
+            for data in result as! [NSManagedObject] {
+                print(data.value(forKey: "appName") as? String)
+                
+                let appConfig = AppConfigs(context: managedContext)
+                appConfig.appName = (data.value(forKey: "appName") as? String)
+                
+                print ("appConfig.appName ", appConfig.appName)
+            }
+            
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+      
+    }
+    
+    
+    
 }
