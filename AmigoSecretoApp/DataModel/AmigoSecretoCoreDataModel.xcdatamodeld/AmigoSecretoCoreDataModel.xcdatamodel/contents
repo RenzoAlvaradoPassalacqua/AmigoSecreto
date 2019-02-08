@@ -4,7 +4,7 @@
         <attribute name="appCurrentDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="appName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="appSubtitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" attributeType="String" defaultValueString="0001" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="isEventActive" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isLogged" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="adminUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="adminUser" inverseEntity="Person" syncable="YES"/>
@@ -41,7 +41,7 @@
         <relationship name="loggedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppConfigs" inverseName="currentappLoggedUser" inverseEntity="AppConfigs" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AppConfigs" positionX="135" positionY="54" width="128" height="30"/>
+        <element name="AppConfigs" positionX="135" positionY="54" width="128" height="165"/>
         <element name="Draw" positionX="321.265625" positionY="73.5625" width="128" height="133"/>
         <element name="Event" positionX="38.29296875" positionY="-132.53515625" width="128" height="148"/>
         <element name="Person" positionX="-52.23046875" positionY="97.09375" width="128" height="30"/>

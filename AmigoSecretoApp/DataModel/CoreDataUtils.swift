@@ -89,7 +89,7 @@ class CoreDataUtils{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        request.predicate = NSPredicate(format: "id = %@", "001")
+        request.predicate = NSPredicate(format: "id = %@", "0001")
         request.returnsObjectsAsFaults = false
         
         do {
@@ -113,22 +113,28 @@ class CoreDataUtils{
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        request.predicate = NSPredicate(format: "id = %@", "001")
+        request.predicate = NSPredicate(format: "id = %@", "0001")
         request.returnsObjectsAsFaults = false
         
         do {
             let result = try managedContext.fetch(request)
             
-            if (result.count == 0){
+            if (result.count <= 1){
                 appDelegate.initValueAppGlobalSettings()
             }
+            let appConfig = AppConfigs(context: managedContext)
             for data in result as! [NSManagedObject] {
                 print(data.value(forKey: "appName") as? String)
                 
-                let appConfig = AppConfigs(context: managedContext)
                 appConfig.appName = (data.value(forKey: "appName") as? String)
                 
+                appConfig.appSubtitle = (data.value(forKey: "appSubtitle") as? String)
+                appConfig.id = (data.value(forKey: "id") as? String)
+                
                 print ("CoreDataUtils appConfig.appName ", appConfig.appName)
+                print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
+                print ("CoreDataUtils appConfig.id ", appConfig.id)
+                print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUser?.email)
                 appDelegate.globalAppSettings = appConfig
             }
             
@@ -138,12 +144,97 @@ class CoreDataUtils{
         }
       
     }
+    func preloadAppGlobalSettings (){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", "0001")
+        do
+        {
+            let test = try managedContext.fetch(fetchRequest)
+            if test.isEmpty{
+                print ("no se encontro ID 0001")
+                appDelegate.initValueAppGlobalSettings()
+                createAppGlobalSettings(appConfig: appDelegate.globalAppSettings!)
+            }
+            else{
+                print ("si se encontro ID 0001")
+                for data in test as! [NSManagedObject] {
+                
+                    let appConfig = AppConfigs(context: managedContext)
+                    appConfig.appName = (data.value(forKey: "appName") as? String)
+                    
+                    appConfig.appSubtitle = (data.value(forKey: "appSubtitle") as? String)
+                    appConfig.id = (data.value(forKey: "id") as? String)
+                    print ("CoreDataUtils appConfig.appName ", appConfig.appName)
+                    print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
+                    print ("CoreDataUtils appConfig.id ", appConfig.id)
+                    print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUser?.email)
+                    appDelegate.globalAppSettings = appConfig
+                }
+                
+                 
+            }
+            
+        }
+        catch let error as NSError {
+            print("Could not save appconfigs. \(error), \(error.userInfo)")
+        }
+    }
     
+    func updateAppGlobalSettings (appConfig:AppConfigs){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", "0001")
+        do
+        {
+            let test = try managedContext.fetch(fetchRequest)
+            if test.isEmpty{
+                print ("no se encontro ID 0001")
+                appDelegate.initValueAppGlobalSettings()
+                createAppGlobalSettings(appConfig: appDelegate.globalAppSettings!)
+            }
+            else{
+                print ("si se encontro ID 0001")
+                let objectUpdate = test[0] as! NSManagedObject
+                objectUpdate.setValue(appConfig.appName, forKey: "appName")
+                objectUpdate.setValue(appConfig.appSubtitle, forKey: "appSubtitle")
+                objectUpdate.setValue(appConfig.isLogged, forKey: "isLogged")
+                objectUpdate.setValue(appConfig.isEventActive, forKey: "isEventActive")
+                objectUpdate.setValue(appConfig.appCurrentDate, forKey: "appCurrentDate")
+                objectUpdate.setValue(appConfig.adminUser, forKey: "adminUser")
+                objectUpdate.setValue(appConfig.currentappLoggedUser, forKey: "currentappLoggedUser")
+                objectUpdate.setValue("0001", forKey: "id")
+                
+                print ("CoreDataUtils appConfig.appName ", appConfig.appName)
+                print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
+                print ("CoreDataUtils appConfig.id ", appConfig.id)
+                print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUser?.email)
+                appDelegate.globalAppSettings = appConfig
+                
+                do{
+                    try managedContext.save()
+                }
+                catch
+                {
+                    print(error)
+                }
+            }
+            
+        }
+        catch let error as NSError {
+            print("Could not save appconfigs. \(error), \(error.userInfo)")
+        }
+}
+        
     func createAppGlobalSettings (appConfig:AppConfigs){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
-        
+    
         let userEntity = NSEntityDescription.entity(forEntityName: "AppConfigs", in: managedContext)!
         
         let appConfigsCoreData = NSManagedObject(entity: userEntity, insertInto: managedContext)
@@ -155,7 +246,8 @@ class CoreDataUtils{
         let appCurrentDate : Date? = appConfig.appCurrentDate
         let adminUser : Person? = appConfig.adminUser
         let currentappLoggedUser : Person? = appConfig.currentappLoggedUser
-        let id : String? = appConfig.id
+        let id : String = "0001"
+        appConfig.id = id
         
         appConfigsCoreData.setValue(appName, forKey: "appName")
         appConfigsCoreData.setValue(appSubtitle, forKey: "appSubtitle")

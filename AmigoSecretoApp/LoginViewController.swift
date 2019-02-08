@@ -124,19 +124,27 @@ class LoginViewController: UIViewController {
         person?.email = signUpUsernameField.text
         person?.password = signUpPasswordField.text
        
-        if (adminSw.isOn){
-            appConfig?.adminUser = person
-        }
+        
         
         CoreDataUtils.sharedInstance.createNewPerson(person: person!)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: spiner)
             self.statusLabel.text = "Registro Satisfactorio !"
+            
+            self.appConfig?.appName = "Amigo Secreto"
+            self.appConfig?.appSubtitle = "@ by Belatrixsf"
+            self.appConfig?.id = "0001"
+            if (self.adminSw.isOn){
+                self.appConfig?.adminUser = self.person
+            }
+            CoreDataUtils.sharedInstance.createAppGlobalSettings(appConfig: self.appConfig!)
+            
             self.signUpUsernameField.text = ""
             self.signUpPasswordField.text = ""
             self.signUpUsernameField.isEnabled = false
             self.signUpPasswordField.isEnabled = false
             self.adminSw.isEnabled = false
+            
         }
     }
     
