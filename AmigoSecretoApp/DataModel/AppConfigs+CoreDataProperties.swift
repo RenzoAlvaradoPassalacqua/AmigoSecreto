@@ -2,7 +2,7 @@
 //  AppConfigs+CoreDataProperties.swift
 //  AmigoSecretoApp
 //
-//  Created by Renzo Manuel Alvarado Passalacqua on 2/6/19.
+//  Created by Renzo Manuel Alvarado Passalacqua on 2/8/19.
 //  Copyright © 2019 Renzo Manuel Alvarado Passalacqua. All rights reserved.
 //
 //
@@ -17,11 +17,12 @@ extension AppConfigs {
         return NSFetchRequest<AppConfigs>(entityName: "AppConfigs")
     }
 
-    @NSManaged public var isLogged: Bool
+    @NSManaged public var appCurrentDate: NSDate?
     @NSManaged public var appName: String?
     @NSManaged public var appSubtitle: String?
     @NSManaged public var isEventActive: Bool
-    @NSManaged public var appCurrentDate: NSDate?
+    @NSManaged public var isLogged: Bool
+    @NSManaged public var id: String?
     @NSManaged public var adminUser: Person?
     @NSManaged public var currentappLoggedUser: Person?
 

@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet fileprivate var statusLabel: UILabel!
     @IBOutlet fileprivate var signUpBtn: UIButton!
     @IBOutlet fileprivate var SignInBtn: UIButton!
+    @IBOutlet fileprivate var adminSw: UISwitch!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -35,6 +36,7 @@ class LoginViewController: UIViewController {
         appNameLabel.text = ""
         appSubtitleLabel.text = ""
         statusLabel.text = ""
+        adminSw.isOn = false
         
     }
 
@@ -84,6 +86,7 @@ class LoginViewController: UIViewController {
                 self.signInUsernameField.isEnabled = false
                 self.signInPasswordField.isEnabled = false
                 self.SignInBtn.isEnabled = false
+                self.person?.logged = true
             }
             .catch { (error) in
                 
@@ -107,6 +110,9 @@ class LoginViewController: UIViewController {
         let adminUser: Person? = (appConfig?.adminUser)
         if (adminUser != nil){
             self.isRegistered = true
+            appConfig?.isLogged = true
+            
+            loadHomeScreen()
         }
         else{
             self.isRegistered = false
@@ -118,6 +124,10 @@ class LoginViewController: UIViewController {
         person?.email = signUpUsernameField.text
         person?.password = signUpPasswordField.text
        
+        if (adminSw.isOn){
+            appConfig?.adminUser = person
+        }
+        
         CoreDataUtils.sharedInstance.createNewPerson(person: person!)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: spiner)
@@ -126,6 +136,7 @@ class LoginViewController: UIViewController {
             self.signUpPasswordField.text = ""
             self.signUpUsernameField.isEnabled = false
             self.signUpPasswordField.isEnabled = false
+            self.adminSw.isEnabled = false
         }
     }
     

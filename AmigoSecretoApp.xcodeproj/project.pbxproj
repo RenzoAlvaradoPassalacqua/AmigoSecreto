@@ -51,6 +51,10 @@
 		8316068C220CD2BD00C64920 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		83160692220CD2BE00C64920 /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
 		8316069C220CD61700C64920 /* RegisterData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterData.swift; sourceTree = "<group>"; };
+		8316069E220DC98600C64920 /* AppConfigs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigs+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8316069F220DC98600C64920 /* AppConfigs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigs+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		831606A0220DC98600C64920 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		831606A1220DC98600C64920 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		836EBCA0220A23E600FCF852 /* AmigoSecretoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmigoSecretoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		836EBCA3220A23E600FCF852 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		836EBCA5220A23E600FCF852 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -72,10 +76,6 @@
 		83DC732F220B4E62005300C1 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83DC7330220B4E62005300C1 /* Draw+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Draw+CoreDataClass.swift"; sourceTree = "<group>"; };
 		83DC7331220B4E62005300C1 /* Draw+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Draw+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		83DC7332220B4E62005300C1 /* AppConfigs+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigs+CoreDataClass.swift"; sourceTree = "<group>"; };
-		83DC7333220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppConfigs+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		83DC7334220B4E62005300C1 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
-		83DC7335220B4E62005300C1 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83DC733E220B6BC1005300C1 /* CoreDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtils.swift; sourceTree = "<group>"; };
 		83DC7388220C61C7005300C1 /* AmigoSecretoCoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AmigoSecretoCoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		88167EA138F92D15314E5609 /* Pods-AmigoSecretoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmigoSecretoApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmigoSecretoApp/Pods-AmigoSecretoApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,16 +202,16 @@
 		83DC72F9220B286A005300C1 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				8316069E220DC98600C64920 /* AppConfigs+CoreDataClass.swift */,
+				8316069F220DC98600C64920 /* AppConfigs+CoreDataProperties.swift */,
+				831606A0220DC98600C64920 /* Person+CoreDataClass.swift */,
+				831606A1220DC98600C64920 /* Person+CoreDataProperties.swift */,
 				8316069C220CD61700C64920 /* RegisterData.swift */,
 				83DC7387220C61C7005300C1 /* AmigoSecretoCoreDataModel.xcdatamodeld */,
 				83DC732E220B4E62005300C1 /* Event+CoreDataClass.swift */,
 				83DC732F220B4E62005300C1 /* Event+CoreDataProperties.swift */,
 				83DC7330220B4E62005300C1 /* Draw+CoreDataClass.swift */,
 				83DC7331220B4E62005300C1 /* Draw+CoreDataProperties.swift */,
-				83DC7332220B4E62005300C1 /* AppConfigs+CoreDataClass.swift */,
-				83DC7333220B4E62005300C1 /* AppConfigs+CoreDataProperties.swift */,
-				83DC7334220B4E62005300C1 /* Person+CoreDataClass.swift */,
-				83DC7335220B4E62005300C1 /* Person+CoreDataProperties.swift */,
 				83DC733E220B6BC1005300C1 /* CoreDataUtils.swift */,
 			);
 			path = DataModel;

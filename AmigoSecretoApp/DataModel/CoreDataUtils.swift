@@ -89,7 +89,7 @@ class CoreDataUtils{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        
+        request.predicate = NSPredicate(format: "id = %@", "001")
         request.returnsObjectsAsFaults = false
         
         do {
@@ -113,28 +113,24 @@ class CoreDataUtils{
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        //request.predicate = NSPredicate(format: "age = %@", "12")
+        request.predicate = NSPredicate(format: "id = %@", "001")
         request.returnsObjectsAsFaults = false
         
         do {
             let result = try managedContext.fetch(request)
             
-         
-                for data in result as! [NSManagedObject] {
-                    if (result.count <= 1){
-                        appDelegate.initValueAppGlobalSettings()
-                    }
-                    else{
-                    
-                        print(data.value(forKey: "appName") as? String)
-                        
-                        let appConfig = AppConfigs(context: managedContext)
-                        appConfig.appName = (data.value(forKey: "appName") as? String)
-                        
-                        print ("CoreDataUtils appConfig.appName ", appConfig.appName)
-                        appDelegate.globalAppSettings = appConfig
-                    }
-                }
+            if (result.count == 0){
+                appDelegate.initValueAppGlobalSettings()
+            }
+            for data in result as! [NSManagedObject] {
+                print(data.value(forKey: "appName") as? String)
+                
+                let appConfig = AppConfigs(context: managedContext)
+                appConfig.appName = (data.value(forKey: "appName") as? String)
+                
+                print ("CoreDataUtils appConfig.appName ", appConfig.appName)
+                appDelegate.globalAppSettings = appConfig
+            }
             
             
         } catch {
@@ -143,6 +139,39 @@ class CoreDataUtils{
       
     }
     
-    
+    func createAppGlobalSettings (appConfig:AppConfigs){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let userEntity = NSEntityDescription.entity(forEntityName: "AppConfigs", in: managedContext)!
+        
+        let appConfigsCoreData = NSManagedObject(entity: userEntity, insertInto: managedContext)
+        
+        let appName : String? = appConfig.appName ?? " "
+        let appSubtitle : String? = appConfig.appSubtitle ?? " "
+        let isLogged : Bool? = appConfig.isLogged
+        let isEventActive : Bool? = appConfig.isEventActive
+        let appCurrentDate : Date? = appConfig.appCurrentDate
+        let adminUser : Person? = appConfig.adminUser
+        let currentappLoggedUser : Person? = appConfig.currentappLoggedUser
+        let id : String? = appConfig.id
+        
+        appConfigsCoreData.setValue(appName, forKey: "appName")
+        appConfigsCoreData.setValue(appSubtitle, forKey: "appSubtitle")
+        appConfigsCoreData.setValue(isLogged, forKey: "isLogged")
+        appConfigsCoreData.setValue(isEventActive, forKey: "isEventActive")
+        appConfigsCoreData.setValue(appCurrentDate, forKey: "appCurrentDate")
+        appConfigsCoreData.setValue(adminUser, forKey: "adminUser")
+        appConfigsCoreData.setValue(currentappLoggedUser, forKey: "currentappLoggedUser")
+        appConfigsCoreData.setValue(id, forKey: "id")
+        
+        do {
+            try managedContext.save()
+            
+        } catch let error as NSError {
+            print("Could not save appconfigs. \(error), \(error.userInfo)")
+        }
+    }
     
 }
