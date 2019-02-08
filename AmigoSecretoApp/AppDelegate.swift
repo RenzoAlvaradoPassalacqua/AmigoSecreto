@@ -37,17 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let context = persistentContainer.viewContext
-        //persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-        self.globalAppSettings = AppConfigs (context: context)
-        
-       // CoreDataUtils.sharedInstance.updateAppGlobalSettings(appConfig: self.globalAppSettings!)
-        CoreDataUtils.sharedInstance.preloadAppGlobalSettings()
+       
         
         return true
     }
 
     func initValueAppGlobalSettings (){
+         
         self.globalAppSettings?.adminUser = nil
         //self.globalAppSettings?.appCurrentDate
         self.globalAppSettings?.appName = "Amigo Secreto"
@@ -55,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.globalAppSettings?.currentappLoggedUser = nil
         self.globalAppSettings?.isEventActive = false
         self.globalAppSettings?.isLogged = false
-        self.globalAppSettings?.id = "0001"
+        self.globalAppSettings?.id = 1
         
         
     }

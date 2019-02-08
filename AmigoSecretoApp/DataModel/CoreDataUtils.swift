@@ -90,7 +90,7 @@ class CoreDataUtils{
         let managedContext = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
         request.predicate = NSPredicate(format: "id = %@", "0001")
-        request.returnsObjectsAsFaults = false
+
         
         do {
             let result = try managedContext.fetch(request)
@@ -114,7 +114,7 @@ class CoreDataUtils{
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
         request.predicate = NSPredicate(format: "id = %@", "0001")
-        request.returnsObjectsAsFaults = false
+      
         
         do {
             let result = try managedContext.fetch(request)
@@ -129,7 +129,7 @@ class CoreDataUtils{
                 appConfig.appName = (data.value(forKey: "appName") as? String)
                 
                 appConfig.appSubtitle = (data.value(forKey: "appSubtitle") as? String)
-                appConfig.id = (data.value(forKey: "id") as? String)
+                appConfig.id = (data.value(forKey: "id") as? Int16 ?? 0)
                 
                 print ("CoreDataUtils appConfig.appName ", appConfig.appName)
                 print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
@@ -149,12 +149,13 @@ class CoreDataUtils{
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "0001")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", "2")
         do
         {
             let test = try managedContext.fetch(fetchRequest)
             if test.isEmpty{
                 print ("no se encontro ID 0001")
+                appDelegate.globalAppSettings = AppConfigs (context: managedContext)
                 appDelegate.initValueAppGlobalSettings()
                 createAppGlobalSettings(appConfig: appDelegate.globalAppSettings!)
             }
@@ -166,11 +167,11 @@ class CoreDataUtils{
                     appConfig.appName = (data.value(forKey: "appName") as? String)
                     
                     appConfig.appSubtitle = (data.value(forKey: "appSubtitle") as? String)
-                    appConfig.id = (data.value(forKey: "id") as? String)
+                    appConfig.id = (data.value(forKey: "id") as? Int16 ?? 0)
                     print ("CoreDataUtils appConfig.appName ", appConfig.appName)
                     print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
                     print ("CoreDataUtils appConfig.id ", appConfig.id)
-                    print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUser?.email)
+                    print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUser)
                     appDelegate.globalAppSettings = appConfig
                 }
                 
@@ -188,7 +189,7 @@ class CoreDataUtils{
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "0001")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", "2")
         do
         {
             let test = try managedContext.fetch(fetchRequest)
@@ -198,21 +199,22 @@ class CoreDataUtils{
                 createAppGlobalSettings(appConfig: appDelegate.globalAppSettings!)
             }
             else{
-                print ("si se encontro ID 0001")
+                print ("updateAppGlobalSettings si se encontro ID 0001")
                 let objectUpdate = test[0] as! NSManagedObject
-                objectUpdate.setValue(appConfig.appName, forKey: "appName")
-                objectUpdate.setValue(appConfig.appSubtitle, forKey: "appSubtitle")
-                objectUpdate.setValue(appConfig.isLogged, forKey: "isLogged")
-                objectUpdate.setValue(appConfig.isEventActive, forKey: "isEventActive")
-                objectUpdate.setValue(appConfig.appCurrentDate, forKey: "appCurrentDate")
-                objectUpdate.setValue(appConfig.adminUser, forKey: "adminUser")
-                objectUpdate.setValue(appConfig.currentappLoggedUser, forKey: "currentappLoggedUser")
-                objectUpdate.setValue("0001", forKey: "id")
+                objectUpdate.setValue(appDelegate.globalAppSettings!.appName, forKey: "appName")
+                objectUpdate.setValue(appDelegate.globalAppSettings!.appSubtitle, forKey: "appSubtitle")
+                objectUpdate.setValue(appDelegate.globalAppSettings?.isLogged, forKey: "isLogged")
+                objectUpdate.setValue(appDelegate.globalAppSettings?.isEventActive, forKey: "isEventActive")
+                objectUpdate.setValue(appDelegate.globalAppSettings!.appCurrentDate, forKey: "appCurrentDate")
+                objectUpdate.setValue(appDelegate.globalAppSettings!.adminUser, forKey: "adminUser")
+                objectUpdate.setValue(appDelegate.globalAppSettings!.currentappLoggedUser, forKey: "currentappLoggedUser")
+                objectUpdate.setValue(appDelegate.globalAppSettings!.id + 1 , forKey: "id")
                 
-                print ("CoreDataUtils appConfig.appName ", appConfig.appName)
-                print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
-                print ("CoreDataUtils appConfig.id ", appConfig.id)
-                print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUser?.email)
+                print ("CoreDataUtils appConfig.appName ", appDelegate.globalAppSettings!.appName)
+                print ("CoreDataUtils appConfig.appSubtitle ",appDelegate.globalAppSettings!.appSubtitle)
+                print ("CoreDataUtils appConfig.id ", appDelegate.globalAppSettings!.id)
+                print ("CoreDataUtils appConfig.adminUser?.email ", appDelegate.globalAppSettings!.adminUser)
+                
                 appDelegate.globalAppSettings = appConfig
                 
                 do{
@@ -246,8 +248,14 @@ class CoreDataUtils{
         let appCurrentDate : Date? = appConfig.appCurrentDate
         let adminUser : Person? = appConfig.adminUser
         let currentappLoggedUser : Person? = appConfig.currentappLoggedUser
-        let id : String = "0001"
+        let id : Int16 = appConfig.id + 1
         appConfig.id = id
+        
+        print ( " createAppGlobalSettings ", appName)
+        print ( " createAppGlobalSettings ", appSubtitle)
+        print ( " createAppGlobalSettings ", adminUser)
+        print ( " createAppGlobalSettings ", id)
+        print ( " createAppGlobalSettings ", currentappLoggedUser)
         
         appConfigsCoreData.setValue(appName, forKey: "appName")
         appConfigsCoreData.setValue(appSubtitle, forKey: "appSubtitle")
@@ -262,7 +270,7 @@ class CoreDataUtils{
             try managedContext.save()
             
         } catch let error as NSError {
-            print("Could not save appconfigs. \(error), \(error.userInfo)")
+            print("Could not save createAppGlobalSettings appconfigs. \(error), \(error.userInfo)")
         }
     }
     

@@ -103,6 +103,9 @@ class LoginViewController: UIViewController {
     
     func initView(){
         let managedContext = appDelegate.persistentContainer.viewContext
+   
+        // CoreDataUtils.sharedInstance.updateAppGlobalSettings(appConfig: self.globalAppSettings!)
+        CoreDataUtils.sharedInstance.preloadAppGlobalSettings()
         person = Person(context: managedContext)
         appConfig = appDelegate.globalAppSettings
         appNameLabel.text = appConfig?.appName
@@ -127,17 +130,21 @@ class LoginViewController: UIViewController {
         
         
         CoreDataUtils.sharedInstance.createNewPerson(person: person!)
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let appConfig = appDelegate.globalAppSettings
+        appConfig!.appName = "Amigo Secreto"
+        appConfig!.appSubtitle = "@ by Belatrixsf"
+        appConfig!.id = 1
+        if (self.adminSw.isOn){
+            appConfig!.adminUser = person
+        }
+        CoreDataUtils.sharedInstance.updateAppGlobalSettings(appConfig: appConfig!)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: spiner)
             self.statusLabel.text = "Registro Satisfactorio !"
             
-            self.appConfig?.appName = "Amigo Secreto"
-            self.appConfig?.appSubtitle = "@ by Belatrixsf"
-            self.appConfig?.id = "0001"
-            if (self.adminSw.isOn){
-                self.appConfig?.adminUser = self.person
-            }
-            CoreDataUtils.sharedInstance.createAppGlobalSettings(appConfig: self.appConfig!)
+           
             
             self.signUpUsernameField.text = ""
             self.signUpPasswordField.text = ""
