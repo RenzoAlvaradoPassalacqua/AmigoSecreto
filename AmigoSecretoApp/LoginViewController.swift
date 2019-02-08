@@ -65,10 +65,7 @@ class LoginViewController: UIViewController {
     func save(_ data: RegisterData) {
         let sv = UIViewController.displaySpinner(onView: self.view)
         signUpBtn.isEnabled = false
-        signUpUsernameField.text = ""
-        signUpPasswordField.text = ""
-        signUpUsernameField.isEnabled = false
-        signUpPasswordField.isEnabled = false
+     
         
         register(spiner: sv)
         
@@ -82,6 +79,11 @@ class LoginViewController: UIViewController {
                 
                 print("encontro usuario coredata",user)
                 self.statusLabel.text = "Se encontró el usuario: " + self.signInUsernameField.text! + ", Iniciando Sessión..."
+                self.signInUsernameField.text = ""
+                self.signInPasswordField.text = ""
+                self.signInUsernameField.isEnabled = false
+                self.signInPasswordField.isEnabled = false
+                self.SignInBtn.isEnabled = false
             }
             .catch { (error) in
                 
@@ -103,14 +105,13 @@ class LoginViewController: UIViewController {
         appNameLabel.text = appConfig?.appName
         appSubtitleLabel.text = appConfig?.appSubtitle
         let adminUser: Person? = (appConfig?.adminUser)
-        /*if ((adminUser?.email)! .isEmpty){
-            self.isRegistered = false
-        }
-        else{
+        if (adminUser != nil){
             self.isRegistered = true
         }
-        self.isRegistered = false
-        */
+        else{
+            self.isRegistered = false
+        }
+        
     }
     
     func register(spiner : UIView){
@@ -121,6 +122,10 @@ class LoginViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: spiner)
             self.statusLabel.text = "Registro Satisfactorio !"
+            self.signUpUsernameField.text = ""
+            self.signUpPasswordField.text = ""
+            self.signUpUsernameField.isEnabled = false
+            self.signUpPasswordField.isEnabled = false
         }
     }
     
