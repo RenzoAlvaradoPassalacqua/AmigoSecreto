@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var globalAppSettings: AppConfigs?
+    var globalUser: Person?
 
     func startPushNotifications(){
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, .carPlay ]) {
@@ -45,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func initValueAppGlobalSettings (){
         let managedContext = persistentContainer.viewContext
         self.globalAppSettings = AppConfigs(context: managedContext)
+        self.globalUser = Person(context: managedContext)
         
         self.globalAppSettings?.adminUserEmail = nil
         //self.globalAppSettings?.appCurrentDate

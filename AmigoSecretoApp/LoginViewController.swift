@@ -83,7 +83,10 @@ class LoginViewController: UIViewController {
                 self.statusLabel.text = "Se encontró el usuario: " + self.signInUsernameField.text! + ", Iniciando Sessión..."
                 self.appDelegate.globalAppSettings?.isLogged = true
                 self.appDelegate.globalAppSettings?.currentAppLoggedUserEmail = self.signInUsernameField.text!
-                self.person = nil
+                self.person = user.0
+                self.appDelegate.globalUser = self.person
+                self.person?.logged = true
+                
                 CoreDataUtils.sharedInstance.saveAppGlobalSettings()
                 
                 self.signInUsernameField.text = ""
@@ -91,7 +94,7 @@ class LoginViewController: UIViewController {
                 self.signInUsernameField.isEnabled = false
                 self.signInPasswordField.isEnabled = false
                 self.SignInBtn.isEnabled = false
-                self.person?.logged = true
+                
                 self.loadHomeScreen()
             }
             .catch { (error) in

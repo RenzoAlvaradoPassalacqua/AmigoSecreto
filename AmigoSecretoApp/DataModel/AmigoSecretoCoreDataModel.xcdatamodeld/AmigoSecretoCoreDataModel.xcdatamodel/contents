@@ -28,20 +28,20 @@
         <relationship name="owner" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="events" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES" codeGenerationType="class">
-        <attribute name="email" attributeType="String" syncable="YES"/>
+        <attribute name="email" attributeType="String" defaultValueString="user@email.com" syncable="YES"/>
         <attribute name="gift" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logged" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="password" attributeType="String" syncable="YES"/>
+        <attribute name="password" attributeType="String" defaultValueString="123458A" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="drawPersonA" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Draw" inverseName="friendShipA" inverseEntity="Draw" syncable="YES"/>
         <relationship name="drawPersonB" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Draw" inverseName="friendShipB" inverseEntity="Draw" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="owner" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AppConfigs" positionX="135" positionY="54" width="128" height="165"/>
+        <element name="AppConfigs" positionX="135" positionY="54" width="128" height="30"/>
         <element name="Draw" positionX="321.265625" positionY="73.5625" width="128" height="133"/>
         <element name="Event" positionX="38.29296875" positionY="-132.53515625" width="128" height="148"/>
-        <element name="Person" positionX="-52.23046875" positionY="97.09375" width="128" height="180"/>
+        <element name="Person" positionX="-52.23046875" positionY="97.09375" width="128" height="30"/>
     </elements>
 </model>

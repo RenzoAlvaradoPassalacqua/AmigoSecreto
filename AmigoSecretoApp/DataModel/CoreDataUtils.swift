@@ -134,6 +134,10 @@ class CoreDataUtils{
                 appConfig.appSubtitle = (data.value(forKey: "appSubtitle") as? String)
                 appConfig.id = (data.value(forKey: "id") as? Int16 ?? 0)
                 appConfig.adminUserEmail = (data.value(forKey: "adminUserEmail") as? String ?? " ")
+                appConfig.isLogged = (data.value(forKey: "isLogged") as! Bool)
+                appConfig.currentAppLoggedUserEmail = (data.value(forKey: "currentAppLoggedUserEmail") as? String)
+                appConfig.isEventActive = (data.value(forKey: "isEventActive") as! Bool)
+                appConfig.appCurrentDate = (data.value(forKey: "appCurrentDate") as? Date)
                 
                 print ("CoreDataUtils appConfig.appName ", appConfig.appName)
                 print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
