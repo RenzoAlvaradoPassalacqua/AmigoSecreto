@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  SettingsViewController.swift
 //  AmigoSecretoApp
 //
 //  Created by Renzo Manuel Alvarado Passalacqua on 2/5/19.
@@ -8,8 +8,12 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class SettingsViewController: UIViewController {
 
+    @IBOutlet weak var eventNameLabel: UITextField!
+    @IBOutlet weak var minGiftPriceLabel: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
