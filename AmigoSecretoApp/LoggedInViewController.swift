@@ -12,6 +12,7 @@ import UIKit
 class LoggedInViewController: UIViewController {
     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
     @IBOutlet weak var userLoggedLabel: UILabel!
+    @IBOutlet weak var numEventsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class LoggedInViewController: UIViewController {
         
         self.userLoggedLabel.isHidden = true
         self.userLoggedLabel.text = ""
+        self.numEventsLabel.text = ""
         
         prelaodGlobalSettings()
     }
@@ -42,6 +44,15 @@ class LoggedInViewController: UIViewController {
         let userLoggedEmail = appDelegate?.globalAppSettings?.adminUserEmail
         self.userLoggedLabel.text = "Bienvenido : " + userLoggedEmail! + "!"
         self.userLoggedLabel.isHidden = false
+        
+        self.numEventsLabel.text = "No hay eventos creados!"
+        
+        if (appDelegate?.globalAppSettings?.isEventActive ?? false){
+            self.numEventsLabel.text = "Tienes un evento creado!"
+        }else{
+            self.numEventsLabel.text = "No hay eventos creados!"
+        }
+        
         
     }
     
