@@ -86,8 +86,9 @@ class LoginViewController: UIViewController {
                 self.person = user.0
                 self.appDelegate.globalUser = self.person
                 self.person?.logged = true
-                
+                //CoreDataUtils.sharedInstance.deleteAllConfigData()
                 CoreDataUtils.sharedInstance.saveAppGlobalSettings()
+                CoreDataUtils.sharedInstance.readAppConfigsToDelegate()
                 
                 self.signInUsernameField.text = ""
                 self.signInPasswordField.text = ""

@@ -46,8 +46,8 @@ class LoggedInViewController: UIViewController {
     
     func prelaodGlobalSettings(){
         
-        let userLoggedEmail = appDelegate?.globalAppSettings?.adminUserEmail
-        self.userLoggedLabel.text = "Bienvenido : " + userLoggedEmail! + "!"
+        let userLoggedEmail = appDelegate?.globalUser?.email
+        self.userLoggedLabel.text = "Bienvenido : " + (userLoggedEmail!) + "!"
         self.userLoggedLabel.isHidden = false
         
         self.numEventsLabel.text = "No hay eventos creados!"
@@ -64,7 +64,12 @@ class LoggedInViewController: UIViewController {
     @IBAction func logoutOfApp(_ sender: UIButton) {
         let sv = UIViewController.displaySpinner(onView: self.view)
         appDelegate?.globalAppSettings?.isLogged = false
+        appDelegate?.globalAppSettings?.currentAppLoggedUserEmail = ""
+        appDelegate?.globalUser?.logged = false
         
+        CoreDataUtils.sharedInstance.deleteAllConfigData()
+        CoreDataUtils.sharedInstance.createAppGlobalSettings(appConfig: appDelegate!.globalAppSettings!)
+        CoreDataUtils.sharedInstance.readAppConfigsToDelegate()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: sv)
             self.loadLoginScreen()
