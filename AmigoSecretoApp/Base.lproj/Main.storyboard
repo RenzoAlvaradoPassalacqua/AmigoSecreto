@@ -267,6 +267,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3Z-7t-b48">
+                                <rect key="frame" x="32" y="746" width="350" height="44"/>
+                                <color key="backgroundColor" red="0.97715872526168823" green="0.51073563098907471" blue="0.025131748989224434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="njb-oX-5ZB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Crear Evento">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="crearEventoAction:" destination="LoV-qw-wMu" eventType="touchUpInside" id="wE9-tf-dSH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -275,6 +293,9 @@
                             <constraint firstItem="osJ-h3-54b" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="50a-h7-PM0"/>
                             <constraint firstItem="osJ-h3-54b" firstAttribute="top" secondItem="WRD-Mw-UNK" secondAttribute="bottom" constant="8" id="6BZ-F6-04f"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WRD-Mw-UNK" secondAttribute="trailing" constant="20" symbolic="YES" id="7wM-h4-3v9"/>
+                            <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" secondItem="Y3Z-7t-b48" secondAttribute="trailing" constant="32" id="B2E-Kj-Wdh"/>
+                            <constraint firstItem="Ozz-IU-fju" firstAttribute="top" secondItem="Y3Z-7t-b48" secondAttribute="bottom" constant="22" id="SAn-Ty-Y7U"/>
+                            <constraint firstItem="Y3Z-7t-b48" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="caE-93-Mzh"/>
                             <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" secondItem="Ozz-IU-fju" secondAttribute="trailing" constant="16" id="eBQ-DV-tBI"/>
                             <constraint firstItem="Ozz-IU-fju" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="16" id="fqu-xn-d8g"/>
                             <constraint firstItem="WRD-Mw-UNK" firstAttribute="top" secondItem="GHY-TD-XoK" secondAttribute="top" constant="32" id="gak-uk-pO8"/>
@@ -285,6 +306,7 @@
                         <viewLayoutGuide key="safeArea" id="GHY-TD-XoK"/>
                     </view>
                     <connections>
+                        <outlet property="crearEventoBtn" destination="Y3Z-7t-b48" id="0x4-bw-evA"/>
                         <outlet property="numEventsLabel" destination="Gai-cK-yBF" id="tuU-es-XjR"/>
                         <outlet property="userLoggedLabel" destination="WRD-Mw-UNK" id="Y2T-IC-1LG"/>
                     </connections>

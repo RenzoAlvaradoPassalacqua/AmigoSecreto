@@ -13,6 +13,11 @@ class LoggedInViewController: UIViewController {
     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
     @IBOutlet weak var userLoggedLabel: UILabel!
     @IBOutlet weak var numEventsLabel: UILabel!
+    @IBOutlet weak var crearEventoBtn: UIButton!
+    
+    
+    @IBAction func crearEventoAction(_ sender: Any) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
