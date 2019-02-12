@@ -11,7 +11,8 @@ import UIKit
 
 class LoggedInViewController: UIViewController {
     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
-
+    @IBOutlet weak var userLoggedLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -22,8 +23,28 @@ class LoggedInViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         appDelegate?.startPushNotifications()
+        
+        initView()
+        
+        
     }
 
+    func initView(){
+        
+        self.userLoggedLabel.isHidden = true
+        self.userLoggedLabel.text = ""
+        
+        prelaodGlobalSettings()
+    }
+    
+    func prelaodGlobalSettings(){
+        
+        let userLoggedEmail = appDelegate?.globalAppSettings?.adminUserEmail
+        self.userLoggedLabel.text = "Bienvenido : " + userLoggedEmail! + "!"
+        self.userLoggedLabel.isHidden = false
+        
+    }
+    
     @IBAction func logoutOfApp(_ sender: UIButton) {
         let sv = UIViewController.displaySpinner(onView: self.view)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
