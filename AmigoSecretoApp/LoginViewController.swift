@@ -96,6 +96,9 @@ class LoginViewController: UIViewController {
             .finally {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     UIViewController.removeSpinner(spinner: spiner)
+                    self.appDelegate.globalAppSettings?.isLogged = true
+                    self.appDelegate.globalAppSettings?.currentAppLoggedUserEmail = self.signInUsernameField.text
+                    self.loadHomeScreen()
                 }
                 print("finally")
         }
@@ -123,7 +126,7 @@ class LoginViewController: UIViewController {
         appSubtitleLabel.text = appConfig?.appSubtitle
         
         let adminUser: String? = (appConfig?.adminUserEmail)
-        if (adminUser != nil){
+        if (adminUser != nil && appConfig!.isLogged){
             self.isRegistered = true
             appConfig?.isLogged = true
             

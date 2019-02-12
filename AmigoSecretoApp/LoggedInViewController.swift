@@ -63,8 +63,11 @@ class LoggedInViewController: UIViewController {
     
     @IBAction func logoutOfApp(_ sender: UIButton) {
         let sv = UIViewController.displaySpinner(onView: self.view)
+        appDelegate?.globalAppSettings?.isLogged = false
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: sv)
+            self.loadLoginScreen()
         }
     }
 
@@ -82,7 +85,7 @@ class LoggedInViewController: UIViewController {
 
     func loadLoginScreen(){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! LoginViewController
+        let viewController = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         self.present(viewController, animated: true, completion: nil)
     }
 

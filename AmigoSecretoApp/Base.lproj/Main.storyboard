@@ -160,7 +160,7 @@
         <!--Login View Controller-->
         <scene sceneID="IIW-5K-oCJ">
             <objects>
-                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="40x-Hy-L27" customClass="LoginViewController" customModule="AmigoSecretoAppExtension" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="40x-Hy-L27" customClass="LoginViewController" customModule="AmigoSecretoAppExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hbh-lJ-ile">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
