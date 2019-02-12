@@ -198,7 +198,7 @@ class LoginViewController: UIViewController {
 
     func loadHomeScreen(){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let loggedInViewController = storyBoard.instantiateViewController(withIdentifier: "LoggedInViewController") as! LoggedInViewController
+        let loggedInViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! UITabBarController
         self.present(loggedInViewController, animated: true, completion: nil)
     }
 
