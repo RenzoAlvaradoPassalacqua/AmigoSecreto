@@ -89,7 +89,7 @@ class CoreDataUtils{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        //request.predicate = NSPredicate(format: "id = %@", "0001")
+        request.predicate = NSPredicate(format: "id = %@", "2")
 
         
         do {
@@ -101,6 +101,7 @@ class CoreDataUtils{
                 print(data.value(forKey: "isEventActive") as? String)
                 print(data.value(forKey: "isLogged") as? String)
                 print(data.value(forKey: "adminUserEmail") as? String)
+               
             }
             
         } catch {
@@ -131,6 +132,7 @@ class CoreDataUtils{
                 
                 appConfig.appSubtitle = (data.value(forKey: "appSubtitle") as? String)
                 appConfig.id = (data.value(forKey: "id") as? Int16 ?? 0)
+                appConfig.adminUserEmail = (data.value(forKey: "adminUserEmail") as? String ?? " ")
                 
                 print ("CoreDataUtils appConfig.appName ", appConfig.appName)
                 print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)

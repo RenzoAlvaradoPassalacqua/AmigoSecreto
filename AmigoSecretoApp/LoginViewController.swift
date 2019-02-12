@@ -112,6 +112,10 @@ class LoginViewController: UIViewController {
         }
        
         person = Person(context: managedContext)
+        
+        CoreDataUtils.sharedInstance.readAppConfigs()
+        
+        CoreDataUtils.sharedInstance.readAppConfigsToDelegate()
         appConfig = appDelegate.globalAppSettings
         
         
@@ -131,7 +135,7 @@ class LoginViewController: UIViewController {
         else{
             self.isRegistered = false
         }
-        CoreDataUtils.sharedInstance.readAppConfigs()
+        
     }
     
     func register(spiner : UIView){
