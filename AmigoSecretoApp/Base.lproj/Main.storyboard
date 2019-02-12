@@ -129,7 +129,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="eventNameLabel" destination="HEM-IZ-4CW" id="khJ-Vm-8nj"/>
                         <outlet property="minGiftPriceLabel" destination="gx5-KP-Bk4" id="Wux-Ii-YR7"/>
@@ -151,6 +151,7 @@
                     <connections>
                         <segue destination="LoV-qw-wMu" kind="relationship" relationship="viewControllers" id="Kgf-Lt-mxh"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="bEW-pF-PpO" kind="relationship" relationship="viewControllers" id="Or9-Ma-Lyp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -350,9 +351,27 @@
             </objects>
             <point key="canvasLocation" x="749" y="-361"/>
         </scene>
+        <!--LogOut-->
+        <scene sceneID="iV6-hG-Edr">
+            <objects>
+                <viewController id="bEW-pF-PpO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TH6-0d-pI4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="7cD-9X-zp5"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="LogOut" image="logout" id="SCy-wn-XGY"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cg8-7a-ouC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="-83"/>
+        </scene>
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="logout" width="20" height="20"/>
+        <image name="settings" width="16" height="13"/>
     </resources>
 </document>

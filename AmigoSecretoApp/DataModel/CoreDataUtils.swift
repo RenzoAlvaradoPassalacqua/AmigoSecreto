@@ -64,6 +64,7 @@ class CoreDataUtils{
                 let retPerson = Person(context:managedContext)
                 print("name: ", data.value(forKey: "name") as? String ?? " ")
                 print("email: ",data.value(forKey: "email") as! String)
+                print("logged: ",data.value(forKey: "logged") as? Bool ?? false)
                
                 retPerson.name = data.value(forKey: "name") as? String
                 retPerson.email = data.value(forKey: "email") as? String
@@ -89,7 +90,7 @@ class CoreDataUtils{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        request.predicate = NSPredicate(format: "id = %@", "2")
+        //request.predicate = NSPredicate(format: "id = %@", "2")
 
         
         do {
@@ -115,7 +116,7 @@ class CoreDataUtils{
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        request.predicate = NSPredicate(format: "id = %@", "2")
+        //request.predicate = NSPredicate(format: "id = %@", "2")
       
         
         do {
@@ -138,6 +139,7 @@ class CoreDataUtils{
                 print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
                 print ("CoreDataUtils appConfig.id ", appConfig.id)
                 print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUserEmail)
+                print ("CoreDataUtils appConfig.isLogged  ", appConfig.isLogged)
                 appDelegate.globalAppSettings = appConfig
             }
             
@@ -152,7 +154,7 @@ class CoreDataUtils{
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "2")
+        //fetchRequest.predicate = NSPredicate(format: "id = %@", "2")
         do
         {
             let test = try managedContext.fetch(fetchRequest)
@@ -192,7 +194,7 @@ class CoreDataUtils{
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        fetchRequest.predicate = NSPredicate(format: "id = %@", "2")
+        //fetchRequest.predicate = NSPredicate(format: "id = %@", "2")
         do
         {
             let test = try managedContext.fetch(fetchRequest)
@@ -302,6 +304,7 @@ class CoreDataUtils{
         print ( " saveAppGlobalSettings ", adminUser)
         print ( " saveAppGlobalSettings ", id)
         print ( " saveAppGlobalSettings ", currentappLoggedUser)
+        print ( " saveAppGlobalSettings isLogged ", isLogged)
         
         appConfigsCoreData.setValue(appName, forKey: "appName")
         appConfigsCoreData.setValue(appSubtitle, forKey: "appSubtitle")
@@ -316,7 +319,7 @@ class CoreDataUtils{
             try managedContext.save()
             
         } catch let error as NSError {
-            print("Could not save createAppGlobalSettings appconfigs. \(error), \(error.userInfo)")
+            print("Could not save saveAppGlobalSettings appconfigs. \(error), \(error.userInfo)")
         }
     }
 }
