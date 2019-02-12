@@ -37,23 +37,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-       
+       self.initValueAppGlobalSettings()
         
         return true
     }
 
     func initValueAppGlobalSettings (){
-         
-        self.globalAppSettings?.adminUser = nil
+        let managedContext = persistentContainer.viewContext
+        self.globalAppSettings = AppConfigs(context: managedContext)
+        
+        self.globalAppSettings?.adminUserEmail = nil
         //self.globalAppSettings?.appCurrentDate
         self.globalAppSettings?.appName = "Amigo Secreto"
         self.globalAppSettings?.appSubtitle = "@ by Belatrixsf"
-        self.globalAppSettings?.currentappLoggedUser = nil
+        self.globalAppSettings?.currentAppLoggedUserEmail = nil
         self.globalAppSettings?.isEventActive = false
         self.globalAppSettings?.isLogged = false
         self.globalAppSettings?.id = 1
         
-        
+         print ("appDelegate globalAppSettings?.appName", self.globalAppSettings?.appName)
     }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

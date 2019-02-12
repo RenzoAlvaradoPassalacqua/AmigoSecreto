@@ -2,7 +2,7 @@
 //  Person+CoreDataProperties.swift
 //  AmigoSecretoApp
 //
-//  Created by Renzo Manuel Alvarado Passalacqua on 2/8/19.
+//  Created by Renzo Manuel Alvarado Passalacqua on 2/12/19.
 //  Copyright © 2019 Renzo Manuel Alvarado Passalacqua. All rights reserved.
 //
 //
@@ -23,11 +23,9 @@ extension Person {
     @NSManaged public var name: String?
     @NSManaged public var password: String?
     @NSManaged public var state: String?
-    @NSManaged public var adminUser: AppConfigs?
     @NSManaged public var drawPersonA: NSSet?
     @NSManaged public var drawPersonB: NSSet?
     @NSManaged public var events: NSSet?
-    @NSManaged public var loggedUser: AppConfigs?
 
 }
 

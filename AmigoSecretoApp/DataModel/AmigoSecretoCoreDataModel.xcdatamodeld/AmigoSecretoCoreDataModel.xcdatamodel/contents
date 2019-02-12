@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.72" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AppConfigs" representedClassName="AppConfigs" syncable="YES" codeGenerationType="class">
+        <attribute name="adminUserEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="appCurrentDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="appName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="appSubtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="currentAppLoggedUserEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isEventActive" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isLogged" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="adminUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="adminUser" inverseEntity="Person" syncable="YES"/>
-        <relationship name="currentappLoggedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="loggedUser" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Draw" representedClassName="Draw" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,16 +34,14 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="adminUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppConfigs" inverseName="adminUser" inverseEntity="AppConfigs" syncable="YES"/>
         <relationship name="drawPersonA" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Draw" inverseName="friendShipA" inverseEntity="Draw" syncable="YES"/>
         <relationship name="drawPersonB" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Draw" inverseName="friendShipB" inverseEntity="Draw" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="owner" inverseEntity="Event" syncable="YES"/>
-        <relationship name="loggedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppConfigs" inverseName="currentappLoggedUser" inverseEntity="AppConfigs" syncable="YES"/>
     </entity>
     <elements>
         <element name="AppConfigs" positionX="135" positionY="54" width="128" height="165"/>
         <element name="Draw" positionX="321.265625" positionY="73.5625" width="128" height="133"/>
         <element name="Event" positionX="38.29296875" positionY="-132.53515625" width="128" height="148"/>
-        <element name="Person" positionX="-52.23046875" positionY="97.09375" width="128" height="30"/>
+        <element name="Person" positionX="-52.23046875" positionY="97.09375" width="128" height="180"/>
     </elements>
 </model>

@@ -105,46 +105,57 @@ class LoginViewController: UIViewController {
         let managedContext = appDelegate.persistentContainer.viewContext
    
         // CoreDataUtils.sharedInstance.updateAppGlobalSettings(appConfig: self.globalAppSettings!)
-        CoreDataUtils.sharedInstance.preloadAppGlobalSettings()
+        //CoreDataUtils.sharedInstance.preloadAppGlobalSettings()
+        
+        if ((appDelegate.globalAppSettings?.appName?.isEmpty ?? true)){
+            appDelegate.initValueAppGlobalSettings()
+        }
+       
         person = Person(context: managedContext)
         appConfig = appDelegate.globalAppSettings
+        
+        
         appNameLabel.text = appConfig?.appName
         appSubtitleLabel.text = appConfig?.appSubtitle
-        let adminUser: Person? = (appConfig?.adminUser)
+        
+        let adminUser: String? = (appConfig?.adminUserEmail)
         if (adminUser != nil){
             self.isRegistered = true
             appConfig?.isLogged = true
+            
+            // load to memory appdelegate only not coredata
+            appDelegate.globalAppSettings = appConfig
             
             loadHomeScreen()
         }
         else{
             self.isRegistered = false
         }
-        
+        CoreDataUtils.sharedInstance.readAppConfigs()
     }
     
     func register(spiner : UIView){
         person?.email = signUpUsernameField.text
         person?.password = signUpPasswordField.text
        
-        
-        
         CoreDataUtils.sharedInstance.createNewPerson(person: person!)
-        let managedContext = appDelegate.persistentContainer.viewContext
+        
         let appConfig = appDelegate.globalAppSettings
         appConfig!.appName = "Amigo Secreto"
         appConfig!.appSubtitle = "@ by Belatrixsf"
         appConfig!.id = 1
         if (self.adminSw.isOn){
-            appConfig!.adminUser = person
+            appConfig!.adminUserEmail = person?.email
         }
-        CoreDataUtils.sharedInstance.updateAppGlobalSettings(appConfig: appConfig!)
+        appDelegate.globalAppSettings = appConfig
+        //CoreDataUtils.sharedInstance.updateAppGlobalSettings(appConfig: appConfig!)
+       
+        print ("appDelegate globalAppSettings?.adminUser", appDelegate.globalAppSettings?.adminUserEmail)
         
+        CoreDataUtils.sharedInstance.saveAppGlobalSettings()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: spiner)
             self.statusLabel.text = "Registro Satisfactorio !"
-            
-           
             
             self.signUpUsernameField.text = ""
             self.signUpPasswordField.text = ""

@@ -2,7 +2,7 @@
 //  AppConfigs+CoreDataProperties.swift
 //  AmigoSecretoApp
 //
-//  Created by Renzo Manuel Alvarado Passalacqua on 2/8/19.
+//  Created by Renzo Manuel Alvarado Passalacqua on 2/12/19.
 //  Copyright © 2019 Renzo Manuel Alvarado Passalacqua. All rights reserved.
 //
 //
@@ -23,7 +23,7 @@ extension AppConfigs {
     @NSManaged public var id: Int16
     @NSManaged public var isEventActive: Bool
     @NSManaged public var isLogged: Bool
-    @NSManaged public var adminUser: Person?
-    @NSManaged public var currentappLoggedUser: Person?
+    @NSManaged public var adminUserEmail: String?
+    @NSManaged public var currentAppLoggedUserEmail: String?
 
 }

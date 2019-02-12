@@ -89,7 +89,7 @@ class CoreDataUtils{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        request.predicate = NSPredicate(format: "id = %@", "0001")
+        //request.predicate = NSPredicate(format: "id = %@", "0001")
 
         
         do {
@@ -100,6 +100,7 @@ class CoreDataUtils{
                 print(data.value(forKey: "appSubtitle") as? String)
                 print(data.value(forKey: "isEventActive") as? String)
                 print(data.value(forKey: "isLogged") as? String)
+                print(data.value(forKey: "adminUserEmail") as? String)
             }
             
         } catch {
@@ -113,7 +114,7 @@ class CoreDataUtils{
         let managedContext = appDelegate.persistentContainer.viewContext
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        request.predicate = NSPredicate(format: "id = %@", "0001")
+        request.predicate = NSPredicate(format: "id = %@", "2")
       
         
         do {
@@ -134,7 +135,7 @@ class CoreDataUtils{
                 print ("CoreDataUtils appConfig.appName ", appConfig.appName)
                 print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
                 print ("CoreDataUtils appConfig.id ", appConfig.id)
-                print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUser?.email)
+                print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUserEmail)
                 appDelegate.globalAppSettings = appConfig
             }
             
@@ -171,7 +172,7 @@ class CoreDataUtils{
                     print ("CoreDataUtils appConfig.appName ", appConfig.appName)
                     print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
                     print ("CoreDataUtils appConfig.id ", appConfig.id)
-                    print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUser)
+                    print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUserEmail)
                     appDelegate.globalAppSettings = appConfig
                 }
                 
@@ -206,14 +207,14 @@ class CoreDataUtils{
                 objectUpdate.setValue(appDelegate.globalAppSettings?.isLogged, forKey: "isLogged")
                 objectUpdate.setValue(appDelegate.globalAppSettings?.isEventActive, forKey: "isEventActive")
                 objectUpdate.setValue(appDelegate.globalAppSettings!.appCurrentDate, forKey: "appCurrentDate")
-                objectUpdate.setValue(appDelegate.globalAppSettings!.adminUser, forKey: "adminUser")
-                objectUpdate.setValue(appDelegate.globalAppSettings!.currentappLoggedUser, forKey: "currentappLoggedUser")
+                objectUpdate.setValue(appDelegate.globalAppSettings!.adminUserEmail, forKey: "adminUserEmail")
+                objectUpdate.setValue(appDelegate.globalAppSettings!.currentAppLoggedUserEmail, forKey: "currentAppLoggedUserEmail")
                 objectUpdate.setValue(appDelegate.globalAppSettings!.id + 1 , forKey: "id")
                 
                 print ("CoreDataUtils appConfig.appName ", appDelegate.globalAppSettings!.appName)
                 print ("CoreDataUtils appConfig.appSubtitle ",appDelegate.globalAppSettings!.appSubtitle)
                 print ("CoreDataUtils appConfig.id ", appDelegate.globalAppSettings!.id)
-                print ("CoreDataUtils appConfig.adminUser?.email ", appDelegate.globalAppSettings!.adminUser)
+                print ("CoreDataUtils appConfig.adminUser?.email ", appDelegate.globalAppSettings!.adminUserEmail)
                 
                 appDelegate.globalAppSettings = appConfig
                 
@@ -246,8 +247,8 @@ class CoreDataUtils{
         let isLogged : Bool? = appConfig.isLogged
         let isEventActive : Bool? = appConfig.isEventActive
         let appCurrentDate : Date? = appConfig.appCurrentDate
-        let adminUser : Person? = appConfig.adminUser
-        let currentappLoggedUser : Person? = appConfig.currentappLoggedUser
+        let adminUser : String? = appConfig.adminUserEmail
+        let currentappLoggedUser : String? = appConfig.currentAppLoggedUserEmail
         let id : Int16 = appConfig.id + 1
         appConfig.id = id
         
@@ -262,8 +263,8 @@ class CoreDataUtils{
         appConfigsCoreData.setValue(isLogged, forKey: "isLogged")
         appConfigsCoreData.setValue(isEventActive, forKey: "isEventActive")
         appConfigsCoreData.setValue(appCurrentDate, forKey: "appCurrentDate")
-        appConfigsCoreData.setValue(adminUser, forKey: "adminUser")
-        appConfigsCoreData.setValue(currentappLoggedUser, forKey: "currentappLoggedUser")
+        appConfigsCoreData.setValue(adminUser, forKey: "adminUserEmail")
+        appConfigsCoreData.setValue(currentappLoggedUser, forKey: "currentAppLoggedUserEmail")
         appConfigsCoreData.setValue(id, forKey: "id")
         
         do {
@@ -274,4 +275,46 @@ class CoreDataUtils{
         }
     }
     
+    func saveAppGlobalSettings (){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let userEntity = NSEntityDescription.entity(forEntityName: "AppConfigs", in: managedContext)!
+        
+        let appConfigsCoreData = NSManagedObject(entity: userEntity, insertInto: managedContext)
+        let appConfig : AppConfigs = appDelegate.globalAppSettings!
+        
+        let appName : String? = appConfig.appName ?? "AmigoSecretoApp"
+        let appSubtitle : String? = appConfig.appSubtitle ?? "@ by Belatrix "
+        let isLogged : Bool? = appConfig.isLogged
+        let isEventActive : Bool? = appConfig.isEventActive
+        let appCurrentDate : Date? = appConfig.appCurrentDate
+        let adminUser : String? = appConfig.adminUserEmail
+        let currentappLoggedUser : String? = appConfig.currentAppLoggedUserEmail
+        let id : Int16 = appConfig.id + 1
+        appConfig.id = id
+        
+        print ( " saveAppGlobalSettings ", appName)
+        print ( " saveAppGlobalSettings ", appSubtitle)
+        print ( " saveAppGlobalSettings ", adminUser)
+        print ( " saveAppGlobalSettings ", id)
+        print ( " saveAppGlobalSettings ", currentappLoggedUser)
+        
+        appConfigsCoreData.setValue(appName, forKey: "appName")
+        appConfigsCoreData.setValue(appSubtitle, forKey: "appSubtitle")
+        appConfigsCoreData.setValue(isLogged, forKey: "isLogged")
+        appConfigsCoreData.setValue(isEventActive, forKey: "isEventActive")
+        appConfigsCoreData.setValue(appCurrentDate, forKey: "appCurrentDate")
+        appConfigsCoreData.setValue(adminUser, forKey: "adminUserEmail")
+        appConfigsCoreData.setValue(currentappLoggedUser, forKey: "currentAppLoggedUserEmail")
+        appConfigsCoreData.setValue(id, forKey: "id")
+        
+        do {
+            try managedContext.save()
+            
+        } catch let error as NSError {
+            print("Could not save createAppGlobalSettings appconfigs. \(error), \(error.userInfo)")
+        }
+    }
 }
