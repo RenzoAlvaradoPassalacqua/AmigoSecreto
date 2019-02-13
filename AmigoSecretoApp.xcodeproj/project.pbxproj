@@ -12,6 +12,7 @@
 		8316069B220CD2BE00C64920 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83160692220CD2BE00C64920 /* Validators.swift */; };
 		8316069D220CD61700C64920 /* RegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316069C220CD61700C64920 /* RegisterData.swift */; };
 		831606A72213217500C64920 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831606A62213217500C64920 /* SettingsViewController.swift */; };
+		831606A922146E7F00C64920 /* PersonaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831606A822146E7F00C64920 /* PersonaCell.swift */; };
 		836EBCA4220A23E600FCF852 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA3220A23E600FCF852 /* AppDelegate.swift */; };
 		836EBCA8220A23E600FCF852 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA7220A23E600FCF852 /* SecondViewController.swift */; };
 		836EBCAB220A23E600FCF852 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836EBCA9220A23E600FCF852 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		831606A0220DC98600C64920 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		831606A1220DC98600C64920 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		831606A62213217500C64920 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		831606A822146E7F00C64920 /* PersonaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonaCell.swift; sourceTree = "<group>"; };
 		836EBCA0220A23E600FCF852 /* AmigoSecretoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmigoSecretoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		836EBCA3220A23E600FCF852 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		836EBCA7220A23E600FCF852 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				836EBCA3220A23E600FCF852 /* AppDelegate.swift */,
 				836EBCD3220A30C000FCF852 /* LoginViewController.swift */,
 				836EBCD5220A312B00FCF852 /* LoggedInViewController.swift */,
+				831606A822146E7F00C64920 /* PersonaCell.swift */,
 				836EBCA7220A23E600FCF852 /* SecondViewController.swift */,
 				831606A62213217500C64920 /* SettingsViewController.swift */,
 				836EBCD7220A367600FCF852 /* Extensions.swift */,
@@ -470,6 +473,7 @@
 				836EBCD8220A367600FCF852 /* Extensions.swift in Sources */,
 				831606A72213217500C64920 /* SettingsViewController.swift in Sources */,
 				83DC7389220C61C7005300C1 /* AmigoSecretoCoreDataModel.xcdatamodeld in Sources */,
+				831606A922146E7F00C64920 /* PersonaCell.swift in Sources */,
 				8316069D220CD61700C64920 /* RegisterData.swift in Sources */,
 				83160697220CD2BE00C64920 /* UITextField+Extensions.swift in Sources */,
 				836EBCD6220A312B00FCF852 /* LoggedInViewController.swift in Sources */,
