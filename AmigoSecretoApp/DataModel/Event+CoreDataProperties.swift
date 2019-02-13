@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.swift
 //  AmigoSecretoApp
 //
-//  Created by Renzo Manuel Alvarado Passalacqua on 2/6/19.
+//  Created by Renzo Manuel Alvarado Passalacqua on 2/13/19.
 //  Copyright © 2019 Renzo Manuel Alvarado Passalacqua. All rights reserved.
 //
 //
@@ -17,13 +17,14 @@ extension Event {
         return NSFetchRequest<Event>(entityName: "Event")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var date: NSDate?
-    @NSManaged public var minprice: String?
     @NSManaged public var maxprice: String?
+    @NSManaged public var minprice: String?
+    @NSManaged public var name: String?
     @NSManaged public var state: String?
-    @NSManaged public var owner: Person?
     @NSManaged public var draw: NSSet?
+    @NSManaged public var owner: Person?
+    @NSManaged public var players: NSSet?
 
 }
 
@@ -41,5 +42,22 @@ extension Event {
 
     @objc(removeDraw:)
     @NSManaged public func removeFromDraw(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for players
+extension Event {
+
+    @objc(addPlayersObject:)
+    @NSManaged public func addToPlayers(_ value: Person)
+
+    @objc(removePlayersObject:)
+    @NSManaged public func removeFromPlayers(_ value: Person)
+
+    @objc(addPlayers:)
+    @NSManaged public func addToPlayers(_ values: NSSet)
+
+    @objc(removePlayers:)
+    @NSManaged public func removeFromPlayers(_ values: NSSet)
 
 }

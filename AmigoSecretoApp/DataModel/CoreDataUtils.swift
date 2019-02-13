@@ -87,6 +87,48 @@ class CoreDataUtils{
         }
      
     }
+   
+    func getAllPersonsOfEvent (completion: @escaping (_ personObj:Person?, _ error:NSError?) -> Void) {
+        var retPersonObj : Person?
+        
+        //As we know that container is set up in the AppDelegates so we need to refer that container.
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        //We need to create a context from this container
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        do {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+            
+            //fetchRequest.predicate = NSPredicate(format: "email = %@", email)
+            
+            let result = try managedContext.fetch(fetchRequest)
+            for data in result as! [NSManagedObject] {
+                let retPerson = Person(context:managedContext)
+                print("name: ", data.value(forKey: "name") as? String ?? " ")
+                print("email: ",data.value(forKey: "email") as! String)
+                print("logged: ",data.value(forKey: "logged") as? Bool ?? false)
+                
+                retPerson.name = data.value(forKey: "name") as? String
+                retPerson.email = data.value(forKey: "email") as? String
+                retPerson.password = data.value(forKey: "password") as? String
+                retPerson.logged = data.value(forKey: "logged") as? Bool ?? false
+                retPerson.gift = data.value(forKey: "gift") as? String
+                retPerson.state = data.value(forKey: "state") as? String
+                retPerson.admin = data.value(forKey: "admin") as? Bool ?? false
+                
+                retPersonObj = retPerson
+            }
+            completion(retPersonObj,nil)
+            
+        } catch {
+            let error = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on Person"])
+            completion(nil, error as NSError)
+            fatalError("Failed to fetch employees: \(error)")
+            
+        }
+        
+    }
     
     func readAppConfigs (){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
