@@ -28,6 +28,7 @@
         <relationship name="owner" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="events" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES" codeGenerationType="class">
+        <attribute name="admin" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="email" attributeType="String" defaultValueString="user@email.com" syncable="YES"/>
         <attribute name="gift" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logged" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -42,6 +43,6 @@
         <element name="AppConfigs" positionX="135" positionY="54" width="128" height="30"/>
         <element name="Draw" positionX="321.265625" positionY="73.5625" width="128" height="133"/>
         <element name="Event" positionX="38.29296875" positionY="-132.53515625" width="128" height="148"/>
-        <element name="Person" positionX="-52.23046875" positionY="97.09375" width="128" height="30"/>
+        <element name="Person" positionX="-52.23046875" positionY="97.09375" width="128" height="195"/>
     </elements>
 </model>

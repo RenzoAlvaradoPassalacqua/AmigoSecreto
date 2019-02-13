@@ -29,13 +29,14 @@ class CoreDataUtils{
         let logged : Bool? = person.logged
         let gift : String? = person.gift ?? " "
         let state : String? = person.state ?? " "
-        
+        let admin : Bool = false
         userCoreData.setValue(name, forKey: "name")
         userCoreData.setValue(email, forKey: "email")
         userCoreData.setValue(password, forKey: "password")
         userCoreData.setValue(logged, forKey: "logged")
         userCoreData.setValue(gift, forKey: "gift")
         userCoreData.setValue(state, forKey: "state")
+        userCoreData.setValue(admin, forKey: "admin")
         
         do {
             try managedContext.save()
@@ -72,6 +73,7 @@ class CoreDataUtils{
                 retPerson.logged = data.value(forKey: "logged") as? Bool ?? false
                 retPerson.gift = data.value(forKey: "gift") as? String
                 retPerson.state = data.value(forKey: "state") as? String
+                retPerson.admin = data.value(forKey: "admin") as? Bool ?? false
                 
                 retPersonObj = retPerson
             }
@@ -114,7 +116,7 @@ class CoreDataUtils{
     func readAppConfigsToDelegate (){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let active :Bool = true
+        let active :Bool = false
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
         request.predicate = NSPredicate(format: "id >= %@", "1")
         request.predicate = NSPredicate(format: "isLogged = %i", active)
@@ -156,6 +158,52 @@ class CoreDataUtils{
             fatalError("Failed to fetch readAppConfigsToDelegate globalAppSetting: \(error)")
         }
       
+    }
+    func readAppConfigsToDelegateAdmin (){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let active :Bool = true
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
+        request.predicate = NSPredicate(format: "id >= %@", "1")
+        request.predicate = NSPredicate(format: "isLogged = %i", active)
+        
+        
+        do {
+            let result = try managedContext.fetch(request)
+            
+            if (result.count == 0){
+                appDelegate.initValueAppGlobalSettings()
+                
+            }else{
+                let appConfig = AppConfigs(context: managedContext)
+                for data in result as! [NSManagedObject] {
+                    
+                    
+                    appConfig.appName = (data.value(forKey: "appName") as? String)
+                    
+                    appConfig.appSubtitle = (data.value(forKey: "appSubtitle") as? String)
+                    appConfig.id = (data.value(forKey: "id") as? Int16 ?? 0)
+                    appConfig.adminUserEmail = (data.value(forKey: "adminUserEmail") as? String ?? " ")
+                    appConfig.isLogged = (data.value(forKey: "isLogged") as! Bool)
+                    appConfig.currentAppLoggedUserEmail = (data.value(forKey: "currentAppLoggedUserEmail") as? String)
+                    appConfig.isEventActive = (data.value(forKey: "isEventActive") as! Bool)
+                    appConfig.appCurrentDate = (data.value(forKey: "appCurrentDate") as? Date)
+                    
+                    print ("CoreDataUtils appConfig.appName ", appConfig.appName)
+                    print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
+                    print ("CoreDataUtils appConfig.id ", appConfig.id)
+                    print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUserEmail)
+                    print ("CoreDataUtils appConfig.isLogged  ", appConfig.isLogged)
+                    appDelegate.globalAppSettings = appConfig
+                }
+            }
+            
+            
+            
+        } catch {
+            fatalError("Failed to fetch readAppConfigsToDelegate globalAppSetting: \(error)")
+        }
+        
     }
     func preloadAppGlobalSettings (){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -299,10 +347,15 @@ class CoreDataUtils{
         
         let appName : String? = appConfig.appName ?? "AmigoSecretoApp"
         let appSubtitle : String? = appConfig.appSubtitle ?? "@ by Belatrix "
-        let isLogged : Bool? = appConfig.isLogged
+        let isLogged : Bool? = appConfig.isLogged || appDelegate.globalUser!.logged
         let isEventActive : Bool? = appConfig.isEventActive
         let appCurrentDate : Date? = appConfig.appCurrentDate
-        let adminUser : String? = appConfig.adminUserEmail
+        var adminUser : String? = ""
+        if (appDelegate.globalUser!.admin){
+             adminUser = appDelegate.globalUser?.email
+        }
+        
+        
         let currentappLoggedUser : String? = appConfig.currentAppLoggedUserEmail
         let id : Int16 = appConfig.id + 1
         appConfig.id = id

@@ -86,9 +86,21 @@ class LoginViewController: UIViewController {
                 self.person = user.0
                 self.appDelegate.globalUser = self.person
                 self.person?.logged = true
+                
+                CoreDataUtils.sharedInstance.readAppConfigsToDelegate()
+                
+                
+                print (" global user admin ", self.appDelegate.globalUser?.admin)
+                print (" global user email ", self.appDelegate.globalUser?.email)
+                print ("self.appDelegate.globalAppSettings?.adminUserEmail", self.appDelegate.globalAppSettings?.adminUserEmail)
+                if (self.appDelegate.globalAppSettings?.adminUserEmail == self.appDelegate.globalUser?.email)
+                {
+                    self.appDelegate.globalUser?.admin = true
+                }
+                
                 //CoreDataUtils.sharedInstance.deleteAllConfigData()
                 CoreDataUtils.sharedInstance.saveAppGlobalSettings()
-                CoreDataUtils.sharedInstance.readAppConfigsToDelegate()
+                CoreDataUtils.sharedInstance.readAppConfigsToDelegateAdmin()
                 
                 self.signInUsernameField.text = ""
                 self.signInPasswordField.text = ""
@@ -127,7 +139,7 @@ class LoginViewController: UIViewController {
         
         CoreDataUtils.sharedInstance.readAppConfigs()
         
-        CoreDataUtils.sharedInstance.readAppConfigsToDelegate()
+        CoreDataUtils.sharedInstance.readAppConfigsToDelegateAdmin()
         appConfig = appDelegate.globalAppSettings
         
         
@@ -153,17 +165,22 @@ class LoginViewController: UIViewController {
     func register(spiner : UIView){
         person?.email = signUpUsernameField.text
         person?.password = signUpPasswordField.text
-       
         CoreDataUtils.sharedInstance.createNewPerson(person: person!)
-        
+        appDelegate.globalUser = person
         let appConfig = appDelegate.globalAppSettings
         appConfig!.appName = "Amigo Secreto"
         appConfig!.appSubtitle = "@ by Belatrixsf"
         appConfig!.id = 1
+        
         if (self.adminSw.isOn){
             appConfig!.adminUserEmail = person?.email
+            appDelegate.globalUser?.admin = true
+        }
+        else{
+            appDelegate.globalUser?.admin = false
         }
         appDelegate.globalAppSettings = appConfig
+        
         //CoreDataUtils.sharedInstance.updateAppGlobalSettings(appConfig: appConfig!)
        
         print ("appDelegate globalAppSettings?.adminUser", appDelegate.globalAppSettings?.adminUserEmail)
