@@ -13,6 +13,7 @@
 		8316069D220CD61700C64920 /* RegisterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8316069C220CD61700C64920 /* RegisterData.swift */; };
 		831606A72213217500C64920 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831606A62213217500C64920 /* SettingsViewController.swift */; };
 		831606A922146E7F00C64920 /* PersonaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831606A822146E7F00C64920 /* PersonaCell.swift */; };
+		831606AB2215B47F00C64920 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831606AA2215B47F00C64920 /* ModalViewController.swift */; };
 		836EBCA4220A23E600FCF852 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA3220A23E600FCF852 /* AppDelegate.swift */; };
 		836EBCA8220A23E600FCF852 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836EBCA7220A23E600FCF852 /* SecondViewController.swift */; };
 		836EBCAB220A23E600FCF852 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836EBCA9220A23E600FCF852 /* Main.storyboard */; };
@@ -58,6 +59,7 @@
 		831606A1220DC98600C64920 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		831606A62213217500C64920 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		831606A822146E7F00C64920 /* PersonaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonaCell.swift; sourceTree = "<group>"; };
+		831606AA2215B47F00C64920 /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		836EBCA0220A23E600FCF852 /* AmigoSecretoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmigoSecretoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		836EBCA3220A23E600FCF852 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		836EBCA7220A23E600FCF852 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				836EBCA7220A23E600FCF852 /* SecondViewController.swift */,
 				831606A62213217500C64920 /* SettingsViewController.swift */,
 				836EBCD7220A367600FCF852 /* Extensions.swift */,
+				831606AA2215B47F00C64920 /* ModalViewController.swift */,
 				836EBCA9220A23E600FCF852 /* Main.storyboard */,
 				836EBCAC220A23E900FCF852 /* Assets.xcassets */,
 				836EBCAE220A23E900FCF852 /* LaunchScreen.storyboard */,
@@ -478,6 +481,7 @@
 				83160697220CD2BE00C64920 /* UITextField+Extensions.swift in Sources */,
 				836EBCD6220A312B00FCF852 /* LoggedInViewController.swift in Sources */,
 				836EBCA4220A23E600FCF852 /* AppDelegate.swift in Sources */,
+				831606AB2215B47F00C64920 /* ModalViewController.swift in Sources */,
 				836EBCD4220A30C000FCF852 /* LoginViewController.swift in Sources */,
 				8316069B220CD2BE00C64920 /* Validators.swift in Sources */,
 				83DC733F220B6BC1005300C1 /* CoreDataUtils.swift in Sources */,
@@ -586,7 +590,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -641,7 +645,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -666,7 +670,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoApp;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -686,7 +690,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Belatrixsf.AmigoSecretoApp;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -699,6 +703,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AmigoSecretoAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,6 +725,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AmigoSecretoAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -740,6 +746,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AmigoSecretoAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -760,6 +767,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AmigoSecretoAppUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

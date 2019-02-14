@@ -8,13 +8,54 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate/*,tableViewCartaDelegate*/,UITextFieldDelegate{
+class SettingsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate/*,tableViewCartaDelegate*/,UITextFieldDelegate, ModalViewControllerDelegate{
     
     @IBOutlet weak var eventNameLabel: UITextField!
     @IBOutlet weak var minGiftPriceLabel: UITextField!
     @IBOutlet weak var txtDatePicker: UITextField!
     let datePicker = UIDatePicker()
 
+    @IBAction func openModalView(_ sender: Any) {
+        self.definesPresentationContext = true
+        self.providesPresentationContextTransitionStyle = true
+        
+        self.overlayBlurredBackgroundView()
+    }
+    
+    
+    func overlayBlurredBackgroundView() {
+        
+        let blurredBackgroundView = UIVisualEffectView()
+        
+        blurredBackgroundView.frame = view.frame
+        blurredBackgroundView.effect = UIBlurEffect(style: .extraLight)
+        
+        view.addSubview(blurredBackgroundView)
+        
+    }
+    
+    func removeBlurredBackgroundView() {
+        
+        for subview in view.subviews {
+            if subview.isKind(of: UIVisualEffectView.self) {
+                subview.removeFromSuperview()
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "ShowModalView" {
+                if let viewController = segue.destination as? ModalViewController {
+                    viewController.delegate = self 
+                    viewController.modalPresentationStyle = .overFullScreen
+                }
+            }
+        }
+    }
+    
+ 
+   
     
     @IBOutlet weak var tableViewPersonas: UITableView!
     var selectIndexPath : IndexPath!
