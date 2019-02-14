@@ -8,12 +8,22 @@
 
 import UIKit
 
+public protocol CustomStringConvertible {
+    /// A textual representation of `self`.
+    var description: String { get }
+}
+
+protocol PlayerStateConvertible {
+    func getPlayerState(_ value: String) throws -> String
+}
+
 class SettingsViewController: UIViewController,UITableViewDataSource,UITableViewDelegate/*,tableViewCartaDelegate*/,UITextFieldDelegate, ModalViewControllerDelegate{
     
     @IBOutlet weak var eventNameLabel: UITextField!
     @IBOutlet weak var minGiftPriceLabel: UITextField!
     @IBOutlet weak var txtDatePicker: UITextField!
     let datePicker = UIDatePicker()
+    static var sharedInstance = SettingsViewController()
 
     @IBAction func openModalView(_ sender: Any) {
         self.definesPresentationContext = true
@@ -54,8 +64,48 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         }
     }
     
- 
-   
+    func getState(personaState: PlayerState) throws -> String {
+        let validator = playerStateFactory.validatorFor(type: PlayerState.pendiente_Descarga_App)
+        return try! validator.getPlayerState(" ")
+    }
+    
+   public enum PlayerState {
+        case pendiente_Descarga_App
+        case resgistrado_App
+        case acepto_Jugar_App
+        case pendiente_Elegir_Regalo
+        case eligio_Regalo
+        case sabe_Quien_Regala
+        case jugo
+    }
+    
+    public enum playerStateFactory {
+        static func validatorFor(type: PlayerState) -> PlayerStateConvertible {
+            switch type {
+            case .pendiente_Descarga_App:
+                return appValidator()
+            case .resgistrado_App:
+                return appValidator()
+            case .acepto_Jugar_App:
+                return appValidator()
+            case .pendiente_Elegir_Regalo:
+                return appValidator()
+            case .eligio_Regalo:
+                return appValidator()
+            case .sabe_Quien_Regala:
+                return appValidator()
+            case .jugo:
+                return appValidator()
+            }
+        }
+    }
+    
+    struct appValidator: PlayerStateConvertible {
+        func getPlayerState(_ value: String) throws -> String {
+           
+            return "Pendiente de descargar el App"
+        }
+    }
     
     @IBOutlet weak var tableViewPersonas: UITableView!
     var selectIndexPath : IndexPath!
@@ -103,6 +153,10 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         self.view.endEditing(true)
     }
     
+    func addPlayer(player: Person){
+        self.players.append(player)
+    }
+    
     func getCoreData(){
         let managedContext = appDelegate.persistentContainer.viewContext
 
@@ -129,7 +183,11 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         //self.tableViewPersonas.rowHeight = UITableView.automaticDimension;
         self.tableViewPersonas.tableFooterView?.tintColor = UIColor.clear
         
+        let userName = "Mike"
+        let url = "www.google.com"
+        let degrees: Float = 103.4587254
     }
+        
    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

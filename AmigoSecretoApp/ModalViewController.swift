@@ -15,8 +15,38 @@ class ModalViewController: UIViewController {
     
     weak var delegate: ModalViewControllerDelegate?
 
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var playerNameLabel: UITextField!
+    @IBOutlet weak var playerEmailLabel: UITextField!
     
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var addPlayer: UIButton!
+    
+    @IBAction func addPlayerAction(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        
+        var player : Person?
+        player = Person(context: managedContext)
+        player?.name = playerNameLabel.text
+        player?.email = playerEmailLabel.text
+        player?.admin = false
+        player?.logged = false
+        player?.state = "0" //SettingsViewController.sharedInstance.getState(personaState: SettingsViewController.PlayerState.pendiente_Descarga_App)
+        
+        CoreDataUtils.sharedInstance.createNewPerson(person: player!)
+        SettingsViewController.sharedInstance.addPlayer(player: player!)
+        
+        
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            UIViewController.removeSpinner(spinner: sv)
+            self.dismiss(animated: true, completion: nil)
+            self.delegate?.removeBlurredBackgroundView()
+        }
+        
+    }
     @IBAction func cancelButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         delegate?.removeBlurredBackgroundView()

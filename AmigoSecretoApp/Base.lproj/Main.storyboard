@@ -275,6 +275,9 @@
                                 <state key="normal" title="Agregar a Evento">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="addPlayerAction:" destination="bhL-gl-5xn" eventType="touchUpInside" id="RmB-Jb-QhY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -306,7 +309,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="KjA-M2-sW9"/>
                     <connections>
+                        <outlet property="addPlayer" destination="jNy-hg-hX5" id="bsl-1t-aMW"/>
                         <outlet property="cancelButton" destination="p4m-gz-PQl" id="rgV-Wh-pvn"/>
+                        <outlet property="playerEmailLabel" destination="0Ti-ZQ-KdE" id="EDp-ej-oCv"/>
+                        <outlet property="playerNameLabel" destination="DUY-r2-Xfu" id="vp2-Di-6UM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5M7-u3-kHm" userLabel="First Responder" sceneMemberID="firstResponder"/>
