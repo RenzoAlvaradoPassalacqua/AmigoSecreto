@@ -328,15 +328,19 @@ class CoreDataUtils{
                     appConfig.isEventActive = (data.value(forKey: "isEventActive") as! Bool)
                     appConfig.appCurrentDate = (data.value(forKey: "appCurrentDate") as? String)
                     
-                    if ((appConfig.adminUserEmail)! != "0") && ((appConfig.adminUserEmail?.count)! > 3) && ((appConfig.currentAppLoggedUserEmail?.count)! > 3){
-                        print ("(appConfig.adminUserEmail?.count) ",(appConfig.adminUserEmail?.count))
-                        print("CoreDataUtils admin appConfig.currentAppLoggedUserEmail " ,appConfig.currentAppLoggedUserEmail)
-                        print ("CoreDataUtils admin appConfig.appName ", appConfig.appName)
-                        print ("CoreDataUtils admin appConfig.appSubtitle ", appConfig.appSubtitle)
-                        print ("CoreDataUtils admin appConfig.id ", appConfig.id)
-                        print ("CoreDataUtils admin appConfig.adminUser?.email ", appConfig.adminUserEmail)
-                        print ("CoreDataUtils admin appConfig.isLogged  ", appConfig.isLogged)
-                        appDelegate.globalAppSettings = appConfig
+                    if (appConfig.currentAppLoggedUserEmail != nil){
+                        
+                        
+                        if ( ((appConfig.adminUserEmail?.count)! > 3) && ((appConfig.currentAppLoggedUserEmail?.count)! > 3) ){
+                            print ("(appConfig.adminUserEmail?.count) ",(appConfig.adminUserEmail?.count))
+                            print("CoreDataUtils admin appConfig.currentAppLoggedUserEmail " ,appConfig.currentAppLoggedUserEmail)
+                            print ("CoreDataUtils admin appConfig.appName ", appConfig.appName)
+                            print ("CoreDataUtils admin appConfig.appSubtitle ", appConfig.appSubtitle)
+                            print ("CoreDataUtils admin appConfig.id ", appConfig.id)
+                            print ("CoreDataUtils admin appConfig.adminUser?.email ", appConfig.adminUserEmail)
+                            print ("CoreDataUtils admin appConfig.isLogged  ", appConfig.isLogged)
+                            appDelegate.globalAppSettings = appConfig
+                        }
                     }
                 }
             }
