@@ -110,17 +110,20 @@ class CoreDataUtils{
                 print("email: ",data.value(forKey: "email") as! String)
                 print("logged: ",data.value(forKey: "logged") as? Bool ?? false)
                 
-                retPerson.name = data.value(forKey: "name") as? String
-                retPerson.email = data.value(forKey: "email") as? String
+                retPerson.name = data.value(forKey: "name") as? String ?? " "
+                retPerson.email = data.value(forKey: "email") as? String ?? " "
                 retPerson.password = data.value(forKey: "password") as? String
                 retPerson.logged = data.value(forKey: "logged") as? Bool ?? false
                 retPerson.gift = data.value(forKey: "gift") as? String
                 retPerson.state = data.value(forKey: "state") as? String
                 retPerson.admin = data.value(forKey: "admin") as? Bool ?? false
                 
-                retPersonObj = retPerson
-                personArr.append(retPersonObj!)
+                if ( ((retPerson.email?.count)! > 1 ) && (((retPerson.name)?.count)! > 1) ){
+                    retPersonObj = retPerson
+                    personArr.append(retPersonObj!)
+                }
             }
+            print ("numero de registros: ", personArr.count)
             completion(personArr,nil)
             
         } catch {
@@ -142,12 +145,12 @@ class CoreDataUtils{
         do {
             let result = try managedContext.fetch(request)
             for data in result as! [NSManagedObject] {
-                print(data.value(forKey: "appCurrentDate") as? String)
-                print(data.value(forKey: "appName") as? String)
-                print(data.value(forKey: "appSubtitle") as? String)
-                print(data.value(forKey: "isEventActive") as? String)
-                print(data.value(forKey: "isLogged") as? String)
-                print(data.value(forKey: "adminUserEmail") as? String)
+                print("readAppConfigs" ,data.value(forKey: "appCurrentDate") as? String)
+                print("readAppConfigs" ,data.value(forKey: "appName") as? String)
+                print("readAppConfigs" ,data.value(forKey: "appSubtitle") as? String)
+                print("readAppConfigs" ,data.value(forKey: "isEventActive") as? String)
+                print("readAppConfigs" ,data.value(forKey: "isLogged") as? String)
+                print("readAppConfigs" ,data.value(forKey: "adminUserEmail") as? String)
                
             }
             
@@ -164,6 +167,7 @@ class CoreDataUtils{
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
         request.predicate = NSPredicate(format: "id >= %@", "1")
         request.predicate = NSPredicate(format: "isLogged = %i", active)
+        //request.predicate = NSPredicate(format: "adminUserEmail != nil" )
       
         
         do {
@@ -187,12 +191,19 @@ class CoreDataUtils{
                     appConfig.isEventActive = (data.value(forKey: "isEventActive") as! Bool)
                     appConfig.appCurrentDate = (data.value(forKey: "appCurrentDate") as? Date)
                     
-                    print ("CoreDataUtils appConfig.appName ", appConfig.appName)
-                    print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
-                    print ("CoreDataUtils appConfig.id ", appConfig.id)
-                    print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUserEmail)
-                    print ("CoreDataUtils appConfig.isLogged  ", appConfig.isLogged)
-                    appDelegate.globalAppSettings = appConfig
+                   
+                    
+                    if ((appConfig.adminUserEmail?.count)! > 1){
+                        
+                        print ("CoreDataUtils appConfig.appName ", appConfig.appName)
+                        print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
+                        print ("CoreDataUtils appConfig.id ", appConfig.id)
+                        print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUserEmail)
+                        print ("CoreDataUtils appConfig.isLogged  ", appConfig.isLogged)
+                        
+                        appDelegate.globalAppSettings = appConfig
+                    }
+                    
                 }
             }
             

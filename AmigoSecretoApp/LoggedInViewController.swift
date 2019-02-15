@@ -47,7 +47,7 @@ class LoggedInViewController: UIViewController {
     func prelaodGlobalSettings(){
         
         let userLoggedEmail = appDelegate?.globalAppSettings?.currentAppLoggedUserEmail
-        self.userLoggedLabel.text = "Bienvenido : " + (userLoggedEmail!) + "!"
+        self.userLoggedLabel.text = "Bienvenido : " + (userLoggedEmail ?? " ") + "!"
         self.userLoggedLabel.isHidden = false
         
         self.numEventsLabel.text = "No hay eventos creados!"
