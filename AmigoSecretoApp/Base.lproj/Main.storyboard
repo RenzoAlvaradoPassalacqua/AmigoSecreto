@@ -163,7 +163,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="crearEventoAction:" destination="LoV-qw-wMu" eventType="touchUpInside" id="z0P-xH-jYe"/>
+                                    <action selector="crearEventoAction:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="VB4-Gs-xqT"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Elige la fecha del evento" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="FV8-nd-FfN">

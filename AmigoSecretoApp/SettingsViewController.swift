@@ -26,7 +26,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     let datePicker = UIDatePicker()
     static var sharedInstance = SettingsViewController()
     private let refreshControl = UIRefreshControl()
-
+    
     @IBAction func openModalView(_ sender: Any) {
         self.definesPresentationContext = true
         self.providesPresentationContextTransitionStyle = true
@@ -34,6 +34,20 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         self.overlayBlurredBackgroundView()
     }
     
+    @IBAction func crearEventoAction(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let event = Event(context: managedContext)
+        
+        
+        event.date = self.txtDatePicker.text!
+        event.name = self.eventNameLabel.text
+        event.minprice = self.minGiftPriceLabel.text
+        
+        CoreDataUtils.sharedInstance.createNewEvent(event: event)
+        
+    }
     
     func overlayBlurredBackgroundView() {
         
@@ -150,6 +164,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         txtDatePicker.text = formatter.string(from: datePicker.date)
+        
         self.view.endEditing(true)
     }
     
@@ -193,26 +208,6 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     func getCoreData(){
-       
-        /* Data Dummy
-        var person : Person?
-        person = Person(context: managedContext)
-        person?.name = "Person 1"
-        person?.email = "EmailPerson1@gmail.com"
-        person?.state = "Pendiente de descargar el app"
-        self.players.append(person!)
-        
-        var person2 : Person?
-        person2 = Person(context: managedContext)
-        person2?.name = "Person 2"
-        person2?.email = "EmailPerson2@gmail.com"
-        person2?.state = "Pendiente de descargar el app"
-        self.players.append(person2!)
-        
-        */
-        //Leemos de coredata
-     
-       
         
         let userPromise = self.getPlayersFromCoreData()
         userPromise

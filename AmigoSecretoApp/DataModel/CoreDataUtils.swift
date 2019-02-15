@@ -19,7 +19,7 @@ class CoreDataUtils{
 
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let userEntity = NSEntityDescription.entity(forEntityName: "Person", in: managedContext)!
+        let userEntity = NSEntityDescription.entity(forEntityName: "Event", in: managedContext)!
         
         let userCoreData = NSManagedObject(entity: userEntity, insertInto: managedContext)
         
@@ -30,6 +30,7 @@ class CoreDataUtils{
         let gift : String? = person.gift ?? " "
         let state : String? = person.state ?? " "
         let admin : Bool = person.admin
+        
         userCoreData.setValue(name, forKey: "name")
         userCoreData.setValue(email, forKey: "email")
         userCoreData.setValue(password, forKey: "password")
@@ -45,6 +46,37 @@ class CoreDataUtils{
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
+    
+    
+    func createNewEvent (event:Event){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let userEntity = NSEntityDescription.entity(forEntityName: "Event", in: managedContext)!
+        
+        let userCoreData = NSManagedObject(entity: userEntity, insertInto: managedContext)
+        
+        let date : String? = event.date
+        let maxprice : String? = event.maxprice ?? " "
+        let minprice : String? = event.minprice ?? " "
+        let name : String? = event.name ?? " "
+        let state : String? = event.state ?? " "
+        
+        userCoreData.setValue(date, forKey: "date")
+        userCoreData.setValue(maxprice, forKey: "maxprice")
+        userCoreData.setValue(minprice, forKey: "minprice")
+        userCoreData.setValue(name, forKey: "name")
+        userCoreData.setValue(state, forKey: "state")
+      
+        do {
+            try managedContext.save()
+            
+        } catch let error as NSError {
+            print("Could not save event. \(error), \(error.userInfo)")
+        }
+    }
+    
     
     func searchPersonByEmail ( email:String, completion: @escaping (_ personObj:Person?, _ error:NSError?) -> Void) {
         var retPersonObj : Person?
@@ -240,7 +272,7 @@ class CoreDataUtils{
                     appConfig.isLogged = (data.value(forKey: "isLogged") as! Bool)
                     appConfig.currentAppLoggedUserEmail = (data.value(forKey: "currentAppLoggedUserEmail") as? String)
                     appConfig.isEventActive = (data.value(forKey: "isEventActive") as! Bool)
-                    appConfig.appCurrentDate = (data.value(forKey: "appCurrentDate") as? Date)
+                    appConfig.appCurrentDate = (data.value(forKey: "appCurrentDate") as? String)
                     
                    
                     
@@ -294,7 +326,7 @@ class CoreDataUtils{
                     appConfig.isLogged = (data.value(forKey: "isLogged") as! Bool)
                     appConfig.currentAppLoggedUserEmail = (data.value(forKey: "currentAppLoggedUserEmail") as? String)
                     appConfig.isEventActive = (data.value(forKey: "isEventActive") as! Bool)
-                    appConfig.appCurrentDate = (data.value(forKey: "appCurrentDate") as? Date)
+                    appConfig.appCurrentDate = (data.value(forKey: "appCurrentDate") as? String)
                     
                     if ((appConfig.adminUserEmail)! != "0") && ((appConfig.adminUserEmail?.count)! > 3) && ((appConfig.currentAppLoggedUserEmail?.count)! > 3){
                         print ("(appConfig.adminUserEmail?.count) ",(appConfig.adminUserEmail?.count))
@@ -422,7 +454,7 @@ class CoreDataUtils{
         let appSubtitle : String? = appConfig.appSubtitle ?? " "
         let isLogged : Bool? = appConfig.isLogged
         let isEventActive : Bool? = appConfig.isEventActive
-        let appCurrentDate : Date? = appConfig.appCurrentDate
+        let appCurrentDate : String? = appConfig.appCurrentDate
         let adminUser : String? = appConfig.adminUserEmail
         let currentappLoggedUser : String? = appConfig.currentAppLoggedUserEmail
         let id : Int16 = appConfig.id + 1
@@ -465,7 +497,7 @@ class CoreDataUtils{
         let appSubtitle : String? = appConfig.appSubtitle ?? "@ by Belatrix "
         let isLogged : Bool? = appConfig.isLogged || appDelegate.globalUser!.logged
         let isEventActive : Bool? = appConfig.isEventActive
-        let appCurrentDate : Date? = appConfig.appCurrentDate
+        let appCurrentDate : String? = appConfig.appCurrentDate
         var adminUser : String? = ""
         if (appDelegate.globalUser!.admin){
              adminUser = appDelegate.globalUser?.email

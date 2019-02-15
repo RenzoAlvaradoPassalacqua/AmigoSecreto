@@ -2,7 +2,7 @@
 //  Draw+CoreDataProperties.swift
 //  AmigoSecretoApp
 //
-//  Created by Renzo Manuel Alvarado Passalacqua on 2/6/19.
+//  Created by Renzo Manuel Alvarado Passalacqua on 2/15/19.
 //  Copyright © 2019 Renzo Manuel Alvarado Passalacqua. All rights reserved.
 //
 //
@@ -17,11 +17,11 @@ extension Draw {
         return NSFetchRequest<Draw>(entityName: "Draw")
     }
 
-    @NSManaged public var gift: String?
     @NSManaged public var date: String?
+    @NSManaged public var gift: String?
     @NSManaged public var state: String?
-    @NSManaged public var friendShipA: NSSet?
     @NSManaged public var event: Event?
+    @NSManaged public var friendShipA: NSSet?
     @NSManaged public var friendShipB: NSSet?
 
 }

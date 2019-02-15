@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AppConfigs" representedClassName="AppConfigs" syncable="YES" codeGenerationType="class">
         <attribute name="adminUserEmail" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="appCurrentDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="appCurrentDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="appName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="appSubtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currentAppLoggedUserEmail" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,7 +19,7 @@
         <relationship name="friendShipB" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="drawPersonB" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="maxprice" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="minprice" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>

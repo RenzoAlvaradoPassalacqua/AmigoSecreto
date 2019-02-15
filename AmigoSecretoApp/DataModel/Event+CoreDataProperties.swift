@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.swift
 //  AmigoSecretoApp
 //
-//  Created by Renzo Manuel Alvarado Passalacqua on 2/13/19.
+//  Created by Renzo Manuel Alvarado Passalacqua on 2/15/19.
 //  Copyright © 2019 Renzo Manuel Alvarado Passalacqua. All rights reserved.
 //
 //
@@ -17,7 +17,7 @@ extension Event {
         return NSFetchRequest<Event>(entityName: "Event")
     }
 
-    @NSManaged public var date: NSDate?
+    @NSManaged public var date: String?
     @NSManaged public var maxprice: String?
     @NSManaged public var minprice: String?
     @NSManaged public var name: String?
