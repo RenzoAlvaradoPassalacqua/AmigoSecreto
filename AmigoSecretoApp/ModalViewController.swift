@@ -36,7 +36,7 @@ class ModalViewController: UIViewController {
         player?.state = "0" //SettingsViewController.sharedInstance.getState(personaState: SettingsViewController.PlayerState.pendiente_Descarga_App)
         
         CoreDataUtils.sharedInstance.createNewPerson(person: player!)
-        SettingsViewController.sharedInstance.addPlayer(player: player!)
+        SettingsViewController.sharedInstance.addPlayer()
         
         
         

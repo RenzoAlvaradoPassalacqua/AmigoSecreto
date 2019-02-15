@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 public protocol CustomStringConvertible {
     /// A textual representation of `self`.
@@ -24,6 +25,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     @IBOutlet weak var txtDatePicker: UITextField!
     let datePicker = UIDatePicker()
     static var sharedInstance = SettingsViewController()
+    private let refreshControl = UIRefreshControl()
 
     @IBAction func openModalView(_ sender: Any) {
         self.definesPresentationContext = true
@@ -112,15 +114,17 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var players : [Person] = []
     
+    
     override func viewDidLoad() {
         initView()
         super.viewDidLoad()
         selectIndexPath = IndexPath(row : -1, section: -1)
-        //let nib = UINib(nibName: "tableViewCarta", bundle: nil)
         
-        //tableViewPersonas.register(nib, forHeaderFooterViewReuseIdentifier: "tableviewCarta")
-        self.getCoreData()
+        //self.getCoreData()
+        self.setupTableView()
+        self.refreshListData()
         showDatePicker()
+        
         
     }
     func showDatePicker(){
@@ -153,13 +157,44 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         self.view.endEditing(true)
     }
     
-    func addPlayer(player: Person){
-        self.players.append(player)
+    private func setupTableView() {
+        
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            tableViewPersonas.refreshControl = refreshControl
+        } else {
+            tableViewPersonas.addSubview(refreshControl)
+        }
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshListData(_:)), for: .valueChanged)
+        refreshControl.tintColor = #colorLiteral(red: 0.3882352941, green: 0.4941176471, blue: 0.9960784314, alpha: 1)
+        self.appDelegate.tableViewReference = self.tableViewPersonas
+    }
+    
+    @objc private func  refreshListData(_ sender: Any) {
+        // Fetch data
+        refreshListData()
+    }
+    
+    
+    private func refreshListData() {
+        // temporalmente cargamos data hardcore, hasta leer de coredata tabla eventos y persons
+        self.getCoreData()
+        
+    }
+    func addPlayer(){
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.appDelegate.tableViewReference!.beginRefreshing()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.appDelegate.tableViewReference!.endRefreshing()
+        }
     }
     
     func getCoreData(){
         let managedContext = appDelegate.persistentContainer.viewContext
-
+        /* Data Dummy
         var person : Person?
         person = Person(context: managedContext)
         person?.name = "Person 1"
@@ -173,8 +208,59 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         person2?.email = "EmailPerson2@gmail.com"
         person2?.state = "Pendiente de descargar el app"
         self.players.append(person2!)
+        
+        */
+        //Leemos de coredata
+     
+       
+        
+        let userPromise = self.getPlayersFromCoreData()
+        userPromise
+            .done { (users) in
+                
+                print("encontro usuarios coredata",users)
+                
+                self.players.removeAll()
+                self.players = users.0!
+                
+            }
+            .catch { (error) in
+                
+                print("error no hay coredata personas", error)
+                
+            }
+            .finally {
+                self.appDelegate.tableViewReference!.reloadData()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self.appDelegate.tableViewReference!.endRefreshing()
+                }
+                print("finally")
+        }
+        
+        
     }
-
+    
+    
+    func getPlayersFromCoreData()->Promise<([Person]? , error: NSError?)> {
+        return Promise<([Person]? , error: NSError?)> { resolve in
+            CoreDataUtils.sharedInstance.getAllPersonsOfEvent(){ (personCoreData, error) in
+                var errorLocal:NSError?
+                if(personCoreData != nil){
+                    print("LOGIN---> Sencontro personas en CORE DATA  = " as Any)
+                    
+                    resolve.fulfill((personCoreData!,nil))
+                }else{
+                    if (error == nil){
+                        errorLocal = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on Person"])
+                    }
+                    
+                    print("LOGIN--> No encontro Datos en el Core Data Person ", errorLocal as Any)
+                    resolve.reject(errorLocal!)
+                }
+            }
+        }
+    }
+    
     func initView(){
         
         self.tableViewPersonas.delegate = self
@@ -186,8 +272,8 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         let userName = "Mike"
         let url = "www.google.com"
         let degrees: Float = 103.4587254
-    }
         
+    }
    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

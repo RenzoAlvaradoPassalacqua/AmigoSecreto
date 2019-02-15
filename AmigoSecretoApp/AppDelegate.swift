@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var globalAppSettings: AppConfigs?
     var globalUser: Person?
+    var tableViewReference : UITableView?
 
     func startPushNotifications(){
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge, .carPlay ]) {

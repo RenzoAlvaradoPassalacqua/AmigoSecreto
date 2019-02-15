@@ -82,13 +82,14 @@ class CoreDataUtils{
         } catch {
             var error = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on Person"])
             completion(nil, error as NSError)
-            fatalError("Failed to fetch employees: \(error)")
+            fatalError("Failed to fetch person: \(error)")
             
         }
      
     }
    
-    func getAllPersonsOfEvent (completion: @escaping (_ personObj:Person?, _ error:NSError?) -> Void) {
+    func getAllPersonsOfEvent (completion: @escaping (_ personArr:[Person]?, _ error:NSError?) -> Void) {
+        var personArr : [Person] = []
         var retPersonObj : Person?
         
         //As we know that container is set up in the AppDelegates so we need to refer that container.
@@ -118,13 +119,14 @@ class CoreDataUtils{
                 retPerson.admin = data.value(forKey: "admin") as? Bool ?? false
                 
                 retPersonObj = retPerson
+                personArr.append(retPersonObj!)
             }
-            completion(retPersonObj,nil)
+            completion(personArr,nil)
             
         } catch {
             let error = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on Person"])
             completion(nil, error as NSError)
-            fatalError("Failed to fetch employees: \(error)")
+            fatalError("Failed to fetch person: \(error)")
             
         }
         
