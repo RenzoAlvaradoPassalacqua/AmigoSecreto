@@ -19,7 +19,7 @@ class CoreDataUtils{
 
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        let userEntity = NSEntityDescription.entity(forEntityName: "Event", in: managedContext)!
+        let userEntity = NSEntityDescription.entity(forEntityName: "Person", in: managedContext)!
         
         let userCoreData = NSManagedObject(entity: userEntity, insertInto: managedContext)
         
