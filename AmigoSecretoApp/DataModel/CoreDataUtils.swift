@@ -144,14 +144,23 @@ class CoreDataUtils{
         
         do {
             let result = try managedContext.fetch(request)
+            let appConfig = AppConfigs(context: managedContext)
+            
             for data in result as! [NSManagedObject] {
-                print("readAppConfigs" ,data.value(forKey: "appCurrentDate") as? String)
-                print("readAppConfigs" ,data.value(forKey: "appName") as? String)
-                print("readAppConfigs" ,data.value(forKey: "appSubtitle") as? String)
-                print("readAppConfigs" ,data.value(forKey: "isEventActive") as? String)
-                print("readAppConfigs" ,data.value(forKey: "isLogged") as? String)
-                print("readAppConfigs" ,data.value(forKey: "adminUserEmail") as? String)
-               
+                appConfig.adminUserEmail = (data.value(forKey: "adminUserEmail") as? String ?? "0")
+                appConfig.currentAppLoggedUserEmail = ((data.value(forKey: "currentAppLoggedUserEmail") as? String ?? "0"))
+                if ((appConfig.adminUserEmail)! != "0") && ((appConfig.adminUserEmail?.count)! > 3) && ((appConfig.currentAppLoggedUserEmail?.count)! > 3){
+                    
+                   
+                    print ("(readAppConfigs currentAppLoggedUserEmail?.count) ",(appConfig.currentAppLoggedUserEmail?.count))
+                    print("readAppConfigs" ,data.value(forKey: "currentAppLoggedUserEmail") as? String)
+                    print("readAppConfigs" ,data.value(forKey: "appCurrentDate") as? String)
+                    print("readAppConfigs" ,data.value(forKey: "appName") as? String)
+                    print("readAppConfigs" ,data.value(forKey: "appSubtitle") as? String)
+                    print("readAppConfigs" ,data.value(forKey: "isEventActive") as? String)
+                    print("readAppConfigs" ,data.value(forKey: "isLogged") as? String)
+                    print("readAppConfigs" ,data.value(forKey: "adminUserEmail") as? String)
+                }
             }
             
         } catch {
@@ -185,7 +194,7 @@ class CoreDataUtils{
                     
                     appConfig.appSubtitle = (data.value(forKey: "appSubtitle") as? String)
                     appConfig.id = (data.value(forKey: "id") as? Int16 ?? 0)
-                    appConfig.adminUserEmail = (data.value(forKey: "adminUserEmail") as? String ?? " ")
+                    appConfig.adminUserEmail = (data.value(forKey: "adminUserEmail") as? String ?? "0")
                     appConfig.isLogged = (data.value(forKey: "isLogged") as! Bool)
                     appConfig.currentAppLoggedUserEmail = (data.value(forKey: "currentAppLoggedUserEmail") as? String)
                     appConfig.isEventActive = (data.value(forKey: "isEventActive") as! Bool)
@@ -193,7 +202,8 @@ class CoreDataUtils{
                     
                    
                     
-                    if ((appConfig.adminUserEmail?.count)! > 1){
+                    if ((appConfig.adminUserEmail)! != "0") && ((appConfig.adminUserEmail?.count)! > 3){
+                        print ("(appConfig.adminUserEmail?.count) ",(appConfig.adminUserEmail?.count))
                         
                         print ("CoreDataUtils appConfig.appName ", appConfig.appName)
                         print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
@@ -244,12 +254,16 @@ class CoreDataUtils{
                     appConfig.isEventActive = (data.value(forKey: "isEventActive") as! Bool)
                     appConfig.appCurrentDate = (data.value(forKey: "appCurrentDate") as? Date)
                     
-                    print ("CoreDataUtils appConfig.appName ", appConfig.appName)
-                    print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
-                    print ("CoreDataUtils appConfig.id ", appConfig.id)
-                    print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUserEmail)
-                    print ("CoreDataUtils appConfig.isLogged  ", appConfig.isLogged)
-                    appDelegate.globalAppSettings = appConfig
+                    if ((appConfig.adminUserEmail)! != "0") && ((appConfig.adminUserEmail?.count)! > 3) && ((appConfig.currentAppLoggedUserEmail?.count)! > 3){
+                        print ("(appConfig.adminUserEmail?.count) ",(appConfig.adminUserEmail?.count))
+                        print("CoreDataUtils admin appConfig.currentAppLoggedUserEmail " ,appConfig.currentAppLoggedUserEmail)
+                        print ("CoreDataUtils admin appConfig.appName ", appConfig.appName)
+                        print ("CoreDataUtils admin appConfig.appSubtitle ", appConfig.appSubtitle)
+                        print ("CoreDataUtils admin appConfig.id ", appConfig.id)
+                        print ("CoreDataUtils admin appConfig.adminUser?.email ", appConfig.adminUserEmail)
+                        print ("CoreDataUtils admin appConfig.isLogged  ", appConfig.isLogged)
+                        appDelegate.globalAppSettings = appConfig
+                    }
                 }
             }
             
@@ -281,14 +295,19 @@ class CoreDataUtils{
                 
                     let appConfig = AppConfigs(context: managedContext)
                     appConfig.appName = (data.value(forKey: "appName") as? String)
-                    
+                    appConfig.adminUserEmail = (data.value(forKey: "adminUserEmail") as? String ?? "")
                     appConfig.appSubtitle = (data.value(forKey: "appSubtitle") as? String)
                     appConfig.id = (data.value(forKey: "id") as? Int16 ?? 0)
-                    print ("CoreDataUtils appConfig.appName ", appConfig.appName)
-                    print ("CoreDataUtils appConfig.appSubtitle ", appConfig.appSubtitle)
-                    print ("CoreDataUtils appConfig.id ", appConfig.id)
-                    print ("CoreDataUtils appConfig.adminUser?.email ", appConfig.adminUserEmail)
-                    appDelegate.globalAppSettings = appConfig
+                    
+                    if ((appConfig.adminUserEmail)! != "0") && ((appConfig.adminUserEmail?.count)! > 3){
+                        print ("(appConfig.adminUserEmail?.count) ",(appConfig.adminUserEmail?.count))
+                        
+                        print ("CoreDataUtils preloadAppGlobalSettings appConfig.appName ", appConfig.appName)
+                        print ("CoreDataUtils preloadAppGlobalSettings appConfig.appSubtitle ", appConfig.appSubtitle)
+                        print ("CoreDataUtils preloadAppGlobalSettings appConfig.id ", appConfig.id)
+                        print ("CoreDataUtils preloadAppGlobalSettings appConfig.adminUser?.email ", appConfig.adminUserEmail)
+                        appDelegate.globalAppSettings = appConfig
+                    }
                 }
                 
                  

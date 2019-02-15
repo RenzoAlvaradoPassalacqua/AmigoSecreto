@@ -40,7 +40,7 @@ class LoggedInViewController: UIViewController {
         self.userLoggedLabel.isHidden = true
         self.userLoggedLabel.text = ""
         self.numEventsLabel.text = ""
-        
+        CoreDataUtils.sharedInstance.readAppConfigsToDelegateAdmin()
         prelaodGlobalSettings()
     }
     
