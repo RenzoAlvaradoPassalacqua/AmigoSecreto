@@ -29,7 +29,7 @@ class CoreDataUtils{
         let logged : Bool? = person.logged
         let gift : String? = person.gift ?? " "
         let state : String? = person.state ?? " "
-        let admin : Bool = false
+        let admin : Bool = person.admin
         userCoreData.setValue(name, forKey: "name")
         userCoreData.setValue(email, forKey: "email")
         userCoreData.setValue(password, forKey: "password")
@@ -98,11 +98,52 @@ class CoreDataUtils{
         //We need to create a context from this container
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        do {
+       
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+            fetchRequest.returnsDistinctResults = true
+            fetchRequest.propertiesToFetch = ["email"]
+        
+            fetchRequest.resultType = NSFetchRequestResultType.dictionaryResultType
+            fetchRequest.predicate = NSPredicate(format: "state = %@", "0")
             
-            //fetchRequest.predicate = NSPredicate(format: "email = %@", email)
+         do {
+                let results = try managedContext.fetch(fetchRequest)
+                
+                // 2) cast the results to the expected dictionary type:
+                let resultsDict = results as! [[String: String]]
             
+                for r in resultsDict {
+                    print ("r ",  r["email"])
+                     print ("r ",  r["name"])
+                     print ("r ",  r["state"])
+                    let retPerson = Person(context:managedContext)
+                    retPerson.name = r["name"]
+                    retPerson.email = r["email"]
+                    retPerson.password = r["password"]
+                    retPerson.logged = (r["logged"] != nil)
+                    retPerson.gift = r["gift"]
+                    retPerson.state = r["state"]
+                    retPerson.admin = (r["admin"] != nil)
+                    
+                    if ( ((retPerson.email?.count)! > 3 )  ){
+                        retPersonObj = retPerson
+                        personArr.append(retPersonObj!)
+                    }
+                }
+            
+            print ("numero de registros: ", personArr.count)
+            completion(personArr,nil)
+
+            }
+        
+         catch {
+            let error = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on Person"])
+            completion(nil, error as NSError)
+            fatalError("Failed to fetch person: \(error)")
+            
+        }
+            
+            /*
             let result = try managedContext.fetch(fetchRequest)
             for data in result as! [NSManagedObject] {
                 let retPerson = Person(context:managedContext)
@@ -118,7 +159,7 @@ class CoreDataUtils{
                 retPerson.state = data.value(forKey: "state") as? String
                 retPerson.admin = data.value(forKey: "admin") as? Bool ?? false
                 
-                if ( ((retPerson.email?.count)! > 1 ) && (((retPerson.name)?.count)! > 1) ){
+                if ( ((retPerson.email?.count)! > 3 ) && (((retPerson.name)?.count)! > 3) ){
                     retPersonObj = retPerson
                     personArr.append(retPersonObj!)
                 }
@@ -132,6 +173,7 @@ class CoreDataUtils{
             fatalError("Failed to fetch person: \(error)")
             
         }
+             */
         
     }
     

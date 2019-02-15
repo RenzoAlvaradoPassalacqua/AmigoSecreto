@@ -193,7 +193,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     }
     
     func getCoreData(){
-        let managedContext = appDelegate.persistentContainer.viewContext
+       
         /* Data Dummy
         var person : Person?
         person = Person(context: managedContext)
@@ -246,7 +246,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
             CoreDataUtils.sharedInstance.getAllPersonsOfEvent(){ (personCoreData, error) in
                 var errorLocal:NSError?
                 if(personCoreData != nil){
-                    print("LOGIN---> Sencontro personas en CORE DATA  = " as Any)
+                    print("LOGIN---> Sencontro personas en CORE DATA  count = " , personCoreData?.count as Any)
                     
                     resolve.fulfill((personCoreData!,nil))
                 }else{
@@ -269,10 +269,6 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         //self.tableViewPersonas.rowHeight = UITableView.automaticDimension;
         self.tableViewPersonas.tableFooterView?.tintColor = UIColor.clear
         
-        let userName = "Mike"
-        let url = "www.google.com"
-        let degrees: Float = 103.4587254
-        
     }
    
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -285,7 +281,7 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell") as! PersonaCell
-        cell.lblName.text = self.players[indexPath.row].name
+        cell.lblName.text = self.players[indexPath.row].email
         cell.lblState.text = self.players[indexPath.row].state
          
         return cell

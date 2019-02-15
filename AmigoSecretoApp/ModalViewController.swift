@@ -33,13 +33,12 @@ class ModalViewController: UIViewController {
         player?.email = playerEmailLabel.text
         player?.admin = false
         player?.logged = false
+        player?.password = "123456A"
         player?.state = "0" //SettingsViewController.sharedInstance.getState(personaState: SettingsViewController.PlayerState.pendiente_Descarga_App)
         
         CoreDataUtils.sharedInstance.createNewPerson(person: player!)
         SettingsViewController.sharedInstance.addPlayer()
-        
-        
-        
+          
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             UIViewController.removeSpinner(spinner: sv)
             self.dismiss(animated: true, completion: nil)

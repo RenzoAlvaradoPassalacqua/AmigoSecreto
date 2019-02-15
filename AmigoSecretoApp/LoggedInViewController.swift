@@ -46,7 +46,7 @@ class LoggedInViewController: UIViewController {
     
     func prelaodGlobalSettings(){
         
-        let userLoggedEmail = appDelegate?.globalAppSettings?.currentAppLoggedUserEmail
+        let userLoggedEmail = appDelegate?.globalAppSettings?.adminUserEmail
         self.userLoggedLabel.text = "Bienvenido : " + (userLoggedEmail ?? " ") + "!"
         self.userLoggedLabel.isHidden = false
         
