@@ -7,15 +7,17 @@
 //
 
 import UIKit
-
+import PromiseKit
 
 class LoggedInViewController: UIViewController {
     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
+    var event :Event?
+    
     @IBOutlet weak var userLoggedLabel: UILabel!
     @IBOutlet weak var numEventsLabel: UILabel!
     @IBOutlet weak var crearEventoBtn: UIButton!
     
-    
+   
     @IBAction func crearEventoAction(_ sender: Any) {
     }
     
@@ -42,6 +44,9 @@ class LoggedInViewController: UIViewController {
         self.numEventsLabel.text = ""
         CoreDataUtils.sharedInstance.readAppConfigsToDelegateAdmin()
         prelaodGlobalSettings()
+        let sv = UIViewController.displaySpinner(onView: self.view)
+        let userLoggedEmail = appDelegate?.globalAppSettings?.adminUserEmail
+        searchForEvents(spiner: sv, userLogged: userLoggedEmail)
     }
     
     func prelaodGlobalSettings(){
@@ -76,6 +81,53 @@ class LoggedInViewController: UIViewController {
         }
     }
 
+    func getEventsCoreDataByEmail(emailParam:String)->Promise<(Event? , error: NSError?)> {
+        return Promise<(Event? , error: NSError?)> { resolve in
+            CoreDataUtils.sharedInstance.searchEventByEmail(email: emailParam){ (eventCoreData, error) in
+                var errorLocal:NSError?
+                if(eventCoreData != nil){
+                    print("LOGGED---> Encontro eventos en CORE DATA by Email = ", eventCoreData?.name as Any)
+                    
+                    resolve.fulfill((eventCoreData!,nil))
+                }else{
+                    if (error == nil){
+                        errorLocal = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on Event"])
+                    }
+                    
+                    print("LOGIN--> No encontro Datos event en el Core Data Person by Email ", errorLocal as Any)
+                    resolve.reject(errorLocal!)
+                }
+            }
+        }
+    }
+    
+    fileprivate func searchForEvents(spiner:UIView, userLogged:String?) {
+        
+        let userPromise = self.getEventsCoreDataByEmail(emailParam: userLogged ?? " ")
+        userPromise
+            .done { (event) in
+                
+                print("encontro event coredata",event)
+                
+                self.event = event.0!
+               
+            }
+            .catch { (error) in
+                
+                print("error no hay eventos en coredata", error)
+                 
+            }
+            .finally {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    UIViewController.removeSpinner(spinner: spiner)
+                    
+                    
+                }
+                print("finally")
+        }
+    
+    }
+    
     func displayMessage(message:String) {
         let alertView = UIAlertController(title: "Message", message: message, preferredStyle: .alert)
         let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction) in

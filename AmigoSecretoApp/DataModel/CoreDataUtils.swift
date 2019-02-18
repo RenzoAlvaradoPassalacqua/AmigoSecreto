@@ -89,6 +89,49 @@ class CoreDataUtils{
         }
     }
     
+    func searchEventByEmail ( email:String, completion: @escaping (_ personObj:Event?, _ error:NSError?) -> Void) {
+        var retEventObj : Event?
+        
+        //As we know that container is set up in the AppDelegates so we need to refer that container.
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        //We need to create a context from this container
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        do {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
+            
+            //fetchRequest.predicate = NSPredicate(format: "owner = %@", email)
+            
+            let result = try managedContext.fetch(fetchRequest)
+            for data in result as! [NSManagedObject] {
+                let retEvent = Event(context:managedContext)
+                print("date: ", data.value(forKey: "date") as? String ?? " ")
+                print("name: ",data.value(forKey: "name") as? String ?? " ")
+                print("state: ",data.value(forKey: "state") as? String ?? " ")
+                print("owner: ",data.value(forKey: "owner") as? String ?? " ")
+                print("draw: ",data.value(forKey: "draw") as? NSSet ?? " ")
+                
+                retEvent.date = data.value(forKey: "date") as? String
+                retEvent.name = data.value(forKey: "name") as? String
+                retEvent.state = data.value(forKey: "state") as? String
+                retEvent.owner = data.value(forKey: "owner") as? Person
+                retEvent.draw = data.value(forKey: "draw") as? NSSet
+               
+                
+                retEventObj = retEvent
+            }
+            completion(retEventObj,nil)
+            
+        } catch {
+            var error = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on Person"])
+            completion(nil, error as NSError)
+            fatalError("Failed to fetch person: \(error)")
+            
+        }
+        
+    }
+    
     
     func searchPersonByEmail ( email:String, completion: @escaping (_ personObj:Person?, _ error:NSError?) -> Void) {
         var retPersonObj : Person?
