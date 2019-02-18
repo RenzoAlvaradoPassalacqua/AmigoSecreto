@@ -303,7 +303,7 @@ class CoreDataUtils{
         let managedContext = appDelegate.persistentContainer.viewContext
         let active :Bool = true
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AppConfigs")
-        request.predicate = NSPredicate(format: "id >= %@", "1")
+        request.predicate = NSPredicate(format: "id >= %@", "0")
         request.predicate = NSPredicate(format: "isLogged = %i", active)
         
         
