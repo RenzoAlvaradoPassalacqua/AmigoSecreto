@@ -24,7 +24,7 @@
         <attribute name="minprice" optional="YES" attributeType="String" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="draw" toMany="YES" deletionRule="Nullify" destinationEntity="Draw" inverseName="event" inverseEntity="Draw" syncable="YES"/>
+        <relationship name="draw" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Draw" inverseName="event" inverseEntity="Draw" syncable="YES"/>
         <relationship name="owner" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="events" inverseEntity="Person" syncable="YES"/>
         <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="players" inverseEntity="Person" syncable="YES"/>
     </entity>
@@ -44,7 +44,7 @@
     <elements>
         <element name="AppConfigs" positionX="135" positionY="54" width="128" height="30"/>
         <element name="Draw" positionX="321.265625" positionY="73.5625" width="128" height="133"/>
-        <element name="Event" positionX="38.29296875" positionY="-132.53515625" width="128" height="30"/>
+        <element name="Event" positionX="38.29296875" positionY="-132.53515625" width="128" height="165"/>
         <element name="Person" positionX="-52.23046875" positionY="97.09375" width="128" height="30"/>
     </elements>
 </model>
