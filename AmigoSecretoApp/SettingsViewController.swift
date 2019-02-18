@@ -45,7 +45,9 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         event.name = self.eventNameLabel.text
         event.minprice = self.minGiftPriceLabel.text
         
-        CoreDataUtils.sharedInstance.createNewEvent(event: event)
+        let personaLogged : Person = self.appDelegate.globalUser!
+        
+        CoreDataUtils.sharedInstance.createNewEvent(event: event, persona: personaLogged)
         
     }
     

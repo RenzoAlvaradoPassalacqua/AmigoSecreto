@@ -74,15 +74,25 @@ class LoginViewController: UIViewController {
         
     }
     
-    fileprivate func searchForRegUser(spiner:UIView) {
-        let userPromise = self.getUserCoreDataByEmail(emailParam: signInUsernameField.text ?? " ")
+    fileprivate func searchForRegUser(spiner:UIView, userLogged:String?) {
+        
+        print ("userLogged  searchForRegUser", userLogged)
+        var userLoggedEmail = userLogged
+        if ((userLogged?.isEmpty)!){
+            userLoggedEmail = signInUsernameField.text ?? " "
+        }
+        else{
+            userLoggedEmail = userLogged
+        }
+        print ("userLoggedEmail  searchForRegUser", userLoggedEmail)
+        let userPromise = self.getUserCoreDataByEmail(emailParam: userLoggedEmail!)
         userPromise
             .done { (user) in
                 
                 print("encontro usuario coredata",user)
-                self.statusLabel.text = "Se encontró el usuario: " + self.signInUsernameField.text! + ", Iniciando Sessión..."
+                self.statusLabel.text = "Se encontró el usuario: " + userLoggedEmail! + ", Iniciando Sessión..."
                 self.appDelegate.globalAppSettings?.isLogged = true
-                self.appDelegate.globalAppSettings?.currentAppLoggedUserEmail = self.signInUsernameField.text!
+                self.appDelegate.globalAppSettings?.currentAppLoggedUserEmail = userLoggedEmail!
                 self.person = user.0
                 self.appDelegate.globalUser = self.person
                 self.person?.logged = true
@@ -107,7 +117,7 @@ class LoginViewController: UIViewController {
                 self.signInUsernameField.isEnabled = false
                 self.signInPasswordField.isEnabled = false
                 self.SignInBtn.isEnabled = false
-                
+      
                 self.loadHomeScreen()
             }
             .catch { (error) in
@@ -154,7 +164,10 @@ class LoginViewController: UIViewController {
             // load to memory appdelegate only not coredata
             appDelegate.globalAppSettings = appConfig
             
-            loadHomeScreen()
+            let sv: UIView = UIViewController.displaySpinner(onView: self.view)
+            self.searchForRegUser(spiner: sv, userLogged: adminUser)
+            
+            //loadHomeScreen()
         }
         else{
             self.isRegistered = false
@@ -234,7 +247,7 @@ class LoginViewController: UIViewController {
     @IBAction func signIn(_ sender: UIButton) {
         let sv: UIView = UIViewController.displaySpinner(onView: self.view)
         
-        searchForRegUser(spiner: sv)
+        searchForRegUser(spiner: sv, userLogged: self.signInUsernameField.text ?? " ")
         
     }
 

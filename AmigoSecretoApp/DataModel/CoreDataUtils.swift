@@ -48,7 +48,7 @@ class CoreDataUtils{
     }
     
     
-    func createNewEvent (event:Event){
+    func createNewEvent (event:Event, persona:Person?){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -63,11 +63,16 @@ class CoreDataUtils{
         let name : String? = event.name ?? " "
         let state : String? = event.state ?? " "
         
+        print ("persona globalUser ", persona)
+        
+        let owner : Person? = persona
+        
         userCoreData.setValue(date, forKey: "date")
         userCoreData.setValue(maxprice, forKey: "maxprice")
         userCoreData.setValue(minprice, forKey: "minprice")
         userCoreData.setValue(name, forKey: "name")
         userCoreData.setValue(state, forKey: "state")
+        userCoreData.setValue(owner, forKey: "owner")
       
         do {
             try managedContext.save()
