@@ -45,7 +45,11 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
         event.name = self.eventNameLabel.text
         event.minprice = self.minGiftPriceLabel.text
         
-        let personaLogged : Person = self.appDelegate.globalUser!
+        let personaLogged : Person = Person(context: managedContext)
+        personaLogged.email = self.appDelegate.globalUser!.email
+        personaLogged.admin = self.appDelegate.globalUser!.admin
+        personaLogged.name = self.appDelegate.globalUser!.name
+        personaLogged.logged = self.appDelegate.globalUser!.logged
         
         CoreDataUtils.sharedInstance.createNewEvent(event: event, persona: personaLogged)
         

@@ -65,7 +65,12 @@ class CoreDataUtils{
         
         print ("persona globalUser ", persona)
         
-        let owner : Person = persona
+        var owner : Person? = Person(context: managedContext)
+        owner?.email = persona.email
+        owner?.admin = persona.admin
+        owner?.logged = persona.logged
+        owner?.name = persona.name
+        
         
         print ("createNewEvent owner ", persona)
         
