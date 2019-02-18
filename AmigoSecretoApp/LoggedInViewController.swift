@@ -47,6 +47,7 @@ class LoggedInViewController: UIViewController {
         let sv = UIViewController.displaySpinner(onView: self.view)
         let userLoggedEmail = appDelegate?.globalAppSettings?.adminUserEmail
         searchForEvents(spiner: sv, userLogged: userLoggedEmail)
+      
     }
     
     func prelaodGlobalSettings(){
@@ -110,6 +111,7 @@ class LoggedInViewController: UIViewController {
                 print("encontro event coredata",event)
                 
                 self.event = event.0!
+                self.numEventsLabel.text = "Tienes un evento creado! nombre : " + self.event!.name! 
                
             }
             .catch { (error) in

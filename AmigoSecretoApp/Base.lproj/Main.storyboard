@@ -492,13 +492,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eventos Creados:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osJ-h3-54b">
-                                <rect key="frame" x="32" y="101" width="121" height="17"/>
+                                <rect key="frame" x="32" y="101" width="166" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No hay eventos !" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gai-cK-yBF">
-                                <rect key="frame" x="161" y="101" width="108" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="No hay eventos !" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gai-cK-yBF">
+                                <rect key="frame" x="206" y="101" width="108" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -506,16 +506,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Gai-cK-yBF" firstAttribute="leading" secondItem="osJ-h3-54b" secondAttribute="trailing" constant="8" id="2Ue-AW-PPu"/>
-                            <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Gai-cK-yBF" secondAttribute="trailing" symbolic="YES" id="4HA-8Q-mWC"/>
                             <constraint firstItem="osJ-h3-54b" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="50a-h7-PM0"/>
                             <constraint firstItem="osJ-h3-54b" firstAttribute="top" secondItem="WRD-Mw-UNK" secondAttribute="bottom" constant="8" id="6BZ-F6-04f"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WRD-Mw-UNK" secondAttribute="trailing" constant="20" symbolic="YES" id="7wM-h4-3v9"/>
+                            <constraint firstItem="Gai-cK-yBF" firstAttribute="leading" secondItem="osJ-h3-54b" secondAttribute="trailing" constant="8" id="VZc-gF-ZhI"/>
                             <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" secondItem="Ozz-IU-fju" secondAttribute="trailing" constant="16" id="eBQ-DV-tBI"/>
                             <constraint firstItem="Ozz-IU-fju" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="16" id="fqu-xn-d8g"/>
                             <constraint firstItem="WRD-Mw-UNK" firstAttribute="top" secondItem="GHY-TD-XoK" secondAttribute="top" constant="32" id="gak-uk-pO8"/>
-                            <constraint firstItem="Gai-cK-yBF" firstAttribute="top" secondItem="WRD-Mw-UNK" secondAttribute="bottom" constant="8" id="kGN-71-how"/>
+                            <constraint firstItem="Gai-cK-yBF" firstAttribute="top" secondItem="WRD-Mw-UNK" secondAttribute="bottom" constant="8" id="hOV-rL-Ii6"/>
                             <constraint firstItem="GHY-TD-XoK" firstAttribute="bottom" secondItem="Ozz-IU-fju" secondAttribute="bottom" constant="16" id="ndh-Mq-BR3"/>
+                            <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" secondItem="Gai-cK-yBF" secondAttribute="trailing" constant="100" id="ohr-RH-bYU"/>
                             <constraint firstItem="WRD-Mw-UNK" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="zcW-G6-Uwo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GHY-TD-XoK"/>
@@ -529,7 +529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krJ-S5-ZKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749" y="-361"/>
+            <point key="canvasLocation" x="747.82608695652175" y="-361.60714285714283"/>
         </scene>
         <!--LogOut-->
         <scene sceneID="iV6-hG-Edr">
