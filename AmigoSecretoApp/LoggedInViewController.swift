@@ -2,14 +2,14 @@
 //  LoggedInViewController.swift
 //  AddingParseSDK
 //
-//  Created by Joren Winge on 4/12/18.
-//  Copyright © 2018 Back4App. All rights reserved.
+//  Created by Renzo Manuel Alvarado Passalacqua on 2/5/19.
+//  Copyright © 2019 Renzo Manuel Alvarado Passalacqua. All rights reserved.
 //
 
 import UIKit
 import PromiseKit
 
-class LoggedInViewController: UIViewController {
+class LoggedInViewController: UIViewController, UITabBarControllerDelegate {
     let appDelegate: AppDelegate? = UIApplication.shared.delegate as? AppDelegate
     var event :Event?
     

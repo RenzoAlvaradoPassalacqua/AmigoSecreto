@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  AddingParseSDK
 //
-//  Created by Joren Winge on 12/8/17.
-//  Copyright © 2017 Back4App. All rights reserved.
+//  Created by Renzo Manuel Alvarado Passalacqua on 2/5/19.
+//  Copyright © 2019 Renzo Manuel Alvarado Passalacqua. All rights reserved.
 //
 
 import UIKit
