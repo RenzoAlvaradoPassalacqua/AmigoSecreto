@@ -15,7 +15,8 @@ class LoggedInViewController: UIViewController {
     
     @IBOutlet weak var userLoggedLabel: UILabel!
     @IBOutlet weak var numEventsLabel: UILabel!
-    @IBOutlet weak var crearEventoBtn: UIButton!
+  
+    @IBOutlet weak var fechaEvento: UILabel!
     
    
     @IBAction func crearEventoAction(_ sender: Any) {
@@ -112,7 +113,7 @@ class LoggedInViewController: UIViewController {
                 
                 self.event = event.0!
                 self.numEventsLabel.text = "Tienes un evento creado! nombre : " + self.event!.name! 
-               
+                self.fechaEvento.text = "Fecha : " + (self.event?.date)!
             }
             .catch { (error) in
                 

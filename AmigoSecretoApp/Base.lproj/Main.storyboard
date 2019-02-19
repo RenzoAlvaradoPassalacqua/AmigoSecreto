@@ -503,12 +503,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-CP-SRc">
+                                <rect key="frame" x="32" y="151" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aeZ-CP-SRc" secondAttribute="trailing" symbolic="YES" id="3Mh-Ev-a62"/>
                             <constraint firstItem="osJ-h3-54b" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="50a-h7-PM0"/>
                             <constraint firstItem="osJ-h3-54b" firstAttribute="top" secondItem="WRD-Mw-UNK" secondAttribute="bottom" constant="8" id="6BZ-F6-04f"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WRD-Mw-UNK" secondAttribute="trailing" constant="20" symbolic="YES" id="7wM-h4-3v9"/>
+                            <constraint firstItem="aeZ-CP-SRc" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="BJ3-Ey-vqA"/>
+                            <constraint firstItem="aeZ-CP-SRc" firstAttribute="top" secondItem="Gai-cK-yBF" secondAttribute="bottom" constant="8" id="RtK-Lj-Hzo"/>
                             <constraint firstItem="Gai-cK-yBF" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="bXu-FX-HjB"/>
                             <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" secondItem="Ozz-IU-fju" secondAttribute="trailing" constant="16" id="eBQ-DV-tBI"/>
                             <constraint firstItem="Ozz-IU-fju" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="16" id="fqu-xn-d8g"/>
@@ -524,6 +533,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="first" id="ug7-Bd-ExL"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="fechaEvento" destination="aeZ-CP-SRc" id="UHN-wa-ngb"/>
                         <outlet property="numEventsLabel" destination="Gai-cK-yBF" id="tuU-es-XjR"/>
                         <outlet property="userLoggedLabel" destination="WRD-Mw-UNK" id="Y2T-IC-1LG"/>
                     </connections>
