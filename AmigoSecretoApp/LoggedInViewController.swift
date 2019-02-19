@@ -48,7 +48,7 @@ class LoggedInViewController: UIViewController, UITabBarControllerDelegate {
         let sv = UIViewController.displaySpinner(onView: self.view)
         let userLoggedEmail = appDelegate?.globalAppSettings?.adminUserEmail
         searchForEvents(spiner: sv, userLogged: userLoggedEmail)
-      
+        tabBarController?.delegate = self
     }
     
     func prelaodGlobalSettings(){
@@ -69,6 +69,10 @@ class LoggedInViewController: UIViewController, UITabBarControllerDelegate {
     }
     
     @IBAction func logoutOfApp(_ sender: UIButton) {
+       self.logOut()
+    }
+
+    func logOut(){
         let sv = UIViewController.displaySpinner(onView: self.view)
         appDelegate?.globalAppSettings?.isLogged = false
         appDelegate?.globalAppSettings?.currentAppLoggedUserEmail = ""
@@ -82,7 +86,6 @@ class LoggedInViewController: UIViewController, UITabBarControllerDelegate {
             self.loadLoginScreen()
         }
     }
-
     func getEventsCoreDataByEmail(emailParam:String)->Promise<(Event? , error: NSError?)> {
         return Promise<(Event? , error: NSError?)> { resolve in
             CoreDataUtils.sharedInstance.searchEventByEmail(email: emailParam){ (eventCoreData, error) in
@@ -149,5 +152,32 @@ class LoggedInViewController: UIViewController, UITabBarControllerDelegate {
         self.present(viewController, animated: true, completion: nil)
     }
 
-
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController is LoggedOut {
+            
+            let alertMensaje = "¿ Está seguro que desea cerrar sesión ? "
+            self.showMessage(Message: (alertMensaje))
+            return false
+            
+        }
+        
+        return true
+    }
+    
+    func showMessage( Message : String){
+        let alert = UIAlertController(title: "Cerrar Sesión", message: Message, preferredStyle: UIAlertController.Style.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            NSLog("OK Pressed")
+            self.logOut()
+          
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+            NSLog("Cancel Pressed")
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
 }

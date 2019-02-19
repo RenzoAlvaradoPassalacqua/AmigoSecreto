@@ -545,7 +545,7 @@
         <!--LogOut-->
         <scene sceneID="iV6-hG-Edr">
             <objects>
-                <viewController id="bEW-pF-PpO" sceneMemberID="viewController">
+                <viewController id="bEW-pF-PpO" customClass="LoggedOut" customModule="AmigoSecretoAppExtension" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TH6-0d-pI4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
