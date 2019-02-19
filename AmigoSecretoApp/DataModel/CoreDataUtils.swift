@@ -153,7 +153,8 @@ class CoreDataUtils{
                 print("name: ", data.value(forKey: "name") as? String ?? " ")
                 print("email: ",data.value(forKey: "email") as! String)
                 print("logged: ",data.value(forKey: "logged") as? Bool ?? false)
-               
+                print("admin: ",data.value(forKey: "admin") as? Bool ?? false)
+                
                 retPerson.name = data.value(forKey: "name") as? String
                 retPerson.email = data.value(forKey: "email") as? String
                 retPerson.password = data.value(forKey: "password") as? String
@@ -353,7 +354,8 @@ class CoreDataUtils{
         }
       
     }
-    func readAppConfigsToDelegateAdmin (){
+    func readAppConfigsToDelegateAdmin (completion: @escaping (_ retAppConfigObj:AppConfigs?, _ error:NSError?) -> Void) {
+    var retAppConfigObj : AppConfigs?
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let active :Bool = true
@@ -394,16 +396,21 @@ class CoreDataUtils{
                             print ("CoreDataUtils admin appConfig.id ", appConfig.id)
                             print ("CoreDataUtils admin appConfig.adminUser?.email ", appConfig.adminUserEmail)
                             print ("CoreDataUtils admin appConfig.isLogged  ", appConfig.isLogged)
-                            appDelegate.globalAppSettings = appConfig
+                            retAppConfigObj = appConfig
+                            completion(retAppConfigObj,nil)
+                            break;
                         }
                     }
                 }
+                
             }
             
             
             
         } catch {
+            completion(nil, error as NSError)
             fatalError("Failed to fetch readAppConfigsToDelegate globalAppSetting: \(error)")
+            
         }
         
     }

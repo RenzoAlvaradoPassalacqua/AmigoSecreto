@@ -475,16 +475,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ozz-IU-fju">
-                                <rect key="frame" x="16" y="767" width="382" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="0Rd-QR-4rW"/>
-                                </constraints>
-                                <state key="normal" title="Logout"/>
-                                <connections>
-                                    <action selector="logoutOfApp:" destination="LoV-qw-wMu" eventType="touchUpInside" id="Eh7-qA-ypY"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bienvenido: Usuario Logeado" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRD-Mw-UNK">
                                 <rect key="frame" x="32" y="76" width="200.5" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -519,12 +509,9 @@
                             <constraint firstItem="aeZ-CP-SRc" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="BJ3-Ey-vqA"/>
                             <constraint firstItem="aeZ-CP-SRc" firstAttribute="top" secondItem="Gai-cK-yBF" secondAttribute="bottom" constant="8" id="RtK-Lj-Hzo"/>
                             <constraint firstItem="Gai-cK-yBF" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="bXu-FX-HjB"/>
-                            <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" secondItem="Ozz-IU-fju" secondAttribute="trailing" constant="16" id="eBQ-DV-tBI"/>
-                            <constraint firstItem="Ozz-IU-fju" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="16" id="fqu-xn-d8g"/>
                             <constraint firstItem="WRD-Mw-UNK" firstAttribute="top" secondItem="GHY-TD-XoK" secondAttribute="top" constant="32" id="gak-uk-pO8"/>
                             <constraint firstItem="Gai-cK-yBF" firstAttribute="top" secondItem="WRD-Mw-UNK" secondAttribute="bottom" constant="33" id="hOV-rL-Ii6"/>
                             <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" secondItem="osJ-h3-54b" secondAttribute="trailing" constant="32" id="i3N-Yb-0ZO"/>
-                            <constraint firstItem="GHY-TD-XoK" firstAttribute="bottom" secondItem="Ozz-IU-fju" secondAttribute="bottom" constant="16" id="ndh-Mq-BR3"/>
                             <constraint firstItem="GHY-TD-XoK" firstAttribute="trailing" secondItem="Gai-cK-yBF" secondAttribute="trailing" constant="32" id="ohr-RH-bYU"/>
                             <constraint firstItem="WRD-Mw-UNK" firstAttribute="leading" secondItem="GHY-TD-XoK" secondAttribute="leading" constant="32" id="zcW-G6-Uwo"/>
                         </constraints>

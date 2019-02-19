@@ -43,8 +43,8 @@ class LoggedInViewController: UIViewController, UITabBarControllerDelegate {
         self.userLoggedLabel.isHidden = true
         self.userLoggedLabel.text = ""
         self.numEventsLabel.text = ""
-        CoreDataUtils.sharedInstance.readAppConfigsToDelegateAdmin()
-        prelaodGlobalSettings()
+        self.getGlobalSettingsFromCoreData()
+        
         let sv = UIViewController.displaySpinner(onView: self.view)
         let userLoggedEmail = appDelegate?.globalAppSettings?.adminUserEmail
         searchForEvents(spiner: sv, userLogged: userLoggedEmail)
@@ -53,7 +53,7 @@ class LoggedInViewController: UIViewController, UITabBarControllerDelegate {
     
     func prelaodGlobalSettings(){
         
-        let userLoggedEmail = appDelegate?.globalAppSettings?.adminUserEmail
+        let userLoggedEmail = appDelegate?.globalAppSettings?.currentAppLoggedUserEmail
         self.userLoggedLabel.text = "Bienvenido : " + (userLoggedEmail ?? " ") + "!"
         self.userLoggedLabel.isHidden = false
         
@@ -180,4 +180,52 @@ class LoggedInViewController: UIViewController, UITabBarControllerDelegate {
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func getGlobalSettingsFromCoreData(){
+        
+        let userPromise = self.getGlobalSetingsFromCoreData()
+        userPromise
+            .done { (settings) in
+                
+                print("encontro settings coredata",settings)
+                
+                
+                self.appDelegate?.globalAppSettings = settings.0!
+                self.prelaodGlobalSettings()
+            }
+            .catch { (error) in
+                
+                print("error no hay coredata personas", error)
+                
+            }
+            .finally {
+                
+                
+                print("finally getGlobalSettingsFromCoreData ")
+        }
+        
+        
+    }
+    
+    func getGlobalSetingsFromCoreData()->Promise<(AppConfigs? , error: NSError?)> {
+        return Promise<(AppConfigs? , error: NSError?)> { resolve in
+            CoreDataUtils.sharedInstance.readAppConfigsToDelegateAdmin(){ (globalSetings, error) in
+                var errorLocal:NSError?
+                if(globalSetings != nil){
+                    print("LOGIN---> Se encontro globalSetings en CORE DATA  = " , globalSetings as Any)
+                    
+                    resolve.fulfill((globalSetings,nil))
+                }else{
+                    if (error == nil){
+                        errorLocal = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on globalSetings "])
+                    }
+                    
+                    print("LOGIN--> No encontro Datos en el Core Data globalSetings ", errorLocal as Any)
+                    resolve.reject(errorLocal!)
+                }
+            }
+        }
+    }
+    
+    
 }

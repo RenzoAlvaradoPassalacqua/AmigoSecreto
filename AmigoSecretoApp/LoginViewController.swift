@@ -110,7 +110,7 @@ class LoginViewController: UIViewController {
                 
                 //CoreDataUtils.sharedInstance.deleteAllConfigData()
                 CoreDataUtils.sharedInstance.saveAppGlobalSettings()
-                CoreDataUtils.sharedInstance.readAppConfigsToDelegateAdmin()
+                 
                 
                 self.signInUsernameField.text = ""
                 self.signInPasswordField.text = ""
@@ -149,30 +149,80 @@ class LoginViewController: UIViewController {
         
         CoreDataUtils.sharedInstance.readAppConfigs()
         
-        CoreDataUtils.sharedInstance.readAppConfigsToDelegateAdmin()
-        appConfig = appDelegate.globalAppSettings
+        self.getGlobalSettingsFromCoreData()
         
         
-        appNameLabel.text = appConfig?.appName
-        appSubtitleLabel.text = appConfig?.appSubtitle
         
-        let adminUser: String? = (appConfig?.adminUserEmail)
-        if (adminUser != nil && appConfig!.isLogged){
-            self.isRegistered = true
-            appConfig?.isLogged = true
-            
-            // load to memory appdelegate only not coredata
-            appDelegate.globalAppSettings = appConfig
-            
-            let sv: UIView = UIViewController.displaySpinner(onView: self.view)
-            self.searchForRegUser(spiner: sv, userLogged: adminUser)
-            
-            //loadHomeScreen()
+        
+    }
+    
+    func getGlobalSettingsFromCoreData(){
+        
+        let userPromise = self.getGlobalSetingsFromCoreData()
+        userPromise
+            .done { (settings) in
+                
+                print("loginView encontro settings coredata",settings)
+                
+                
+                self.appConfig = settings.0!
+                
+                self.appNameLabel.text = self.appConfig?.appName
+                self.appSubtitleLabel.text = self.appConfig?.appSubtitle
+                
+                let adminUser: String? = (self.appConfig?.adminUserEmail)
+                
+                
+                print ("appConfig?.adminUserEmail " + (self.appConfig?.adminUserEmail)!)
+                
+                if (adminUser != nil && self.appConfig!.isLogged){
+                    self.isRegistered = true
+                    self.appConfig?.isLogged = true
+                    
+                    // load to memory appdelegate only not coredata
+                    self.appDelegate.globalAppSettings = self.appConfig
+                    
+                    let sv: UIView = UIViewController.displaySpinner(onView: self.view)
+                    self.searchForRegUser(spiner: sv, userLogged: adminUser)
+                    
+                    //loadHomeScreen()
+                }
+                else{
+                    self.isRegistered = false
+                }
+            }
+            .catch { (error) in
+                
+                print("error no hay coredata personas", error)
+                
+            }
+            .finally {
+                
+                
+                print("finally getGlobalSettingsFromCoreData ")
         }
-        else{
-            self.isRegistered = false
-        }
         
+        
+    }
+    
+    func getGlobalSetingsFromCoreData()->Promise<(AppConfigs? , error: NSError?)> {
+        return Promise<(AppConfigs? , error: NSError?)> { resolve in
+            CoreDataUtils.sharedInstance.readAppConfigsToDelegateAdmin(){ (globalSetings, error) in
+                var errorLocal:NSError?
+                if(globalSetings != nil){
+                    print("LOGIN---> Se encontro globalSetings en CORE DATA  = " , globalSetings as Any)
+                    
+                    resolve.fulfill((globalSetings,nil))
+                }else{
+                    if (error == nil){
+                        errorLocal = NSError(domain:"", code:404, userInfo:[ NSLocalizedDescriptionKey: "No data Found on globalSetings "])
+                    }
+                    
+                    print("LOGIN--> No encontro Datos en el Core Data globalSetings ", errorLocal as Any)
+                    resolve.reject(errorLocal!)
+                }
+            }
+        }
     }
     
     func register(spiner : UIView){
