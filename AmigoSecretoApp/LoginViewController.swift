@@ -90,7 +90,7 @@ class LoginViewController: UIViewController {
             .done { (user) in
                 
                 print("encontro usuario coredata",user)
-                self.statusLabel.text = "Se encontró el usuario: " + userLoggedEmail! + ", Iniciando Sessión..."
+               
                 self.appDelegate.globalAppSettings?.isLogged = true
                 self.appDelegate.globalAppSettings?.currentAppLoggedUserEmail = userLoggedEmail!
                 self.person = user.0
@@ -99,7 +99,6 @@ class LoginViewController: UIViewController {
                 
                 CoreDataUtils.sharedInstance.readAppConfigsToDelegate()
                 
-                
                 print (" global user admin ", self.appDelegate.globalUser?.admin)
                 print (" global user email ", self.appDelegate.globalUser?.email)
                 print ("self.appDelegate.globalAppSettings?.adminUserEmail", self.appDelegate.globalAppSettings?.adminUserEmail)
@@ -107,18 +106,40 @@ class LoginViewController: UIViewController {
                 {
                     self.appDelegate.globalUser?.admin = true
                 }
-                
-                //CoreDataUtils.sharedInstance.deleteAllConfigData()
+
                 CoreDataUtils.sharedInstance.saveAppGlobalSettings()
-                 
                 
-                self.signInUsernameField.text = ""
-                self.signInPasswordField.text = ""
-                self.signInUsernameField.isEnabled = false
-                self.signInPasswordField.isEnabled = false
-                self.SignInBtn.isEnabled = false
-      
-                self.loadHomeScreen()
+                print ("self.person?.password ", self.person?.password)
+                print ("self.signInPasswordField.text", self.signInPasswordField.text)
+                
+                if ((self.appConfig?.isLogged)!){
+                    self.loadHomeScreen()
+                }
+                
+                if ((self.signInPasswordField.text?.count)! > 0){
+                    if (self.person?.password == self.signInPasswordField.text) {
+                        self.statusLabel.text = "Se encontró el usuario: " + userLoggedEmail! + ", Iniciando Sessión..."
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            self.signInUsernameField.isEnabled = false
+                            self.signInPasswordField.isEnabled = false
+                            self.SignInBtn.isEnabled = false
+                            self.loadHomeScreen()
+                        }
+                    }
+                    else{
+                        self.statusLabel.text = "¡Password incorrecto!"
+                        self.signInUsernameField.isEnabled = true
+                        self.signInPasswordField.isEnabled = true
+                        self.SignInBtn.isEnabled = true
+                    }
+                }
+                else{
+                    
+                    self.signInUsernameField.text = ""
+                    self.signInPasswordField.text = ""
+                    self.SignInBtn.isEnabled = true
+                }
+                
             }
             .catch { (error) in
                 
@@ -126,10 +147,8 @@ class LoginViewController: UIViewController {
                 self.statusLabel.text = "No se encontro el usuario: " + self.signInUsernameField.text! + " registrado."
             }
             .finally {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     UIViewController.removeSpinner(spinner: spiner)
-                   
-                    
                 }
                 print("finally")
         }
