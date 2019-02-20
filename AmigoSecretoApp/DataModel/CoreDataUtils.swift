@@ -31,6 +31,9 @@ class CoreDataUtils{
         let state : String? = person.state ?? " "
         let admin : Bool = person.admin
         
+        print ("createNewPerson name ", name as Any)
+        print ("createNewPerson email ", email as Any)
+        print ("createNewPerson state ", state as Any)
         userCoreData.setValue(name, forKey: "name")
         userCoreData.setValue(email, forKey: "email")
         userCoreData.setValue(password, forKey: "password")
@@ -189,7 +192,7 @@ class CoreDataUtils{
        
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
             fetchRequest.returnsDistinctResults = true
-            fetchRequest.propertiesToFetch = ["email"]
+            fetchRequest.propertiesToFetch = ["email","name","state"]
         
             fetchRequest.resultType = NSFetchRequestResultType.dictionaryResultType
             fetchRequest.predicate = NSPredicate(format: "state = %@", "0")

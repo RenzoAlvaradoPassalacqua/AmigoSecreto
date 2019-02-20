@@ -282,7 +282,13 @@ class SettingsViewController: UIViewController,UITableViewDataSource,UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "labelCell") as! PersonaCell
-        cell.lblName.text = self.players[indexPath.row].email
+        print ("self.players[indexPath.row].name" , self.players[indexPath.row].name as Any)
+        print ("self.players[indexPath.row].email" , self.players[indexPath.row].email as Any)
+        print ("self.players[indexPath.row].state" , self.players[indexPath.row].state as Any)
+        let concatName = self.players[indexPath.row].name ?? ""
+        let concatEmail = self.players[indexPath.row].email ?? ""
+        
+        cell.lblName.text = concatName + " / " + concatEmail
         cell.lblState.text = self.players[indexPath.row].state
          
         return cell
